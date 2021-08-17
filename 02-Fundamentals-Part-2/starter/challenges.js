@@ -31,54 +31,54 @@ Test data:
 */
 
 //Arrow function
-const calcAverage = (team) => {
-  return (team.game1 + team.game2 + team.game3) / 3;
-}
+// const calcAverage = (team) => {
+//   return (team.game1 + team.game2 + team.game3) / 3;
+// }
 
-const dolphins = {
-  name: "Dolphins",
-  game1: 44,
-  game2: 23,
-  game3: 71,
-}
+// const dolphins = {
+//   name: "Dolphins",
+//   game1: 44,
+//   game2: 23,
+//   game3: 71,
+// }
 
-const dolphinsV2 = {
-  name: "Dolphins V2",
-  game1: 85,
-  game2: 54,
-  game3: 41,
-}
+// const dolphinsV2 = {
+//   name: "Dolphins V2",
+//   game1: 85,
+//   game2: 54,
+//   game3: 41,
+// }
 
-const koalas = {
-  name: "Koalas V2",
-  game1: 65,
-  game2: 54,
-  game3: 49
-}
+// const koalas = {
+//   name: "Koalas V2",
+//   game1: 65,
+//   game2: 54,
+//   game3: 49
+// }
 
-const koalasV2 = {
-  name: "Koalas V2",
-  game1: 23,
-  game2: 34,
-  game3: 27
-}
+// const koalasV2 = {
+//   name: "Koalas V2",
+//   game1: 23,
+//   game2: 34,
+//   game3: 27
+// }
 
-const dolphinsAvg = calcAverage(dolphins)
-const koalasAvg = calcAverage(koalas)
+// const dolphinsAvg = calcAverage(dolphins)
+// const koalasAvg = calcAverage(koalas)
 
-const dolphinsAvg2 = calcAverage(dolphinsV2)
-const koalasAvg2 = calcAverage(koalasV2)
+// const dolphinsAvg2 = calcAverage(dolphinsV2)
+// const koalasAvg2 = calcAverage(koalasV2)
 
 
-const checkWinner = function (dolphinsAvg, koalasAvg) {
-  if (dolphinsAvg >= (koalasAvg * 2)) {
-    console.log(`And your winner is... THE DOLPHINS! They beat the Koalas ${dolphinsAvg} - ${koalasAvg}`)
-  } else if (dolphinsAvg * 2 <= koalasAvg) {
-    console.log(`And your winner is... THE KOALAS! They beat the Dolphins ${koalasAvg} - ${dolphinsAvg}`)
-  } else {
-    console.log(`There is no winner`)
-  }
-}
+// const checkWinner = function (dolphinsAvg, koalasAvg) {
+//   if (dolphinsAvg >= (koalasAvg * 2)) {
+//     console.log(`And your winner is... THE DOLPHINS! They beat the Koalas ${dolphinsAvg} - ${koalasAvg}`)
+//   } else if (dolphinsAvg * 2 <= koalasAvg) {
+//     console.log(`And your winner is... THE KOALAS! They beat the Dolphins ${koalasAvg} - ${dolphinsAvg}`)
+//   } else {
+//     console.log(`There is no winner`)
+//   }
+// }
 
-checkWinner(dolphinsAvg, koalasAvg)
-checkWinner(dolphinsAvg2, koalasAvg2)
+// checkWinner(dolphinsAvg, koalasAvg)
+// checkWinner(dolphinsAvg2, koalasAvg2)

@@ -94,3 +94,30 @@ which is about 18.2% of the world.'
 // }
 
 // console.log(describePopulation("Turkey", 69))
+
+//========================
+/*LECTURE: Introduction to Arrays
+
+1. Create an array containing 4 population values of 4 countries of your choice.
+You may use the values you have been using previously. Store this array into a
+variable called 'populations'
+
+2. Log to the console whether the array has 4 elements or not (true or false)
+
+3. Create an array called 'percentages' containing the percentages of the
+world population for these 4 population values. Use the function
+'percentageOfWorld1' that you created earlier to compute the 4
+percentage values*/
+
+const populations = [1665, 3950, 2111, 1369]
+
+console.log(populations.length === 4);
+
+const percentageOfWorld = function (population) {
+  const worldPopulation = 7900
+  return ((population / worldPopulation) * 100).toFixed(1)
+}
+
+populations.forEach(function (population) {
+  console.log(`${percentageOfWorld(population)}%`)
+})
