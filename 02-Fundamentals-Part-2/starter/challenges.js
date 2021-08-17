@@ -71,10 +71,12 @@ const koalasAvg2 = calcAverage(koalasV2)
 
 
 const checkWinner = function (dolphinsAvg, koalasAvg) {
-  if (dolphinsAvg > koalasAvg) {
+  if (dolphinsAvg >= (koalasAvg * 2)) {
     console.log(`And your winner is... THE DOLPHINS! They beat the Koalas ${dolphinsAvg} - ${koalasAvg}`)
-  } else if (dolphinsAvg < koalasAvg) {
+  } else if (dolphinsAvg * 2 <= koalasAvg) {
     console.log(`And your winner is... THE KOALAS! They beat the Dolphins ${koalasAvg} - ${dolphinsAvg}`)
+  } else {
+    console.log(`There is no winner`)
   }
 }
 
