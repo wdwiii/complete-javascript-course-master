@@ -85,3 +85,23 @@
 
 // console.log(yearsUntilRetirement(1989, "Willie"))
 
+// const friends = ["Mary", "Caleb", "Kelsi"];
+
+// friends.push("Tiffany");
+// //Add to end of array
+
+// friends.unshift("Bobbi", "Renzi")
+// //Add to beginning of array
+
+// friends.pop()
+// //Remove 1 element from beginning of array
+
+// friends.shift()
+// //Remove 1 element from beginning of array
+
+// console.log(friends.indexOf("Mary"))
+// //Return index value of array element
+
+// console.log(friends.includes("Bob"))
+// console.log(friends.includes("Renzi"))
+//Returns boolean value if parameter is in the array. Strict equality (ex. 23 ≠ '23')
