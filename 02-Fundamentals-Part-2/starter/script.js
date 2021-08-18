@@ -105,3 +105,19 @@
 // console.log(friends.includes("Bob"))
 // console.log(friends.includes("Renzi"))
 //Returns boolean value if parameter is in the array. Strict equality (ex. 23 ≠ '23')
+
+//========================
+//42. Intro to Objects
+
+//Challenge: Write the following sentence in a dynamic way. 
+//Willie has 3 friends and his best friends name is Victor
+
+// const willie = {
+//   firstName: 'Willie',
+//   lastName: 'Whitfield',
+//   age: 35,
+//   loaction: 'USA',
+//   friends: ['Victor', 'Thomas', 'Krista', 'Caron']
+// }
+
+// console.log(`${willie.firstName} has ${willie.friends.length} friends and his best friend's name is ${willie.friends[0]}`)
