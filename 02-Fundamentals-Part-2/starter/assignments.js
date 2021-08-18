@@ -1,4 +1,5 @@
-/*LECTURE: Functions
+/*=====================
+LECTURE: Functions
 1. Write a function called 'describeCountry' which takes three parameters:
 'country', 'population' and 'capitalCity'. Based on this input, the
 function returns a string with this format: 'Finland has 6 million people and its
@@ -17,7 +18,8 @@ returned values in 3 different variables, and log them to the console*/
 
 // console.log(usa, germany, wakanda)
 
-/*LECTURE: Function Declarations vs. Expressions
+/*====================
+LECTURE: Function Declarations vs. Expressions
 1. The world population is 7900 million people. Create a function declaration
 called 'percentageOfWorld1' which receives a 'population' value, and
 returns the percentage of the world population that the given population
@@ -52,9 +54,10 @@ the same populations)*/
 
 //console.log(usPopulation, chinaPopulation, haitiPopulation)
 
-// LECTURE: Arrow Functions
-// 1. Recreate the last assignment, but this time create an arrow function called
-// 'percentageOfWorld3'
+/*===========
+LECTURE: Arrow Functions
+1. Recreate the last assignment, but this time create an arrow function called
+'percentageOfWorld3'*/
 
 // const percentageOfWorld3 = (country, population) => {
 //   const worldPopulation = 7900
@@ -69,7 +72,8 @@ the same populations)*/
 
 // console.log(usPopulation2, chinaPopulation2, haitiPopulation2)
 
-/*LECTURE: Functions Calling Other Functions
+/*=====================
+LECTURE: Functions Calling Other Functions
 1. Create a function called 'describePopulation'. Use the function type you
 like the most. This function takes in two arguments: 'country' and
 'population', and returns a string like this: 'China has 1441 million people,
@@ -122,7 +126,8 @@ percentage values*/
 //   console.log(`${percentageOfWorld(population)}%`)
 // })
 
-/*LECTURE: Basic Array Operations (Methods)
+/*===============
+LECTURE: Basic Array Operations (Methods)
 
 1. Create an array containing all the neighbouring countries of a country of your
 choice. Choose a country which has at least 2 or 3 neighbours. Store the array
@@ -155,3 +160,41 @@ change the array at that index position. For example, you can search for
 // neighbors.push("Germany")
 
 // console.log(neighbors)
+
+/*=======================
+LECTURE: Introduction to Objects
+1. Create an object called 'myCountry' for a country of your choice, containing
+properties 'country', 'capital', 'language', 'population' and
+'neighbours' (an array like we used in previous assignments)*/
+
+// const myCountry = {
+//   country: 'USA',
+//   capital: 'Washington DC',
+//   language: 'English',
+//   population: 332,
+//   neighbors: ['Mexico', 'Canada']
+// }
+
+/*========================
+LECTURE: Dot vs. Bracket Notation
+1. Using the object from the previous assignment, log a string like this to the
+console: 'Finland has 6 million finnish-speaking people, 3 neighbouring countries
+and a capital called Helsinki.'
+
+2. Increase the country's population by two million using dot notation, and then
+decrease it by four million using brackets notation.*/
+
+const myCountry = {
+  country: 'USA',
+  capital: 'Washington DC',
+  language: 'English',
+  population: 332,
+  neighbors: ['Mexico', 'Canada']
+}
+
+myCountry.population = myCountry.population + 2;
+
+myCountry['population'] = myCountry.population - 4;
+
+console.log(`${myCountry.country} has ${myCountry.population} million ${myCountry.language}-speaking people, ${myCountry.neighbors.length} neighbouring countries
+and a capital called ${myCountry.capital}.`)
