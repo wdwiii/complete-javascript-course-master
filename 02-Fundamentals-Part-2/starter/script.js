@@ -121,3 +121,23 @@
 // }
 
 // console.log(`${willie.firstName} has ${willie.friends.length} friends and his best friend's name is ${willie.friends[0]}`)
+
+//43. Object Methods
+
+// const willie = {
+//   firstName: 'Willie',
+//   lastName: 'Whitfield',
+//   age: 35,
+//   loaction: 'USA',
+//   friends: ['Victor', 'Thomas', 'Krista', 'Caron'],
+//   hasDog: true,
+//   birthYear: 1988,
+
+//   calcAge: function () {
+//     return 2029 - this.birthYear
+//   }
+
+// }
+
+// //console.log(willie.calcAge())
+// //console.log(willie['calcAge']())
