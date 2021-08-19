@@ -141,3 +141,21 @@
 
 // //console.log(willie.calcAge())
 // //console.log(willie['calcAge']())
+
+//46. The For Loop
+//Instead of repeating the log
+console.log(`This is iteration number 1`);
+console.log(`This is iteration number 2`);
+console.log(`This is iteration number 3`);
+console.log(`This is iteration number 4`);
+console.log(`This is iteration number 5`);
+console.log(`This is iteration number 6`);
+console.log(`This is iteration number 7`);
+console.log(`This is iteration number 8`);
+console.log(`This is iteration number 9`);
+console.log(`This is iteration number 10`);
+
+//A for loop can be used to automatically log reptitive actions
+for (let i = 1; i <= 20; i++) {
+  console.log(`This is iteration number ${i}`)
+}
