@@ -184,17 +184,54 @@ and a capital called Helsinki.'
 2. Increase the country's population by two million using dot notation, and then
 decrease it by four million using brackets notation.*/
 
+// const myCountry = {
+//   country: 'USA',
+//   capital: 'Washington DC',
+//   language: 'English',
+//   population: 332,
+//   neighbors: ['Mexico', 'Canada']
+// }
+
+// myCountry.population = myCountry.population + 2;
+
+// myCountry['population'] = myCountry.population - 4;
+
+// console.log(`${myCountry.country} has ${myCountry.population} million ${myCountry.language}-speaking people, ${myCountry.neighbors.length} neighbouring countries
+// and a capital called ${myCountry.capital}.`)
+
+/*========================
+LECTURE: Object Methods
+
+1. Add a method called 'describe' to the 'myCountry' object. This method
+will log a string to the console, similar to the string logged in the previous
+assignment, but this time using the 'this' keyword.
+
+2. Call the 'describe' method
+
+3. Add a method called 'checkIsland' to the 'myCountry' object. This
+method will set a new property on the object, called 'isIsland'.
+'isIsland' will be true if there are no neighbouring countries, and false if
+there are. Use the ternary operator to set the property*/
+
 const myCountry = {
   country: 'USA',
   capital: 'Washington DC',
   language: 'English',
   population: 332,
-  neighbors: ['Mexico', 'Canada']
+  neighbors: ['Mexico', 'Canada'],
+  describe: function () {
+    console.log(`${this.country} has ${this.population} million ${this.language}-speaking people, ${this.neighbors.length} neighbouring countries
+    and a capital called ${this.capital}.`)
+  },
+  checkIsland: function () {
+    return this.neighbors.length === 0 ? true : false;
+  }
 }
 
-myCountry.population = myCountry.population + 2;
+console.log(myCountry.describe())
 
-myCountry['population'] = myCountry.population - 4;
-
-console.log(`${myCountry.country} has ${myCountry.population} million ${myCountry.language}-speaking people, ${myCountry.neighbors.length} neighbouring countries
-and a capital called ${myCountry.capital}.`)
+if (myCountry.checkIsland() === false) {
+  console.log(`${myCountry.country} is NOT an island`)
+} else {
+  console.log(`${myCountry.country} IS an island`)
+}
