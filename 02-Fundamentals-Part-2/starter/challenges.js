@@ -105,26 +105,110 @@ the function you created before
 4. Bonus: Create an array 'total' containing the total values, so the bill + tip
 Test data: 125, 555 and 44
 */
-const bills = [125, 555, 44];
-const tips = [];
-const totals = [];
+// const bills = [125, 555, 44];
+// const tips = [];
+// const totals = [];
 
-const calcTip = function (billsArray) {
-  billsArray.forEach(function (bill) {
-    if (bill >= 50 || bill <= 300) {
-      return tips.push((bill * .15).toFixed(2));
-    } else {
-      return tips.push((bill * .2).toFixed(2));
-    }
-  })
+// const calcTip = function (billsArray) {
+//   billsArray.forEach(function (bill) {
+//     if (bill >= 50 || bill <= 300) {
+//       return tips.push((bill * .15).toFixed(2));
+//     } else {
+//       return tips.push((bill * .2).toFixed(2));
+//     }
+//   })
+// }
+
+// const calcTotal = function (billsArray, tipsArray, index) {
+//   return totals.push(Number(billsArray[index]) + Number(tipsArray[index]))
+// }
+
+// calcTip(bills)
+// calcTotal(bills, tips, 0);
+// calcTotal(bills, tips, 1);
+// calcTotal(bills, tips, 2);
+// console.log(bills, tips, totals)
+
+/*===============================
+Coding Challenge #3
+
+Let's go back to Mark and John comparing their BMIs! This time, let's use objects to
+implement the calculations! Remember: BMI = mass / height ** 2 = mass
+/ (height * height) (mass in kg and height in meter)
+Your tasks:
+
+1. For each of them, create an object with properties for their full name, mass, and
+height (Mark Miller and John Smith)
+
+2. Create a 'calcBMI' method on each object to calculate the BMI (the same
+method on both objects). Store the BMI value to a property, and also return it
+from the method
+
+3. Log to the console who has the higher BMI, together with the full name and the
+respective BMI. Example: "John's BMI (28.3) is higher than Mark's (23.9)!"
+Test data: Marks weights 78 kg and is 1.69 m tall. John weights 92 kg and is 1.95 m
+tall.*/
+
+const mark = {
+  firstName: "Mark",
+  lastName: "Miller",
+  getName: function () {
+    const fullName = this.firstName + " " + this.lastName;
+    return fullName;
+  },
+  mass: 105,
+  height: 2.06,
+  calcBMI: function () {
+    const bmi = this.mass / this.height ** 2;
+    return Number(bmi.toFixed(3));
+  },
 }
 
-const calcTotal = function (billsArray, tipsArray, index) {
-  return totals.push(Number(billsArray[index]) + Number(tipsArray[index]))
+const janeau = {
+  firstName: "Janeau",
+  lastName: "Abed",
+  getName: function () {
+    const fullName = this.firstName + " " + this.lastName;
+    return fullName;
+  },
+  mass: 76,
+  height: 1.74,
+  calcBMI: function () {
+    const bmi = this.mass / this.height ** 2;
+    return Number(bmi.toFixed(3));
+  },
 }
 
-calcTip(bills)
-calcTotal(bills, tips, 0);
-calcTotal(bills, tips, 1);
-calcTotal(bills, tips, 2);
-console.log(bills, tips, totals)
+const maya = {
+  firstName: "Maya",
+  lastName: "Torano",
+  getName: function () {
+    const fullName = this.firstName + " " + this.lastName;
+    return fullName;
+  },
+  mass: 76,
+  height: 1.74,
+  calcBMI: function () {
+    const bmi = this.mass / this.height ** 2;
+    return Number(bmi.toFixed(3));
+  },
+}
+
+const compareBMI = function (person1, person2) {
+  if (person1.calcBMI() > person2.calcBMI()) {
+    console.log(`${person1.getName()} (${person1.calcBMI()}) has a higher BMI than ${person2.getName()} (${person2.calcBMI()})`)
+  } else if (person2.calcBMI() > person1.calcBMI()) {
+    console.log(`${person2.getName()} (${person2.calcBMI()}) has a higher BMI than ${person1.getName()} (${person1.calcBMI()})`)
+  } else if (person1.calcBMI() === person2.calcBMI()) {
+    console.log(`${person1.getName()} and ${person2.getName()} have the same Body Mass Index (${(person1.calcBMI() + person2.calcBMI()) / 2})`)
+  }
+}
+
+//Test 1
+compareBMI(mark, maya)
+
+//Test 2
+compareBMI(maya, janeau)
+
+//Test 3
+compareBMI(janeau, mark)
