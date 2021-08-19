@@ -122,7 +122,8 @@
 
 // console.log(`${willie.firstName} has ${willie.friends.length} friends and his best friend's name is ${willie.friends[0]}`)
 
-//43. Object Methods
+/*=================================
+43. Object Methods*/
 
 // const willie = {
 //   firstName: 'Willie',
@@ -142,20 +143,66 @@
 // //console.log(willie.calcAge())
 // //console.log(willie['calcAge']())
 
-//46. The For Loop
+/*============================
+46. The For Loop */
 //Instead of repeating the log
-console.log(`This is iteration number 1`);
-console.log(`This is iteration number 2`);
-console.log(`This is iteration number 3`);
-console.log(`This is iteration number 4`);
-console.log(`This is iteration number 5`);
-console.log(`This is iteration number 6`);
-console.log(`This is iteration number 7`);
-console.log(`This is iteration number 8`);
-console.log(`This is iteration number 9`);
-console.log(`This is iteration number 10`);
+// console.log(`This is iteration number 1`);
+// console.log(`This is iteration number 2`);
+// console.log(`This is iteration number 3`);
+// console.log(`This is iteration number 4`);
+// console.log(`This is iteration number 5`);
+// console.log(`This is iteration number 6`);
+// console.log(`This is iteration number 7`);
+// console.log(`This is iteration number 8`);
+// console.log(`This is iteration number 9`);
+// console.log(`This is iteration number 10`);
 
-//A for loop can be used to automatically log reptitive actions
-for (let i = 1; i <= 20; i++) {
-  console.log(`This is iteration number ${i}`)
+// //A for loop can be used to automatically log reptitive actions
+// for (let i = 1; i <= 20; i++) {
+//   console.log(`This is iteration number ${i}`)
+// }
+
+//47. Looping Arrays, Breaking and Continuing
+const willie = [
+  'Willie',
+  'Whitfield',
+  35,
+  'USA',
+  ['Victor', 'Thomas', 'Krista', 'Caron'],
+  true,
+  1988
+]
+
+const items = [];
+
+for (let i = 0; i < willie.length; i++) {
+  //console.log(willie[i], typeof willie[i])
+  //items[i] = typeof willie[i];
+  items.push(typeof willie[i])
+}
+//console.log(items)
+
+// const currentYear = 2021
+// const years = [2001, 2018, 1983, 1972, 2014, 1935]
+// const ages = []
+
+// for (let i = 0; i < years.length; i++) {
+//   ages.push(currentYear - years[i])
+// }
+
+// console.log(ages)
+
+//continue and break
+console.log('---ONLY STRINGS WILL BE PRINTED---')
+
+for (let i = 0; i < willie.length; i++) {
+  if (typeof willie[i] !== 'string') continue;
+  console.log(willie[i], typeof willie[i])
+  items.push(typeof willie[i])
+}
+
+console.log('---LOOP IS TERMINATED AFTER FIRST NuMBER TYPE---')
+for (let i = 0; i < willie.length; i++) {
+  if (typeof willie[i] === 'number') break;
+  console.log(willie[i], typeof willie[i])
 }
