@@ -163,23 +163,23 @@
 // }
 
 //47. Looping Arrays, Breaking and Continuing
-const willie = [
-  'Willie',
-  'Whitfield',
-  35,
-  'USA',
-  ['Victor', 'Thomas', 'Krista', 'Caron'],
-  true,
-  1988
-]
+// const willie = [
+//   'Willie',
+//   'Whitfield',
+//   35,
+//   'USA',
+//   ['Victor', 'Thomas', 'Krista', 'Caron'],
+//   true,
+//   1988
+// ]
 
-const items = [];
+// const items = [];
 
-for (let i = 0; i < willie.length; i++) {
-  //console.log(willie[i], typeof willie[i])
-  //items[i] = typeof willie[i];
-  items.push(typeof willie[i])
-}
+// for (let i = 0; i < willie.length; i++) {
+//   //console.log(willie[i], typeof willie[i])
+//   //items[i] = typeof willie[i];
+//   items.push(typeof willie[i])
+//}
 //console.log(items)
 
 // const currentYear = 2021
@@ -193,16 +193,41 @@ for (let i = 0; i < willie.length; i++) {
 // console.log(ages)
 
 //continue and break
-console.log('---ONLY STRINGS WILL BE PRINTED---')
+// console.log('---ONLY STRINGS WILL BE PRINTED---')
 
-for (let i = 0; i < willie.length; i++) {
-  if (typeof willie[i] !== 'string') continue;
-  console.log(willie[i], typeof willie[i])
-  items.push(typeof willie[i])
-}
+// for (let i = 0; i < willie.length; i++) {
+//   if (typeof willie[i] !== 'string') continue;
+//   console.log(willie[i], typeof willie[i])
+//   items.push(typeof willie[i])
+// }
 
-console.log('---LOOP IS TERMINATED AFTER FIRST NuMBER TYPE---')
-for (let i = 0; i < willie.length; i++) {
-  if (typeof willie[i] === 'number') break;
-  console.log(willie[i], typeof willie[i])
-}
+// console.log('---LOOP IS TERMINATED AFTER FIRST NuMBER TYPE---')
+// for (let i = 0; i < willie.length; i++) {
+//   if (typeof willie[i] === 'number') break;
+//   console.log(willie[i], typeof willie[i])
+// }
+
+//=====================================
+//48. Looping Backwards & Lopps in Loops
+
+// const willie = [
+//   'Willie',
+//   'Whitfield',
+//   35,
+//   'USA',
+//   ['Victor', 'Thomas', 'Krista', 'Caron'],
+//   true,
+//   1988
+// ]
+
+// for (let i = willie.length - 1; i >= 0; i--) {
+//   //console.log(willie[i])
+// }
+
+// for (let exercise = 1; exercise <= 3; exercise++) {
+//   console.log(`----- Starting exercise ${exercise} -----`);
+
+//   for (let rep = 1; rep <= 5; rep++) {
+//     console.log(`Rep number ${rep}`);
+//   }
+// }
