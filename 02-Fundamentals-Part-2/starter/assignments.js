@@ -243,6 +243,81 @@ LECTURE: Iteration: The for Loop
 Use a for loop to simulate the 50 people voting, by logging a string like this to
 the console (for numbers 1 to 50): 'Voter number 1 is currently voting.*/
 
-for (let i = 1; i <= 50; i++) {
-  console.log(`Voter number ${i} is currently voting`)
+// for (let i = 1; i <= 50; i++) {
+//   console.log(`Voter number ${i} is currently voting`)
+// }
+
+/*==========================
+LECTURE: Looping Arrays, Breaking and Continuing
+
+1. Let's bring back the 'populations' array from a previous assignment
+
+2. Use a for loop to compute an array called 'percentages2' containing the
+percentages of the world population for the 4 population values. Use the
+function 'percentageOfWorld1' that you created earlier
+
+3. Confirm that 'percentages2' contains exactly the same values as the
+'percentages' array that we created manually in the previous assignment,
+and reflect on how much better this solution is*/
+
+// const populations = [1665, 3950, 2111, 1369];
+
+// const percentages2 = [];
+
+// const percentageOfWorld1 = function (population) {
+//   const worldPopulation = 7900
+
+//   return ((population / worldPopulation) * 100).toFixed(0);
+// }
+
+// for (let i = 0; i < populations.length; i++) {
+//   percentages2[i] = percentageOfWorld1(populations[i]);
+// }
+
+// console.log(percentages2)
+
+/*===============================
+LECTURE: Looping Backwards and Loops in Loops
+
+1. Store this array of arrays into a variable called 'listOfNeighbours'
+[['Canada', 'Mexico'], ['Spain'], ['Norway', 'Sweden',
+'Russia']];
+
+2. Log only the neighbouring countries to the console, one by one, not the entire
+arrays. Log a string like 'Neighbour: Canada' for each country
+
+3. You will need a loop inside a loop for this. This is actually a bit tricky, so don't
+worry if it's too difficult for you! But you can still try to figure this out anyway */
+
+const listOfNeighbours = [['Canada', 'Mexico'], ['Spain'], ['Norway', 'Sweden', 'Russia']];
+
+for (let i = 0; i < listOfNeighbours.length; i++) {
+  console.log(listOfNeighbours[i])
+
+  // for (let neighbor = 0; neighbor < listOfNeighbours[i].length; neighbor++) {
+  //   console.log(i[neighbor])
+  // }
+
+  for (let n = 0; n < listOfNeighbours[i].length; n++) {
+    const country = listOfNeighbours[i][n]
+    if (listOfNeighbours[i].length === 1) {
+      console.log(`${country} has ${0} neighbors`)
+    } else if (listOfNeighbours[i].length === 2) {
+
+      if (listOfNeighbours[i][n + 1] === undefined) {
+        console.log(`${country} has 1 neighbor: ${listOfNeighbours[i][n - 1]}`)
+      } else {
+        console.log(`${country} has 1 neighbor: ${listOfNeighbours[i][n + 1]}`)
+      }
+    } else if (listOfNeighbours[i].length > 2) {
+
+      if (listOfNeighbours[i][n + 1] === undefined) {
+        console.log(`${country} has ${listOfNeighbours[i].length - 1} neighbors`)
+      } else {
+        console.log(`${country} has ${listOfNeighbours[i].length - 1} neighbors`)
+      }
+    }
+  }
 }
+//console.log(listOfNeighbours[0].length)
+//console.log(neighbor)
