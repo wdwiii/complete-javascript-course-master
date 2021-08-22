@@ -231,3 +231,24 @@
 //     console.log(`Rep number ${rep}`);
 //   }
 // }
+
+//===============================================
+//49. The While Loop
+// for (let i = 1; i <= 10; i++) {
+//   console.log(`This is iteration number ${i}`)
+// }
+
+//Runs while the specified condition is true
+// let i = 1; //variable has to be declared outside the loop
+// while (i <= 12) {
+//   console.log(`While: This is iteration number ${i}`);
+//   i++
+// }
+
+let dice = Math.trunc(Math.random() * 6) + 1;
+
+while (dice !== 6) {
+  console.log(`You rolled a ${dice}`)
+  dice = Math.trunc(Math.random() * 6) + 1;
+  if (dice === 6) console.log(`You rolled a 6, loop is over`);
+}
