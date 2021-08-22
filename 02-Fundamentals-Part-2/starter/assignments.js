@@ -289,6 +289,7 @@ arrays. Log a string like 'Neighbour: Canada' for each country
 3. You will need a loop inside a loop for this. This is actually a bit tricky, so don't
 worry if it's too difficult for you! But you can still try to figure this out anyway */
 
+/*
 const listOfNeighbours = [['Canada', 'Mexico'], ['Spain'], ['Norway', 'Sweden', 'Russia']];
 
 for (let i = 0; i < listOfNeighbours.length; i++) {
@@ -319,5 +320,37 @@ for (let i = 0; i < listOfNeighbours.length; i++) {
     }
   }
 }
-//console.log(listOfNeighbours[0].length)
-//console.log(neighbor)
+*/
+
+/* LECTURE: The while Loop
+
+1. Recreate the challenge from the lecture 'Looping Arrays, Breaking and Continuing',
+but this time using a while loop (call the array 'percentages3')
+
+2. Reflect on what solution you like better for this task: the for loop or the while
+loop?
+*/
+
+const populations = [1665, 3950, 2111, 1369];
+
+const percentages3 = [];
+
+const percentageOfWorld1 = function (population) {
+  const worldPopulation = 7900
+  return ((population / worldPopulation) * 100).toFixed(0);
+}
+
+let i = 0;
+
+while (i < populations.length) {
+  percentages3[i] = percentageOfWorld1(populations[i]);
+  i++;
+};
+
+console.log(percentages3);
+
+// for (let i = 0; i < populations.length; i++) {
+//   percentages3[i] = percentageOfWorld1(populations[i]);
+// }
+
+
