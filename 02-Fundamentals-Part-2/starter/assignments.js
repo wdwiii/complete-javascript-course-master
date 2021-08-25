@@ -331,23 +331,23 @@ but this time using a while loop (call the array 'percentages3')
 loop?
 */
 
-const populations = [1665, 3950, 2111, 1369];
+// const populations = [1665, 3950, 2111, 1369];
 
-const percentages3 = [];
+// const percentages3 = [];
 
-const percentageOfWorld1 = function (population) {
-  const worldPopulation = 7900
-  return ((population / worldPopulation) * 100).toFixed(0);
-}
+// const percentageOfWorld1 = function (population) {
+//   const worldPopulation = 7900
+//   return ((population / worldPopulation) * 100).toFixed(0);
+// }
 
-let i = 0;
+// let i = 0;
 
-while (i < populations.length) {
-  percentages3[i] = percentageOfWorld1(populations[i]);
-  i++;
-};
+// while (i < populations.length) {
+//   percentages3[i] = percentageOfWorld1(populations[i]);
+//   i++;
+// };
 
-console.log(percentages3);
+// console.log(percentages3);
 
 // for (let i = 0; i < populations.length; i++) {
 //   percentages3[i] = percentageOfWorld1(populations[i]);
