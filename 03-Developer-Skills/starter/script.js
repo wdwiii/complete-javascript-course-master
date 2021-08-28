@@ -69,39 +69,39 @@ If we have two arrays, should I run function twice?*/
 
 //====================================
 //59. Debugging
-const convertKelvin = function () {
-  const measurement = {
-    type: 'temperature',
-    unit: 'celcius',
-    //Better to add fix to object property
-    //value: prompt('Degree Celcius')
-    value: 10,
-  };
-  //console.table(measurement);
-  // const kelvin = Number(measurement.value) + 273;
-  const kelvin = measurement.value + 273;
-  return kelvin;
-};
+// const convertKelvin = function () {
+//   const measurement = {
+//     type: 'temperature',
+//     unit: 'celcius',
+//     //Better to add fix to object property
+//     //value: prompt('Degree Celcius')
+//     value: 10,
+//   };
+//   //console.table(measurement);
+//   // const kelvin = Number(measurement.value) + 273;
+//   const kelvin = measurement.value + 273;
+//   return kelvin;
+// };
 
-console.log(convertKelvin());
+// console.log(convertKelvin());
 
 //Using Chrome Debugger
 
-const calcTempAmplitue = function (array1, array2) {
-  let temps = array1.concat(array2);
-  let max = 0;
-  let min = 0;
-  for (let i = 0; i < temps.length; i++) {
-    let currentTemp = temps[i];
-    if (typeof currentTemp !== 'number') continue;
-    //debugger;
-    if (currentTemp > max) max = currentTemp;
-    if (currentTemp < min) min = currentTemp;
-  }
-  console.log(temps, 'max: ', max, 'min: ', min);
-  return max - min;
-};
+// const calcTempAmplitue = function (array1, array2) {
+//   let temps = array1.concat(array2);
+//   let max = 0;
+//   let min = 0;
+//   for (let i = 0; i < temps.length; i++) {
+//     let currentTemp = temps[i];
+//     if (typeof currentTemp !== 'number') continue;
 
-const amplitude = calcTempAmplitue([3, 5, 1], [9, 4, 5]);
-//Identify the bug
-console.log(amplitude);
+//     if (currentTemp > max) max = currentTemp;
+//     if (currentTemp < min) min = currentTemp;
+//   }
+//   console.log(temps, 'max: ', max, 'min: ', min);
+//   return max - min;
+// };
+
+// const amplitude = calcTempAmplitue([3, 5, 1], [9, 4, 5]);
+// //Identify the bug
+// console.log(amplitude);
