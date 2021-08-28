@@ -25,29 +25,32 @@ Test data:
 */
 
 /*====
- ~PsuedoCode~
- let forcast = empty string
-function printForecast (array) {
-  for (i = 0; condition: i less than array length; increase i by 1) {
-    let temperature = string
-    forecast = forecast.concat(temperature);
-    ^ add string to end of forecast string
-  }
-  console.log(forcast)
-}
-====*/
+Objective: Display a string when given and array of temperatures.
 
-const testData1 = [17, 21, 23];
-const testData2 = [12, 5, -5, 0, 4];
+Steps-
+1. Declare variable for temperature array
+2. Declare forcast variable as empty string.
+3. Create printForcast function
+4. In function body loop through array items
+5. Declare temp variable inside loop
+6. Set value for temp to forcast string
+7. Append the string to forcast string
 
-const printForcast = function (array) {
-  let forecast = '';
-  for (let i = 0; i < array.length; i++) {
-    let temperature = `... ${array[i]}ºC in ${i + 1} days `;
-    forecast = forecast.concat(temperature);
+
+Code-
+======*/
+
+const test1 = [17, 21, 23];
+const test2 = [12, 5, -5, 0, 4];
+
+const printForcast = function (temps) {
+  let forecast = ' ';
+  for (let i = 0; i < temps.length; i++) {
+    let curTemp = temps[i];
+    forecast = forecast.concat(` ${curTemp}ºC in ${i + 1} days ...`);
   }
   console.log(forecast);
 };
 
-printForcast(testData1);
-printForcast(testData2);
+printForcast(test1);
+printForcast(test2);
