@@ -34,35 +34,74 @@
 
 //   Print max - min;
 // }
-const temperatures = [-3, -2, 0, 6, 3, 'error', 5, 7, 5, 9, 11];
+// const temperatures = [-3, -2, 0, 6, 3, 'error', 5, 7, 5, 9, 11];
 
-const tempArray2 = [3, 0, 7, 9, 17, 6, 5];
+// const tempArray2 = [3, 0, 7, 9, 17, 6, 5];
 
-const calcTempAmplitue = function (array1, array2) {
-  let temps = array1.concat(array2);
-  let max = temps[0];
-  let min = temps[0];
-  for (let i = 0; i < temps.length; i++) {
-    let currentTemp = temps[i];
-    if (typeof currentTemp !== 'number') continue;
+// const calcTempAmplitue = function (array1, array2) {
+//   let temps = array1.concat(array2);
+//   let max = temps[0];
+//   let min = temps[0];
+//   for (let i = 0; i < temps.length; i++) {
+//     let currentTemp = temps[i];
+//     if (typeof currentTemp !== 'number') continue;
 
-    if (currentTemp > max) {
-      max = currentTemp;
-    }
-    if (currentTemp < min) {
-      min = currentTemp;
-    }
-  }
-  console.log(temps);
-  return max - min;
-};
+//     if (currentTemp > max) {
+//       max = currentTemp;
+//     }
+//     if (currentTemp < min) {
+//       min = currentTemp;
+//     }
+//   }
+//   console.log(temps);
+//   return max - min;
+// };
 
-const amplitude = calcTempAmplitue(temperatures, tempArray2);
+// const amplitude = calcTempAmplitue(temperatures, tempArray2);
 
-console.log(amplitude);
+// console.log(amplitude);
 
 //console.log(amplitude);
 
 /*PROBLEM 2: Function should receive two arrays
 
 If we have two arrays, should I run function twice?*/
+
+//====================================
+//59. Debugging
+const convertKelvin = function () {
+  const measurement = {
+    type: 'temperature',
+    unit: 'celcius',
+    //Better to add fix to object property
+    //value: prompt('Degree Celcius')
+    value: 10,
+  };
+  //console.table(measurement);
+  // const kelvin = Number(measurement.value) + 273;
+  const kelvin = measurement.value + 273;
+  return kelvin;
+};
+
+console.log(convertKelvin());
+
+//Using Chrome Debugger
+
+const calcTempAmplitue = function (array1, array2) {
+  let temps = array1.concat(array2);
+  let max = 0;
+  let min = 0;
+  for (let i = 0; i < temps.length; i++) {
+    let currentTemp = temps[i];
+    if (typeof currentTemp !== 'number') continue;
+    //debugger;
+    if (currentTemp > max) max = currentTemp;
+    if (currentTemp < min) min = currentTemp;
+  }
+  console.log(temps, 'max: ', max, 'min: ', min);
+  return max - min;
+};
+
+const amplitude = calcTempAmplitue([3, 5, 1], [9, 4, 5]);
+//Identify the bug
+console.log(amplitude);
