@@ -22,8 +22,8 @@ const newGame = function () {
   //3. Hide dice
   //4. Set playing value to true
   activePlayer = 0;
-  document.querySelector('#name--0').textContent = 'Tal';
-  document.querySelector('#name--1').textContent = 'Willie';
+  document.querySelector('#name--0').textContent = 'Player 1';
+  document.querySelector('#name--1').textContent = 'Player 2';
   diceElem.classList.add('hidden');
   document.querySelector(`#current--0`).textContent = 0;
   document.querySelector(`#current--1`).textContent = 0;
@@ -98,7 +98,7 @@ btnHold.addEventListener('click', function () {
     scores[activePlayer] += currentScore;
     playerScore.textContent = scores[activePlayer];
     console.log(scores);
-    if (scores[activePlayer] >= 10) {
+    if (scores[activePlayer] >= 100) {
       //first player to 100 wins!
       playing = false;
       document
