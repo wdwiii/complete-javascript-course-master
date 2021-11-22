@@ -114,71 +114,152 @@ const restaurant = {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   },
 
-  //When passing an object as a param, the properties of the object should have the same names as the object that will be passed when the function is called
+  // When passing an object as a param, the properties of the object should have the same names as the object that will be passed when the function is called
   orderDelivery: function ({
     starterIndex = 3,
     mainIndex = 3,
     time = `12:13`,
     address = `76 Phila Ave`,
   }) {
+    // console.log(
+    //   `Order Received. ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
+    // );
+  },
+  orderPasta: function (ingredient1, ingredient2, ingredient3) {
     console.log(
-      `Order Received. ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
+      `Your pasta with ${ingredient1}, ${ingredient2}, and ${ingredient3} will be ready in a few moments.`
     );
   },
 };
-//Default values can be attatched to parameters. These will be used if no parameter is specified when the function is called.
+// Default values can be attatched to parameters. These will be used if no parameter is specified when the function is called.
 
-restaurant.orderDelivery({
-  time: '2:45',
-  address: '123 Main St',
-  mainIndex: 2,
-  starterIndex: 1,
-});
+// restaurant.orderDelivery({
+//   time: '2:45',
+//   address: '123 Main St',
+//   mainIndex: 2,
+//   starterIndex: 1,
+// });
 
-restaurant.orderDelivery({
-  time: '1:56',
-  address: '181 Leeway Terrace',
-  mainIndex: 0,
-  starterIndex: 0,
-});
+// restaurant.orderDelivery({
+//   time: '1:56',
+//   address: '181 Leeway Terrace',
+//   mainIndex: 0,
+//   starterIndex: 0,
+// });
 
-restaurant.orderDelivery({});
+// restaurant.orderDelivery({});
 
-const { name, categories, openingHours } = restaurant;
+// const { name, categories, openingHours } = restaurant;
 // console.log(name);
 // console.log(categories);
 // console.log(openingHours);
 
-const {
-  name: restaurantName,
-  categories: tags,
-  openingHours: restaurantHours,
-} = restaurant;
+// const {
+//   name: restaurantName,
+//   categories: tags,
+//   openingHours: restaurantHours,
+// } = restaurant;
 // console.log(restaurantName);
 // console.log(tags);
 // console.log(restaurantHours);
 
 //setting default values
-const { menu = [], starterMenu: starters = [] } = restaurant;
+// const { menu = [], starterMenu: starters = [] } = restaurant;
 //console.log(menu)
 
 //mutating variables
-let a = 765;
-let b = 345;
+// let a = 765;
+// let b = 345;
 
-const obj = {
-  a: 34,
-  b: 5,
-  c: 12,
-};
+// const obj = {
+//   a: 34,
+//   b: 5,
+//   c: 12,
+// };
 
-({ a, b } = obj);
+// ({ a, b } = obj);
 
 //console.log(a, b);
 
 //Destructuring Nested Objects
-const {
-  fri: { open, close },
-} = openingHours;
+// const {
+//   fri: { open, close },
+// } = openingHours;
 
 //console.log(open, close);
+
+/////////////////////////////////////////
+//========================================
+//105. The Spread Operator (...)
+//========================================
+
+const array = [1, 3, 5, 7, 9];
+const newArrayManual = [
+  -1,
+  0,
+  array[0],
+  array[1],
+  array[2],
+  array[3],
+  array[4],
+];
+
+//console.log(array);
+//console.log(newArrayManual);
+
+// The spread operator can be used whenever we would otherwise write multiple values separated by commas.
+
+const newArraySpread = [...newArrayManual, 11, 13];
+//console.log(newArraySpread);
+
+//Function that adds item to mainMenu in the restaurant object.
+//Copies the array using the spread operator.
+
+const updateMenu = menuItem => {
+  restaurant.mainMenu = [...restaurant.mainMenu, menuItem];
+  return restaurant.mainMenu;
+};
+
+updateMenu('Chicken Parmesan');
+updateMenu('Lasangna');
+
+//Copying an array
+const menuCopy = [...restaurant.mainMenu];
+//console.log(menuCopy);
+
+//Merging arrays
+const entireMenu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+//console.log(entireMenu)
+
+//The spread operator works on all iterables Arrays, strings, maps, or sets. NOT objects.
+
+const str = 'Willie';
+const letters = [...str];
+// console.log(...str)
+// console.log(letters)
+
+const ingredients = [
+  prompt(`Let's make pasta! Ingredient 1?`),
+  prompt(`Ingredient 2?`),
+  prompt(`Ingredient 3?`),
+];
+
+//console.log(ingredients);
+restaurant.orderPasta(...ingredients);
+//The spread opperator takes the array that was populated via prompts and passes the user entered data as parameters to the orderPasta method
+
+//Objects and the spread operator
+//Spread operator will copy all the properties of the restaurant object into this new object.
+const newRestaurant = {
+  foundingYear: 2003,
+  ...restaurant,
+  founder: 'Dave Free',
+};
+//console.log(newRestaurant);
+
+//Making a copy and changing details.
+//Because this is a new object that only copies the content of the orignial, this object has its own reference address in the HEAP
+//Details can be changed without altering the properties on the original object
+const restaurantCopy = { ...restaurant };
+(restaurantCopy.name = 'Chuck E. Cheese'), console.log(restaurant.name);
+console.log(restaurantCopy.name);
