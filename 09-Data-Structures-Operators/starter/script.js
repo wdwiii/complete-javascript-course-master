@@ -130,6 +130,14 @@ const restaurant = {
       `Your pasta with ${ingredient1}, ${ingredient2}, and ${ingredient3} will be ready in a few moments.`
     );
   },
+  orderPizza: function (mainIngredient, lastIngredient, ...otherIngredients) {
+    //console.log(mainIngredient, otherIngredients);
+    console.log(
+      `You ordered a ${mainIngredient} pizza with ${otherIngredients.join(
+        ', '
+      )} & ${lastIngredient}`
+    );
+  },
 };
 // Default values can be attatched to parameters. These will be used if no parameter is specified when the function is called.
 
@@ -238,14 +246,14 @@ const letters = [...str];
 // console.log(...str)
 // console.log(letters)
 
-const ingredients = [
-  prompt(`Let's make pasta! Ingredient 1?`),
-  prompt(`Ingredient 2?`),
-  prompt(`Ingredient 3?`),
-];
+// const ingredients = [
+//   prompt(`Let's make pasta! Ingredient 1?`),
+//   prompt(`Ingredient 2?`),
+//   prompt(`Ingredient 3?`),
+// ];
 
 //console.log(ingredients);
-restaurant.orderPasta(...ingredients);
+//restaurant.orderPasta(...ingredients);
 //The spread opperator takes the array that was populated via prompts and passes the user entered data as parameters to the orderPasta method
 
 //Objects and the spread operator
@@ -261,5 +269,60 @@ const newRestaurant = {
 //Because this is a new object that only copies the content of the orignial, this object has its own reference address in the HEAP
 //Details can be changed without altering the properties on the original object
 const restaurantCopy = { ...restaurant };
-(restaurantCopy.name = 'Chuck E. Cheese'), console.log(restaurant.name);
-console.log(restaurantCopy.name);
+restaurantCopy.name = 'Chuck E. Cheese';
+
+/////////////////////////////////////////
+//========================================
+//106. Rest Patterns and Parameters (...)
+//========================================
+
+//Spread operator is on the RIGHT side of the assignment operator (=)
+const arr = [1, 2, 3, ...[4, 5]];
+//console.log(arr)
+
+//Rest operator is on the LEFT side of assignment operator (=)
+const [a, b, ...remaining] = [10, 11, 12, 13, 14];
+//console.log(remaining)
+
+//REST and Spread operaters can be used in combination for arrays
+const [item1, , item2, ...everythingElse] = [
+  ...restaurant.mainMenu,
+  ...restaurant.starterMenu,
+];
+
+//console.log(item1, item2);
+//console.log(everythingElse);
+
+//Using in combination for Objects
+//When destructuring objects you can isolate properties into their own variables by using the same name
+const { sat, ...weekdays } = restaurant.openingHours;
+//console.log(weekdays);
+
+//Using in functions
+const add = (...numbers) => {
+  let sum = 0;
+  numbers.forEach(number => {
+    sum += number;
+  });
+  console.log(sum);
+};
+
+//add(1, 2, 5, 5, 1);
+
+const x = [1, 6, 3, 8, 2];
+//add(...x);
+
+restaurant.orderPizza(
+  'pepperoni',
+  'mushrooms',
+  'olives',
+  'banana peppers',
+  'feta cheese'
+);
+
+//SECTION REVIEW
+//Spread and Rest syntax look exactly the same, but they work in opposite ways.
+
+//The spread operator is used where we would otherwise write VALUES, separated by a comma (right of assingment opperator).
+
+//The rest pattern is used where we would otherwise write VARIABLE NAMES separated by commas (left of assignment operator).
