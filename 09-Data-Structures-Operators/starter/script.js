@@ -418,12 +418,52 @@ const guest2 = restaurant.numGuests || 20;
 //========================================
 //108. The Nullish Coalescing Operator (??)
 //========================================
-restaurant.numGuests = 0;
+//restaurant.numGuests = 0;
 
 //OR operator
-const guestsA = restaurant.numGuests || 15;
-console.log(guestsA);
+//const guestsA = restaurant.numGuests || 15;
+//console.log(guestsA);
 
 //Nullish = null and undefined
-const guestsB = restaurant.numGuests ?? 15;
-console.log(guestsB);
+//const guestsB = restaurant.numGuests ?? 15;
+//console.log(guestsB);
+
+/////////////////////////////////////////
+//========================================
+//109. Logical Assignment Operators
+//========================================
+const rest1 = {
+  name: "Lily's Diner",
+  //numGuests: 23,
+  numGuests: 0,
+};
+
+const rest2 = {
+  name: 'Gator Boy Subs',
+  owner: 'Nic Lowry',
+};
+
+//OR assignment operator
+//Assigns a value to a variable if that valuse is currently falsy.
+
+//rest1.numGuests ||= 16;
+// rest1.numGuests = rest1.numGuests || 16;
+//rest2.numGuests ||= 11;
+// rest2.numGuests = rest2.numGuests || 11;
+
+//Nullish assignment operator
+//Assigns a value to a variable if that valuse is currently falsy.
+
+rest1.numGuests ??= 16;
+// rest1.numGuests = rest1.numGuests ?? 16;
+rest2.numGuests ??= 11;
+// rest2.numGuests = rest2.numGuests ?? 11;
+
+//AND assignment operator
+rest1.owner &&= '<ANONYMOUS>';
+//rest1.owner = rest1.owner && '<ANONYMOUS>';
+rest2.owner &&= '<ANONYMOUS>';
+//rest2.owner = rest2.owner && '<ANONYMOUS>';
+
+console.log(rest1);
+console.log(rest2);
