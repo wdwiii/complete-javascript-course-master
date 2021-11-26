@@ -380,22 +380,22 @@ const restaurant = {
 };
 
 //Logical Operators can use ANY data type, return ANY data type, short circuiting
-console.log(5 || 'Five');
-console.log('' || 'Empty');
-console.log(true || false);
-console.log('zero' || 0);
-console.log(undefined || null);
+// console.log(5 || 'Five');
+// console.log('' || 'Empty');
+// console.log(true || false);
+// console.log('zero' || 0);
+// console.log(undefined || null);
 //If the first operand is truthy value, the other operand will not even be evaluated.
 //restaurant.numGuests = 22;
-console.log(`----- OR -----`);
+//console.log(`----- OR -----`);
 const guest1 = restaurant.numGuests ? restaurant.numGuests : 10;
-console.log(guest1);
+//console.log(guest1);
 
 const guest2 = restaurant.numGuests || 20;
-console.log(guest2);
+//console.log(guest2);
 
 //Short circuiting with the AND operator (&&)
-console.log(`----- AND -----`);
+// console.log(`----- AND -----`);
 //The && operator short circuits when the first value is falsy.
 //When it is truthy, it means that the evaluation continues and the last value is returned.
 
@@ -413,3 +413,17 @@ console.log(`----- AND -----`);
 //And as for practical applications,
 //The OR operator can be used to set default values
 //The AND operator can be used to execute code in the second operand, if the first one is true.
+
+/////////////////////////////////////////
+//========================================
+//108. The Nullish Coalescing Operator (??)
+//========================================
+restaurant.numGuests = 0;
+
+//OR operator
+const guestsA = restaurant.numGuests || 15;
+console.log(guestsA);
+
+//Nullish = null and undefined
+const guestsB = restaurant.numGuests ?? 15;
+console.log(guestsB);
