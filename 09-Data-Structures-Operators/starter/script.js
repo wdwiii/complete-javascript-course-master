@@ -669,16 +669,20 @@ const weekdays = ['mon', 'tues', 'wed', 'thu', 'fri', 'sat', 'sun'];
 
 const hoursOfOperation = {
   [weekdays[0]]: {
-    open: 12,
+    open: `open at noon`,
     close: 22,
   },
-  [weekdays[1]]: {
-    open: 11,
+  [weekdays[3]]: {
+    open: `open at noon`,
+    close: 22,
+  },
+  [weekdays[4]]: {
+    open: `open at noon`,
     close: 23,
   },
-  [weekdays[2]]: {
-    open: 0, // Open 24 hours
-    close: 12 + 12,
+  [weekdays[5]]: {
+    open: `at midnight`, // Open 24 hours
+    close: 24,
   },
 };
 
@@ -704,23 +708,63 @@ const restaurant = {
     time = `12:13`,
     address = `76 Phila Ave`,
   }) {
-    console.log(
-      `Order Received. ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
-    );
+    return `Order Received. ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`;
   },
   orderPasta(ingredient1, ingredient2, ingredient3) {
-    console.log(
-      `Your pasta with ${ingredient1}, ${ingredient2}, and ${ingredient3} will be ready in a few moments.`
-    );
+    return `Your pasta with ${ingredient1}, ${ingredient2}, and ${ingredient3} will be ready in a few moments.`;
   },
   orderPizza(mainIngredient, lastIngredient, ...otherIngredients) {
-    console.log(
-      `You ordered a ${mainIngredient} pizza with ${otherIngredients.join(
-        ', '
-      )} & ${lastIngredient}`
-    );
+    return `You ordered a ${mainIngredient} pizza with ${otherIngredients.join(
+      ', '
+    )} & ${lastIngredient}`;
   },
 };
 
 const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
-console.log(restaurant);
+//console.log(restaurant);
+
+/////////////////////////////////////////
+//========================================
+//113. Optional Chaining
+//========================================
+//Will throw an error because the .mon property doesnt exist will return undefined.
+//console.log(restaurant.hoursOfOperation.mon.open);
+
+//Can use if statement to see if property exist
+// if (restaurant.hoursOfOperation && restaurant.hoursOfOperation.mon)
+//   console.log(restaurant.hoursOfOperation.mon.open);
+
+//Rewritten using optional chaining
+//console.log(restaurant.hoursOfOperation.mon?.open);
+//Only if the property that is before the question mark here exists, will the property after the question mark be read
+//console.log(restaurant.hoursOfOperation?.mon?.open);
+
+const days = ['mon', 'tues', 'wed', 'thu', 'fri', 'sat', 'sun'];
+
+// for (const day of days) {
+//   const open = restaurant.hoursOfOperation[day]?.open ?? 'closed';
+//   console.log(`On ${day}, we are ${open}`);
+//}
+
+//Optional chaining also works on methods
+// console.log(
+//   restaurant.orderDelivery?.({
+//     starterIndex: 1,
+//     mainIndex: 3,
+//     time: '10:10 PM',
+//     address: '1268 Bird Rd',
+//   }) ?? `Method doesn't exist`
+// );
+
+// restaurant.shutDown?.(`It's time!`) ??
+//   console.log(`Shut down method doesn't exist`);
+
+//Optional chaining also works on arrays
+const users = [
+  { name: 'Willie', age: 54 },
+  { name: 'Brina', age: 24 },
+  { name: 'Levitch', age: 21 },
+];
+
+console.log(users[2]?.name ?? `User does not exist`);
+console.log(users[3]?.name ?? `User does not exist`);
