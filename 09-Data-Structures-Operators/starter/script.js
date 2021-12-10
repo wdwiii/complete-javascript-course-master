@@ -444,10 +444,10 @@ const rest2 = {
 };
 
 //OR assignment operator
-//Assigns a value to a variable if that valuse is currently falsy.
+//Assigns a value to a variable if that value is currently falsy.
 
 //rest1.numGuests ||= 16;
-// rest1.numGuests = rest1.numGuests || 16;
+//rest1.numGuests = rest1.numGuests || 16;
 //rest2.numGuests ||= 11;
 // rest2.numGuests = rest2.numGuests || 11;
 
@@ -460,6 +460,7 @@ rest2.numGuests ??= 11;
 // rest2.numGuests = rest2.numGuests ?? 11;
 
 //AND assignment operator
+//The AND assignment operator will assign a value to a variable if that value is currently truthy
 rest1.owner &&= '<ANONYMOUS>';
 //rest1.owner = rest1.owner && '<ANONYMOUS>';
 rest2.owner &&= '<ANONYMOUS>';
