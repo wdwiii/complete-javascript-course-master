@@ -579,55 +579,55 @@ GOOD LUCK 😀
 //111. Looping Arrays: The for-of Loop
 //========================================
 
-const restaurant = {
-  name: 'Classico Italiano',
-  location: 'Via Angelo Tavanti 23, Firenze, Italy',
-  categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
-  starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
-  mainMenu: ['Pizza', 'Pasta', 'Risotto', 'Calzone'],
-  openingHours: {
-    thu: {
-      open: 12,
-      close: 22,
-    },
-    fri: {
-      open: 11,
-      close: 23,
-    },
-    sat: {
-      open: 0, // Open 24 hours
-      close: 24,
-    },
-  },
+// const restaurant = {
+//   name: 'Classico Italiano',
+//   location: 'Via Angelo Tavanti 23, Firenze, Italy',
+//   categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+//   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+//   mainMenu: ['Pizza', 'Pasta', 'Risotto', 'Calzone'],
+//   openingHours: {
+//     thu: {
+//       open: 12,
+//       close: 22,
+//     },
+//     fri: {
+//       open: 11,
+//       close: 23,
+//     },
+//     sat: {
+//       open: 0, // Open 24 hours
+//       close: 24,
+//     },
+//   },
 
-  order: function (starterIndex, mainIndex) {
-    return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
-  },
-  orderDelivery: function ({
-    starterIndex = 3,
-    mainIndex = 3,
-    time = `12:13`,
-    address = `76 Phila Ave`,
-  }) {
-    console.log(
-      `Order Received. ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
-    );
-  },
-  orderPasta: function (ingredient1, ingredient2, ingredient3) {
-    console.log(
-      `Your pasta with ${ingredient1}, ${ingredient2}, and ${ingredient3} will be ready in a few moments.`
-    );
-  },
-  orderPizza: function (mainIngredient, lastIngredient, ...otherIngredients) {
-    console.log(
-      `You ordered a ${mainIngredient} pizza with ${otherIngredients.join(
-        ', '
-      )} & ${lastIngredient}`
-    );
-  },
-};
+//   order: function (starterIndex, mainIndex) {
+//     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+//   },
+//   orderDelivery: function ({
+//     starterIndex = 3,
+//     mainIndex = 3,
+//     time = `12:13`,
+//     address = `76 Phila Ave`,
+//   }) {
+//     console.log(
+//       `Order Received. ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
+//     );
+//   },
+//   orderPasta: function (ingredient1, ingredient2, ingredient3) {
+//     console.log(
+//       `Your pasta with ${ingredient1}, ${ingredient2}, and ${ingredient3} will be ready in a few moments.`
+//     );
+//   },
+//   orderPizza: function (mainIngredient, lastIngredient, ...otherIngredients) {
+//     console.log(
+//       `You ordered a ${mainIngredient} pizza with ${otherIngredients.join(
+//         ', '
+//       )} & ${lastIngredient}`
+//     );
+//   },
+// };
 
-const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+// const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
 
 // for (let i = 0; i < menu.length; i++) {
 //   console.log(menu[i]);
@@ -657,3 +657,70 @@ const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
 // for (const [i, el] of menu.entries()) {
 //   console.log(`#${i + 1} ${el}`);
 // }
+
+/////////////////////////////////////////
+//========================================
+//112. Enhanced Object Literals
+//========================================
+
+//Changes have been made to improve how we write objet literals in JavaScript
+
+const weekdays = ['mon', 'tues', 'wed', 'thu', 'fri', 'sat', 'sun'];
+
+const hoursOfOperation = {
+  [weekdays[0]]: {
+    open: 12,
+    close: 22,
+  },
+  [weekdays[1]]: {
+    open: 11,
+    close: 23,
+  },
+  [weekdays[2]]: {
+    open: 0, // Open 24 hours
+    close: 12 + 12,
+  },
+};
+
+// With es6's enhanced object literals we can point to an external object and pass it as a property inside the current object
+
+//Object methods also have a shortened syntax. It is no longer required to set a property to a function expression.
+
+//Property names can be computated using es6's bracket syntax
+
+const restaurant = {
+  name: 'Classico Italiano',
+  location: 'Via Angelo Tavanti 23, Firenze, Italy',
+  categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+  starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+  mainMenu: ['Pizza', 'Pasta', 'Risotto', 'Calzone'],
+  hoursOfOperation, //<--- points to external object
+  order(starterIndex, mainIndex) {
+    return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+  },
+  orderDelivery({
+    starterIndex = 3,
+    mainIndex = 3,
+    time = `12:13`,
+    address = `76 Phila Ave`,
+  }) {
+    console.log(
+      `Order Received. ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
+    );
+  },
+  orderPasta(ingredient1, ingredient2, ingredient3) {
+    console.log(
+      `Your pasta with ${ingredient1}, ${ingredient2}, and ${ingredient3} will be ready in a few moments.`
+    );
+  },
+  orderPizza(mainIngredient, lastIngredient, ...otherIngredients) {
+    console.log(
+      `You ordered a ${mainIngredient} pizza with ${otherIngredients.join(
+        ', '
+      )} & ${lastIngredient}`
+    );
+  },
+};
+
+const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+console.log(restaurant);
