@@ -299,17 +299,17 @@ const flights =
 //console.log(weekdays);
 
 //Using in functions
-const add = (...numbers) => {
-  let sum = 0;
-  numbers.forEach(number => {
-    sum += number;
-  });
-  console.log(sum);
-};
+// const add = (...numbers) => {
+//   let sum = 0;
+//   numbers.forEach(number => {
+//     sum += number;
+//   });
+//   console.log(sum);
+// };
 
 //add(1, 2, 5, 5, 1);
 
-const x = [1, 6, 3, 8, 2];
+//const x = [1, 6, 3, 8, 2];
 //add(...x);
 
 // restaurant.orderPizza(
@@ -331,6 +331,254 @@ const x = [1, 6, 3, 8, 2];
 //========================================
 //107. Short Circuiting - && and ||
 //========================================
+// const restaurant = {
+//   name: 'Classico Italiano',
+//   location: 'Via Angelo Tavanti 23, Firenze, Italy',
+//   categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+//   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+//   mainMenu: ['Pizza', 'Pasta', 'Risotto', 'Calzone'],
+//   openingHours: {
+//     thu: {
+//       open: 12,
+//       close: 22,
+//     },
+//     fri: {
+//       open: 11,
+//       close: 23,
+//     },
+//     sat: {
+//       open: 0, // Open 24 hours
+//       close: 24,
+//     },
+//   },
+
+//   order: function (starterIndex, mainIndex) {
+//     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+//   },
+//   orderDelivery: function ({
+//     starterIndex = 3,
+//     mainIndex = 3,
+//     time = `12:13`,
+//     address = `76 Phila Ave`,
+//   }) {
+//     console.log(
+//       `Order Received. ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
+//     );
+//   },
+//   orderPasta: function (ingredient1, ingredient2, ingredient3) {
+//     console.log(
+//       `Your pasta with ${ingredient1}, ${ingredient2}, and ${ingredient3} will be ready in a few moments.`
+//     );
+//   },
+//   orderPizza: function (mainIngredient, lastIngredient, ...otherIngredients) {
+//     console.log(
+//       `You ordered a ${mainIngredient} pizza with ${otherIngredients.join(
+//         ', '
+//       )} & ${lastIngredient}`
+//     );
+//   },
+// };
+
+//Logical Operators can use ANY data type, return ANY data type, short circuiting
+// console.log(5 || 'Five');
+// console.log('' || 'Empty');
+// console.log(true || false);
+// console.log('zero' || 0);
+// console.log(undefined || null);
+//If the first operand is truthy value, the other operand will not even be evaluated.
+//restaurant.numGuests = 22;
+//console.log(`----- OR -----`);
+//const guest1 = restaurant.numGuests ? restaurant.numGuests : 10;
+//console.log(guest1);
+
+//const guest2 = restaurant.numGuests || 20;
+//console.log(guest2);
+
+//Short circuiting with the AND operator (&&)
+// console.log(`----- AND -----`);
+//The && operator short circuits when the first value is falsy.
+//When it is truthy, it means that the evaluation continues and the last value is returned.
+
+//Practical Example
+// if (restaurant.orderPizza) {
+//   restaurant.orderPizza('vegetarian', 'onions', 'pineapple', 'spainch');
+// }
+
+//restaurant.orderPizza && restaurant.orderPizza('cheese', 'leeks', 'feta');
+
+//SECTION SUMMARY
+//The OR || operator will return the first truthy value of all the operands, or the last value if all of them are falsy.
+//The AND operator will return the first falsy value or the last value if all of them are truthy.
+
+//And as for practical applications,
+//The OR operator can be used to set default values
+//The AND operator can be used to execute code in the second operand, if the first one is true.
+
+/////////////////////////////////////////
+//========================================
+//108. The Nullish Coalescing Operator (??)
+//========================================
+//restaurant.numGuests = 0;
+
+//OR operator
+//const guestsA = restaurant.numGuests || 15;
+//console.log(guestsA);
+
+//Nullish = null and undefined
+//const guestsB = restaurant.numGuests ?? 15;
+//console.log(guestsB);
+
+/////////////////////////////////////////
+//========================================
+//109. Logical Assignment Operators
+//========================================
+// const rest1 = {
+//   name: "Lily's Diner",
+//   //numGuests: 23,
+//   numGuests: 0,
+// };
+
+// const rest2 = {
+//   name: 'Gator Boy Subs',
+//   owner: 'Nic Lowry',
+// };
+
+//OR assignment operator
+//Assigns a value to a variable if that value is currently falsy.
+
+//rest1.numGuests ||= 16;
+//rest1.numGuests = rest1.numGuests || 16;
+//rest2.numGuests ||= 11;
+// rest2.numGuests = rest2.numGuests || 11;
+
+//Nullish assignment operator
+//Assigns a value to a variable if that valuse is currently falsy.
+
+//rest1.numGuests ??= 16;
+// rest1.numGuests = rest1.numGuests ?? 16;
+//rest2.numGuests ??= 11;
+// rest2.numGuests = rest2.numGuests ?? 11;
+
+//AND assignment operator
+//The AND assignment operator will assign a value to a variable if that value is currently truthy
+//rest1.owner &&= '<ANONYMOUS>';
+//rest1.owner = rest1.owner && '<ANONYMOUS>';
+//rest2.owner &&= '<ANONYMOUS>';
+//rest2.owner = rest2.owner && '<ANONYMOUS>';
+
+//console.log(rest1);
+//console.log(rest2);
+
+// ====================
+//Coding Challenge #1
+// ====================
+
+/*
+We're building a football betting app (soccer for my American friends 😅)!
+Suppose we get data from a web service about a certain game ('game' variable on next page). In this challenge we're gonna work with that data.
+
+Your tasks:
+
+
+7. The team with the lower odd is more likely to win. Print to the console which
+team is more likely to win, without using an if/else statement or the ternary
+operator.
+
+Test data for 6.: First, use players 'Davies', 'Muller', 'Lewandowski' and 'Kimmich'.
+
+Then, call the function again with players from game.scored
+
+GOOD LUCK 😀
+*/
+
+// const game = {
+//   team1: 'Bayern Munich',
+//   team2: 'Borrussia Dortmund',
+//   players: [
+//     [
+//       'Neuer',
+//       'Pavard',
+//       'Martinez',
+//       'Alaba',
+//       'Davies',
+//       'Kimmich',
+//       'Goretzka',
+//       'Coman',
+//       'Muller',
+//       'Gnarby',
+//       'Lewandowski',
+//     ],
+//     [
+//       'Burki',
+//       'Schulz',
+//       'Hummels',
+//       'Akanji',
+//       'Hakimi',
+//       'Weigl',
+//       'Witsel',
+//       'Hazard',
+//       'Brandt',
+//       'Sancho',
+//       'Gotze',
+//     ],
+//   ],
+//   score: '4:0',
+//   scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
+//   date: 'Nov 9th, 2037',
+//   odds: {
+//     team1: 1.33,
+//     x: 3.25,
+//     team2: 6.5,
+//   },
+// };
+
+//1. Create one player array for each team (variables 'players1' and 'players2')
+//const [players1, players2] = game.players;
+//console.log(players1, players2)
+
+// 2. The first player in any player array is the goalkeeper and the others are field players. For Bayern Munich (team 1) create one variable ('gk') with the goalkeeper's name, and one array ('fieldPlayers') with all the remaining 10 field players
+//const [gk, ...fieldPlayers] = players1;
+//console.log(gk, fieldPlayers);
+
+// 3. Create an array 'allPlayers' containing all players of both teams (22 players)
+//const allPlayers = [...players1, ...players2];
+//console.log(allPlayers);
+
+// 4. During the game, Bayern Munich (team 1) used 3 substitute players. So create a new array ('players1Final') containing all the original team1 players plus 'Thiago', 'Coutinho' and 'Perisic'
+//const players1Final = [...players1, 'Thiago', 'Coutinho', 'Perisic'];
+//console.log(players1Final);
+
+//5. Based on the game.odds object, create one variable for each odd (called 'team1', 'draw' and 'team2')
+
+//When destructuring the game object, if you only pull out the odds property, it will pull out the entire object
+// const { odds } = game;
+// console.log(odds);
+
+//The odds object can be further destructured to create new variables using the 'odds' values
+//const {
+//  odds: { team1, x: draw, team2 },
+//} = game;
+//A colon after the key name can be used to change the name of the variable.
+//console.log(team1, draw, team2);
+
+// 6. Write a function ('printGoals') that receives an arbitrary number of player names (not an array) and prints each of them to the console, along with the number of goals that were scored in total (number of player names passed in)
+
+// const printGoals = (...playerNames) => {
+//   console.log(`Goals scored: ${playerNames.length}`);
+//   console.log(...playerNames);
+// };
+//printGoals(...game.scored);
+
+// 7. The team with the lower odd is more likely to win. Print to the console which team is more likely to win, without using an if/else statement or the ternary operator.
+//team1 < team2 && console.log('Team1 is more likey to win');
+//team1 > team2 && console.log('Team2 is more likey to win');
+//console.log(winner);
+
+/////////////////////////////////////////
+//========================================
+//111. Looping Arrays: The for-of Loop
+//========================================
+
 const restaurant = {
   name: 'Classico Italiano',
   location: 'Via Angelo Tavanti 23, Firenze, Italy',
@@ -379,197 +627,33 @@ const restaurant = {
   },
 };
 
-//Logical Operators can use ANY data type, return ANY data type, short circuiting
-// console.log(5 || 'Five');
-// console.log('' || 'Empty');
-// console.log(true || false);
-// console.log('zero' || 0);
-// console.log(undefined || null);
-//If the first operand is truthy value, the other operand will not even be evaluated.
-//restaurant.numGuests = 22;
-//console.log(`----- OR -----`);
-const guest1 = restaurant.numGuests ? restaurant.numGuests : 10;
-//console.log(guest1);
+const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
 
-const guest2 = restaurant.numGuests || 20;
-//console.log(guest2);
-
-//Short circuiting with the AND operator (&&)
-// console.log(`----- AND -----`);
-//The && operator short circuits when the first value is falsy.
-//When it is truthy, it means that the evaluation continues and the last value is returned.
-
-//Practical Example
-// if (restaurant.orderPizza) {
-//   restaurant.orderPizza('vegetarian', 'onions', 'pineapple', 'spainch');
+// for (let i = 0; i < menu.length; i++) {
+//   console.log(menu[i]);
 // }
 
-//restaurant.orderPizza && restaurant.orderPizza('cheese', 'leeks', 'feta');
+// for (const item of menu) {
+//   console.log(item);
+// }
 
-//SECTION SUMMARY
-//The OR || operator will return the first truthy value of all the operands, or the last value if all of them are falsy.
-//The AND operator will return the first falsy value or the last value if all of them are truthy.
+//To receive the element AND index from a for-of loop, you must call the .entries() method.
 
-//And as for practical applications,
-//The OR operator can be used to set default values
-//The AND operator can be used to execute code in the second operand, if the first one is true.
+//ENTRIES METHOD
+// Creates an array, which in each position contains a new array, containinf the element, and the element.
 
-/////////////////////////////////////////
-//========================================
-//108. The Nullish Coalescing Operator (??)
-//========================================
-//restaurant.numGuests = 0;
+// for (const item of menu.entries()) {
+//   console.log(item);
+// }
 
-//OR operator
-//const guestsA = restaurant.numGuests || 15;
-//console.log(guestsA);
+//console.log([...menu.entries()]);
+//To view entries you must log a new array with a spread of the original array with the .entries() method attatched to it.
 
-//Nullish = null and undefined
-//const guestsB = restaurant.numGuests ?? 15;
-//console.log(guestsB);
+// for (const item of menu.entries()) {
+//   console.log(`#${item[0] + 1} ${item[1]}`);
+// }
 
-/////////////////////////////////////////
-//========================================
-//109. Logical Assignment Operators
-//========================================
-const rest1 = {
-  name: "Lily's Diner",
-  //numGuests: 23,
-  numGuests: 0,
-};
-
-const rest2 = {
-  name: 'Gator Boy Subs',
-  owner: 'Nic Lowry',
-};
-
-//OR assignment operator
-//Assigns a value to a variable if that value is currently falsy.
-
-//rest1.numGuests ||= 16;
-//rest1.numGuests = rest1.numGuests || 16;
-//rest2.numGuests ||= 11;
-// rest2.numGuests = rest2.numGuests || 11;
-
-//Nullish assignment operator
-//Assigns a value to a variable if that valuse is currently falsy.
-
-rest1.numGuests ??= 16;
-// rest1.numGuests = rest1.numGuests ?? 16;
-rest2.numGuests ??= 11;
-// rest2.numGuests = rest2.numGuests ?? 11;
-
-//AND assignment operator
-//The AND assignment operator will assign a value to a variable if that value is currently truthy
-rest1.owner &&= '<ANONYMOUS>';
-//rest1.owner = rest1.owner && '<ANONYMOUS>';
-rest2.owner &&= '<ANONYMOUS>';
-//rest2.owner = rest2.owner && '<ANONYMOUS>';
-
-//console.log(rest1);
-//console.log(rest2);
-
-// ====================
-//Coding Challenge #1
-// ====================
-
-/*
-We're building a football betting app (soccer for my American friends 😅)!
-Suppose we get data from a web service about a certain game ('game' variable on next page). In this challenge we're gonna work with that data.
-
-Your tasks:
-
-
-7. The team with the lower odd is more likely to win. Print to the console which
-team is more likely to win, without using an if/else statement or the ternary
-operator.
-
-Test data for 6.: First, use players 'Davies', 'Muller', 'Lewandowski' and 'Kimmich'.
-
-Then, call the function again with players from game.scored
-
-GOOD LUCK 😀
-*/
-
-const game = {
-  team1: 'Bayern Munich',
-  team2: 'Borrussia Dortmund',
-  players: [
-    [
-      'Neuer',
-      'Pavard',
-      'Martinez',
-      'Alaba',
-      'Davies',
-      'Kimmich',
-      'Goretzka',
-      'Coman',
-      'Muller',
-      'Gnarby',
-      'Lewandowski',
-    ],
-    [
-      'Burki',
-      'Schulz',
-      'Hummels',
-      'Akanji',
-      'Hakimi',
-      'Weigl',
-      'Witsel',
-      'Hazard',
-      'Brandt',
-      'Sancho',
-      'Gotze',
-    ],
-  ],
-  score: '4:0',
-  scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
-  date: 'Nov 9th, 2037',
-  odds: {
-    team1: 1.33,
-    x: 3.25,
-    team2: 6.5,
-  },
-};
-
-//1. Create one player array for each team (variables 'players1' and 'players2')
-const [players1, players2] = game.players;
-//console.log(players1, players2)
-
-// 2. The first player in any player array is the goalkeeper and the others are field players. For Bayern Munich (team 1) create one variable ('gk') with the goalkeeper's name, and one array ('fieldPlayers') with all the remaining 10 field players
-const [gk, ...fieldPlayers] = players1;
-//console.log(gk, fieldPlayers);
-
-// 3. Create an array 'allPlayers' containing all players of both teams (22 players)
-const allPlayers = [...players1, ...players2];
-//console.log(allPlayers);
-
-// 4. During the game, Bayern Munich (team 1) used 3 substitute players. So create a new array ('players1Final') containing all the original team1 players plus 'Thiago', 'Coutinho' and 'Perisic'
-const players1Final = [...players1, 'Thiago', 'Coutinho', 'Perisic'];
-//console.log(players1Final);
-
-//5. Based on the game.odds object, create one variable for each odd (called 'team1', 'draw' and 'team2')
-
-//When destructuring the game object, if you only pull out the odds property, it will pull out the entire object
-// const { odds } = game;
-// console.log(odds);
-
-//The odds object can be further destructured to create new variables using the 'odds' values
-const {
-  odds: { team1, x: draw, team2 },
-} = game;
-//A colon after the key name can be used to change the name of the variable.
-console.log(team1, draw, team2);
-
-// 6. Write a function ('printGoals') that receives an arbitrary number of player names (not an array) and prints each of them to the console, along with the number of goals that were scored in total (number of player names passed in)
-
-const printGoals = (...playerNames) => {
-  console.log(`Goals scored: ${playerNames.length}`);
-  console.log(...playerNames);
-};
-printGoals(...game.scored);
-
-// 7. The team with the lower odd is more likely to win. Print to the console which team is more likely to win, without using an if/else statement or the ternary operator.
-team1 < team2 && console.log('Team1 is more likey to win');
-team1 > team2 && console.log('Team2 is more likey to win');
-//console.log(winner);
+//Arrays can be destructured when declaring a for-of loop
+// for (const [i, el] of menu.entries()) {
+//   console.log(`#${i + 1} ${el}`);
+// }
