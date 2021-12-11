@@ -669,19 +669,19 @@ const weekdays = ['mon', 'tues', 'wed', 'thu', 'fri', 'sat', 'sun'];
 
 const hoursOfOperation = {
   [weekdays[0]]: {
-    open: `open at noon`,
+    open: 7,
     close: 22,
   },
   [weekdays[3]]: {
-    open: `open at noon`,
+    open: 7,
     close: 22,
   },
   [weekdays[4]]: {
-    open: `open at noon`,
-    close: 23,
+    open: 6,
+    close: 24,
   },
   [weekdays[5]]: {
-    open: `at midnight`, // Open 24 hours
+    open: 0, // Open 24 hours
     close: 24,
   },
 };
@@ -760,11 +760,45 @@ const days = ['mon', 'tues', 'wed', 'thu', 'fri', 'sat', 'sun'];
 //   console.log(`Shut down method doesn't exist`);
 
 //Optional chaining also works on arrays
-const users = [
-  { name: 'Willie', age: 54 },
-  { name: 'Brina', age: 24 },
-  { name: 'Levitch', age: 21 },
-];
+// const users = [
+//   { name: 'Willie', age: 54 },
+//   { name: 'Brina', age: 24 },
+//   { name: 'Levitch', age: 21 },
+// ];
 
-console.log(users[2]?.name ?? `User does not exist`);
-console.log(users[3]?.name ?? `User does not exist`);
+// console.log(users[2]?.name ?? `User does not exist`);
+// console.log(users[3]?.name ?? `User does not exist`);
+
+/////////////////////////////////////////
+//========================================
+// 114. Looping Objects:
+// Object Keys, Values, and Entries
+//========================================
+
+//Looping property names (object keys)
+const properties = Object.keys(hoursOfOperation);
+
+//console.log(properties);
+let openStr = `The restaurant is open ${properties.length} days this week: `;
+
+for (let day of properties) {
+  openStr += `${day}, `;
+}
+//console.log(openStr);
+
+//Object values
+const values = Object.values(hoursOfOperation);
+//console.log(values);
+
+//Entire objects
+//Logging out Object.entries() will return an array of arrays that contains both the key and the value of the property
+const entries = Object.entries(hoursOfOperation);
+console.log(entries);
+
+//A for-of loop can be used to loop over the array containing the object properties
+for (let entry of entries) {
+  const [key, { open: openTime, close: closeTime }] = entry;
+  console.log(
+    `On ${key}, we are open at ${openTime} and we close at ${closeTime}`
+  );
+}
