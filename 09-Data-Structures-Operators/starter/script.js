@@ -941,6 +941,7 @@ Jonas' Soution
 //2. Loop through elements in game.scored array
 //3. If the player property exists inside of the scorers object, add 1 to value
 //4. If not, the vaule of the player property will be set to 1
+
 // for (const player of game.scored) {
 //   scorers[player] ? scorers[player]++ : (scorers[player] = 1);
 // }
@@ -1006,4 +1007,53 @@ const staff = ['host', 'server', 'chef', 'chef', 'server', 'manager', 'host'];
 //Convert a set into an array usin the spread(...) operator
 //const staffSet = [...new Set(staff)];
 
-console.log(new Set('Mississippi River').size - 1);
+//console.log(new Set('Mississippi River').size - 1);
+
+/////////////////////////////////////////
+//========================================
+// 117. Maps Fundamentals
+//========================================
+// Map is a data structure that we can use to map store key-value pairs.
+// Unlike objects where the keys must be strings, a map key can be any data type including objects, arrays or other maps
+
+//When creating a new map, it is best to start with an empty map
+const rest = new Map();
+
+//The .set() method can be used to add new key-value pairs
+rest.set('name', "Willie's Pizza");
+
+//The .set() method can be chained to add multiple key-value pairs
+rest
+  .set('location1', 'Miami, FL')
+  .set('location2', 'Sunrise, FL')
+  .set('location3', 'Orlando, FL')
+  .set('categories', ['pizza', 'fast food', 'delivery', 'open late'])
+  .set('open', 6)
+  .set('close', 24)
+  .set(true, 'We are open!')
+  .set(false, 'We are closed.');
+
+//console.log(rest.get('location'));
+//console.log(rest.get(true));
+
+// const time = 5;
+// console.log(rest.get(time > rest.get('open') && time < rest.get('close')));
+
+//Map methods in action
+console.log(rest.has('location3')); //Check if exists
+rest.delete('location2');
+console.log(rest);
+console.log(rest.size);
+
+//Retreive value of key that is set to object/array
+//Log below will not work because they reference 2 different addresses in the heap
+//rest.set([1, 2], 'Test');
+//console.log(rest.get([1, 2]));
+
+//You must first assign array to a variabl and reference that variable in the set method
+// const arr = [1, 2];
+// rest.set(arr, 'Test');
+// console.log(rest.get(arr));
+
+// rest.set(document.querySelector('h1'), 'Heading');
+// console.log(rest);
