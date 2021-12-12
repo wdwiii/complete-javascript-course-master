@@ -853,16 +853,16 @@ const game = {
 
 // Your tasks:
 
-console.log(`===== Challenge 1 =====`);
+//console.log(`===== Challenge 1 =====`);
 // 1. Loop over the game.scored array and print each player name to the console, along with the goal number (Example: "Goal 1: Lewandowski")
 /*================
 Original Soution
 ==================*/
 
-const scored = [...game.scored.entries()];
-for (const scoredBy of scored) {
-  console.log(`Goal ${scoredBy[0] + 1}: ${scoredBy[1]}`);
-}
+// const scored = [...game.scored.entries()];
+// for (const scoredBy of scored) {
+//   console.log(`Goal ${scoredBy[0] + 1}: ${scoredBy[1]}`);
+// }
 
 /*================
 Jonas' Soution
@@ -870,19 +870,19 @@ Jonas' Soution
 // for (const [i, player] of game.scored.entries())
 //   console.log(`Goal ${i + 1}: ${player}`);
 
-console.log(`===== Challenge 2 =====`);
+//console.log(`===== Challenge 2 =====`);
 // 2. Use a loop to calculate the average odd and log it to the console (We already studied how to calculate averages, you can go check if you don't remember)
 
 /*================
 Original Soution
 ==================*/
-const oddsVal = Object.values(game.odds);
-let sum = 0;
-for (let value of oddsVal) {
-  sum += value;
-}
-const avg = sum / oddsVal.length;
-console.log(avg);
+// const oddsVal = Object.values(game.odds);
+// let sum = 0;
+// for (let value of oddsVal) {
+//   sum += value;
+// }
+// const avg = sum / oddsVal.length;
+// console.log(avg);
 
 /*================
 Jonas' Soution
@@ -893,7 +893,7 @@ Jonas' Soution
 // average /= odds2.length;
 // console.log(average);
 
-console.log(`===== Challenge 3 =====`);
+//console.log(`===== Challenge 3 =====`);
 // 3. Print the 3 odds to the console, but in a nice formatted way, exactly like this:
 // Odd of victory Bayern Munich: 1.33
 // Odd of draw: 3.25
@@ -905,15 +905,15 @@ console.log(`===== Challenge 3 =====`);
 Original Soution
 ==================*/
 
-for (const [team, odd] of Object.entries(game.odds)) {
-  console.log(
-    `Odd of ${
-      team == 'x'
-        ? 'draw'
-        : 'victory ' + (team == 'team1' ? game.team1 : game.team2)
-    }: ${odd}`
-  );
-}
+// for (const [team, odd] of Object.entries(game.odds)) {
+//   console.log(
+//     `Odd of ${
+//       team == 'x'
+//         ? 'draw'
+//         : 'victory ' + (team == 'team1' ? game.team1 : game.team2)
+//     }: ${odd}`
+//   );
+// }
 
 /*================
 Jonas' Soution
@@ -924,7 +924,7 @@ Jonas' Soution
 //   console.log(`Odd of ${teamStr}: ${odd}`);
 // }
 
-console.log(`===== Challenge 4 =====`);
+//console.log(`===== Challenge 4 =====`);
 // 4. Bonus: Create an object called 'scorers' which contains the names of the players who scored as properties, and the number of goals as the value.
 
 // In this game, it will look like this:
@@ -935,13 +935,75 @@ console.log(`===== Challenge 4 =====`);
 // }
 // GOOD LUCK 😀
 
-const scorers = {};
+//const scorers = {};
 //Solution
 //1. Create an empty object
 //2. Loop through elements in game.scored array
 //3. If the player property exists inside of the scorers object, add 1 to value
 //4. If not, the vaule of the player property will be set to 1
-for (const player of game.scored) {
-  scorers[player] ? scorers[player]++ : (scorers[player] = 1);
-}
-console.log(scorers);
+// for (const player of game.scored) {
+//   scorers[player] ? scorers[player]++ : (scorers[player] = 1);
+// }
+//console.log(scorers);
+
+/////////////////////////////////////////
+//========================================
+// 116. Sets
+//========================================
+
+//A set is a collection of data that does not have any duplicates
+
+const ordersSet = new Set(['Pasta', 'Pizza', 'Risotto', 'Pizza', 'Pasta']);
+//Set(3) {'Pasta', 'Pizza', 'Risotto'}
+
+//Strings are also iterables, so they can be passed and will return the components that make up the string
+const nameSet = new Set('Willie is cool');
+//Set(8) {'W', 'i', 'l', 'e', ' ', 's', 'c', 'o}
+
+//A set can also be empty
+const emptySet = new Set();
+//Set(0) {size: 0}
+
+//--- How to work with sets ---//
+
+//* Get the size of a set *
+ordersSet.size;
+//3
+
+//* Check if element is in set *
+ordersSet.has('Pizza');
+//true
+ordersSet.has('Salad');
+//false
+
+//* Add new element to a set *
+ordersSet.add('Steamed Spinach', 'Steamed Spinach');
+//console.log(ordersSet);
+//Set(4) {'Pasta', 'Pizza', 'Risotto', 'Steamed Spinach'}
+
+//* Remove new element to a set *
+ordersSet.delete('Pizza');
+//console.log(ordersSet);
+//Set(4) {'Pasta', 'Risotto', 'Steamed Spinach'}
+
+//* Retreiving values from a set *
+//console.log(ordersSet[0]) will return undefined
+//Retreiving values from a set is NOT possible
+//Sets contain unique values and it only matters if the set has the element
+//If values need to be stored in order, it is best to use an array
+
+//* Deleting ALL values from a set *
+//ordersSet.clear();
+//console.log(ordersSet);
+//Set(0) {size: 0}
+
+//* Looping over set *
+//for (const order of ordersSet) console.log(order);
+
+//Most common use of sets is to remove duplicate vlues of arrays
+const staff = ['host', 'server', 'chef', 'chef', 'server', 'manager', 'host'];
+
+//Convert a set into an array usin the spread(...) operator
+//const staffSet = [...new Set(staff)];
+
+console.log(new Set('Mississippi River').size - 1);
