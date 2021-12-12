@@ -1040,10 +1040,10 @@ rest
 // console.log(rest.get(time > rest.get('open') && time < rest.get('close')));
 
 //Map methods in action
-console.log(rest.has('location3')); //Check if exists
-rest.delete('location2');
-console.log(rest);
-console.log(rest.size);
+// console.log(rest.has('location3')); //Check if exists
+// rest.delete('location2');
+// console.log(rest);
+// console.log(rest.size);
 
 //Retreive value of key that is set to object/array
 //Log below will not work because they reference 2 different addresses in the heap
@@ -1057,3 +1057,67 @@ console.log(rest.size);
 
 // rest.set(document.querySelector('h1'), 'Heading');
 // console.log(rest);
+
+/////////////////////////////////////////
+//========================================
+// 118. Maps: Iteration
+//========================================
+//Whencreating a new map from scratch, this is the preferred method, to create an array of arrays where the first e.ement is the key and the second element is the value
+const question = new Map([
+  ['question', 'What is your birthplace?'],
+  [1, 'Clouds'],
+  [2, 'Miami'],
+  [3, 'Moon'],
+  ['correct', 2],
+  [true, 'Correct!'],
+]);
+
+//To add elements to an already existing map, use the .set() method
+
+question.set(false, 'Sorry, that answer is incorrect');
+//console.log(question);
+
+// Converting object to map
+const closet = {
+  size: 'large',
+  doors: 2,
+  doorType: 'swinging',
+  clothes: ['shirts', 'pants', 'shoes'],
+};
+//console.log(closet);
+
+const closetMap = new Map(Object.entries(closet));
+//console.log(closetMap);
+
+//Because Maps are iterables, they can be looped over using a for loop
+console.log(question.get('question'));
+for (const [key, value] of question) {
+  if (typeof key == 'number') console.log(`Answer ${key}: ${value}`);
+}
+
+//const answer = Number(prompt(question.get('question')));
+//console.log(answer);
+
+/*================
+Original Soution
+==================*/
+
+// const checkAnswer =
+//   answer === question.get('correct')
+//     ? console.log(question.get(true))
+//     : console.log(question.get(false));
+
+/*================
+Jonas' Soution
+==================*/
+//console.log(question.get(question.get('correct') === answer));
+//The above code will validate the inner expression (question.get('correct') === answer))
+//This expression will return true or false
+//This will be the equivalant to logging question.get(true) or question.get(false)
+
+//Converting map back to an arrray
+//use the spread operator to empty contents of map into an array
+console.log([...question]);
+console.log([...question.entries()]);
+console.log([...question.keys()]);
+console.log([...question.values()]);
