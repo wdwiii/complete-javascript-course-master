@@ -792,13 +792,156 @@ const values = Object.values(hoursOfOperation);
 
 //Entire objects
 //Logging out Object.entries() will return an array of arrays that contains both the key and the value of the property
-const entries = Object.entries(hoursOfOperation);
-console.log(entries);
+//const entries = Object.entries(hoursOfOperation);
+//console.log(entries);
 
 //A for-of loop can be used to loop over the array containing the object properties
-for (let entry of entries) {
-  const [key, { open: openTime, close: closeTime }] = entry;
+// for (let entry of entries) {
+//   const [key, { open: openTime, close: closeTime }] = entry;
+//   console.log(
+//     `On ${key}, we are open at ${openTime} and we close at ${closeTime}`
+//   );
+// }
+
+/////////////////////////////////////////
+//========================================
+// 115. Coding Challenge #2
+//========================================
+
+const game = {
+  team1: 'Bayern Munich',
+  team2: 'Borrussia Dortmund',
+  players: [
+    [
+      'Neuer',
+      'Pavard',
+      'Martinez',
+      'Alaba',
+      'Davies',
+      'Kimmich',
+      'Goretzka',
+      'Coman',
+      'Muller',
+      'Gnarby',
+      'Lewandowski',
+    ],
+    [
+      'Burki',
+      'Schulz',
+      'Hummels',
+      'Akanji',
+      'Hakimi',
+      'Weigl',
+      'Witsel',
+      'Hazard',
+      'Brandt',
+      'Sancho',
+      'Gotze',
+    ],
+  ],
+  score: '4:0',
+  scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
+  date: 'Nov 9th, 2037',
+  odds: {
+    team1: 1.33,
+    x: 3.25,
+    team2: 6.5,
+  },
+};
+
+// Let's continue with our football betting app! Keep using the 'game' variable from before.
+
+// Your tasks:
+
+console.log(`===== Challenge 1 =====`);
+// 1. Loop over the game.scored array and print each player name to the console, along with the goal number (Example: "Goal 1: Lewandowski")
+/*================
+Original Soution
+==================*/
+
+const scored = [...game.scored.entries()];
+for (const scoredBy of scored) {
+  console.log(`Goal ${scoredBy[0] + 1}: ${scoredBy[1]}`);
+}
+
+/*================
+Jonas' Soution
+==================*/
+// for (const [i, player] of game.scored.entries())
+//   console.log(`Goal ${i + 1}: ${player}`);
+
+console.log(`===== Challenge 2 =====`);
+// 2. Use a loop to calculate the average odd and log it to the console (We already studied how to calculate averages, you can go check if you don't remember)
+
+/*================
+Original Soution
+==================*/
+const oddsVal = Object.values(game.odds);
+let sum = 0;
+for (let value of oddsVal) {
+  sum += value;
+}
+const avg = sum / oddsVal.length;
+console.log(avg);
+
+/*================
+Jonas' Soution
+==================*/
+// const odds2 = Object.values(game.odds);
+// let average = 0;
+// for (const odd of odds2) average += odd;
+// average /= odds2.length;
+// console.log(average);
+
+console.log(`===== Challenge 3 =====`);
+// 3. Print the 3 odds to the console, but in a nice formatted way, exactly like this:
+// Odd of victory Bayern Munich: 1.33
+// Odd of draw: 3.25
+// Odd of victory Borrussia Dortmund: 6.5
+
+// Get the team names directly from the game object, don't hardcode them (except for "draw"). Hint: Note how the odds and the game objects have the same property names 😉
+
+/*================
+Original Soution
+==================*/
+
+for (const [team, odd] of Object.entries(game.odds)) {
   console.log(
-    `On ${key}, we are open at ${openTime} and we close at ${closeTime}`
+    `Odd of ${
+      team == 'x'
+        ? 'draw'
+        : 'victory ' + (team == 'team1' ? game.team1 : game.team2)
+    }: ${odd}`
   );
 }
+
+/*================
+Jonas' Soution
+==================*/
+// for (const [team, odd] of Object.entries(game.odds)) {
+//   const teamStr = team == 'x' ? 'draw' : `victory ${game[team]}`;
+
+//   console.log(`Odd of ${teamStr}: ${odd}`);
+// }
+
+console.log(`===== Challenge 4 =====`);
+// 4. Bonus: Create an object called 'scorers' which contains the names of the players who scored as properties, and the number of goals as the value.
+
+// In this game, it will look like this:
+// {
+// Gnarby: 1,
+// Hummels: 1,
+// Lewandowski: 2
+// }
+// GOOD LUCK 😀
+
+const scorers = {};
+//Solution
+//1. Create an empty object
+//2. Loop through elements in game.scored array
+//3. If the player property exists inside of the scorers object, add 1 to value
+//4. If not, the vaule of the player property will be set to 1
+for (const player of game.scored) {
+  scorers[player] ? scorers[player]++ : (scorers[player] = 1);
+}
+console.log(scorers);
