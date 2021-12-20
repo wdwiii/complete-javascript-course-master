@@ -935,13 +935,13 @@ Jonas' Soution
 // }
 // GOOD LUCK 😀
 
-//const scorers = {};
 //Solution
 //1. Create an empty object
 //2. Loop through elements in game.scored array
 //3. If the player property exists inside of the scorers object, add 1 to value
 //4. If not, the vaule of the player property will be set to 1
 
+//const scorers = {};
 // for (const player of game.scored) {
 //   scorers[player] ? scorers[player]++ : (scorers[player] = 1);
 // }
@@ -1033,7 +1033,7 @@ rest
   .set(true, 'We are open!')
   .set(false, 'We are closed.');
 
-//console.log(rest.get('location'));
+//console.log(rest.get('location1'));
 //console.log(rest.get(true));
 
 // const time = 5;
@@ -1050,7 +1050,7 @@ rest
 //rest.set([1, 2], 'Test');
 //console.log(rest.get([1, 2]));
 
-//You must first assign array to a variabl and reference that variable in the set method
+//You must first assign array to a variable and reference that variable in the set method
 // const arr = [1, 2];
 // rest.set(arr, 'Test');
 // console.log(rest.get(arr));
@@ -1062,7 +1062,7 @@ rest
 //========================================
 // 118. Maps: Iteration
 //========================================
-//Whencreating a new map from scratch, this is the preferred method, to create an array of arrays where the first e.ement is the key and the second element is the value
+//Whencreating a new map from scratch, this is the preferred method, to create an array of arrays where the first element is the key and the second element is the value
 const question = new Map([
   ['question', 'What is your birthplace?'],
   [1, 'Clouds'],
@@ -1090,10 +1090,10 @@ const closetMap = new Map(Object.entries(closet));
 //console.log(closetMap);
 
 //Because Maps are iterables, they can be looped over using a for loop
-console.log(question.get('question'));
-for (const [key, value] of question) {
-  if (typeof key == 'number') console.log(`Answer ${key}: ${value}`);
-}
+// console.log(question.get('question'));
+// for (const [key, value] of question) {
+//   if (typeof key == 'number') console.log(`Answer ${key}: ${value}`);
+// }
 
 //const answer = Number(prompt(question.get('question')));
 //console.log(answer);
@@ -1117,7 +1117,49 @@ Jonas' Soution
 
 //Converting map back to an arrray
 //use the spread operator to empty contents of map into an array
-console.log([...question]);
-console.log([...question.entries()]);
-console.log([...question.keys()]);
-console.log([...question.values()]);
+// console.log([...question]);
+// console.log([...question.entries()]);
+// console.log([...question.keys()]);
+// console.log([...question.values()]);
+
+/////////////////////////////////////////
+//========================================
+// 120. Coding Challenge #3
+//========================================
+
+/*Let's continue with our football betting app! This time, we have a map called gameEvents (see below) with a log of the events that happened during the game. The values are the events themselves, and the keys are the minutes in which each event happened (a football game has 90 minutes plus some extra time).*/
+
+const gameEvents = new Map([
+  [17, '⚽ GOAL'],
+  [36, '🔁 Substitution'],
+  [47, '⚽ GOAL'],
+  [61, '🔁 Substitution'],
+  [64, '🔶 Yellow card'],
+  [69, '🔴 Red card'],
+  [70, '🔁 Substitution'],
+  [72, '🔁 Substitution'],
+  [76, '⚽ GOAL'],
+  [80, '⚽ GOAL'],
+  [92, '🔶 Yellow card'],
+]);
+
+// 1. Create an array 'events' of the different game events that happened (no duplicates)
+const events = [...new Set(gameEvents.values())];
+//console.log(events);
+
+// 2. After the game has finished, is was found that the yellow card from minute 64 was unfair. So remove this event from the game events log.
+gameEvents.delete(64);
+//console.log(gameEvents);
+
+// 3. Compute and log the following string to the console: "An event happened, on average, every 9 minutes" (keep in mind that a game has 90 minutes)
+const eventTime = [...gameEvents.keys()].pop();
+let avgMins = eventTime / gameEvents.size;
+console.log(`An event happened, on average, every ${avgMins} minutes`);
+
+// 4. Loop over 'gameEvents' and log each element to the console, marking whether it's in the first half or second half (after 45 min) of the game, like this:
+// [FIRST HALF] 17: ⚽ GOAL
+
+for (const [time, event] of gameEvents) {
+  console.log(`[${time <= 45 ? 'FIRST' : 'SECOND'} HALF] ${time}: ${event}`);
+}
+// GOOD LUCK 😀
