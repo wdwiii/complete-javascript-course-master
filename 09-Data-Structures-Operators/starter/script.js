@@ -1152,14 +1152,84 @@ gameEvents.delete(64);
 //console.log(gameEvents);
 
 // 3. Compute and log the following string to the console: "An event happened, on average, every 9 minutes" (keep in mind that a game has 90 minutes)
-const eventTime = [...gameEvents.keys()].pop();
-let avgMins = eventTime / gameEvents.size;
-console.log(`An event happened, on average, every ${avgMins} minutes`);
+// const eventTime = [...gameEvents.keys()].pop();
+// let avgMins = eventTime / gameEvents.size;
+// console.log(`An event happened, on average, every ${avgMins} minutes`);
 
 // 4. Loop over 'gameEvents' and log each element to the console, marking whether it's in the first half or second half (after 45 min) of the game, like this:
 // [FIRST HALF] 17: ⚽ GOAL
 
-for (const [time, event] of gameEvents) {
-  console.log(`[${time <= 45 ? 'FIRST' : 'SECOND'} HALF] ${time}: ${event}`);
-}
+// for (const [time, event] of gameEvents) {
+//   console.log(`[${time <= 45 ? 'FIRST' : 'SECOND'} HALF] ${time}: ${event}`);
+// }
 // GOOD LUCK 😀
+
+/////////////////////////////////////////
+//========================================
+// 121. Working with Strings - Part 1
+//========================================
+
+const airline = 'Spirit Airlines';
+const plane = 'SA5678';
+
+// console.log(`/// Get character at certain index ///`);
+// console.log(airline[8]); //i
+// console.log(airline[3]); //r
+// console.log(airline[10]); //l
+// console.log(airline[5]); //t
+// console.log("It's a zoo!"[7]); //z
+
+// console.log(`/// Read length of string ///`);
+// console.log(airline.length);
+// console.log(plane.length);
+
+// console.log(`/// Get index of a particular character ///`);
+// console.log(plane.indexOf('6'));
+// console.log(plane.indexOf('A'));
+// //You can search for a multi-character string
+// console.log(airline.indexOf('Airlines'));
+// //indexOf method is case sensitive. If string doesn't exist, -1 will be returned
+// console.log(airline.indexOf('airlines'));
+
+// console.log(`/// Get index of last occurance of character ///`);
+// console.log(airline.lastIndexOf('r'));
+// console.log(airline.lastIndexOf('i'));
+
+// console.log('/// Extract part of string ///');
+// //first value is index that extraction will begin
+// console.log(airline.slice(7));
+// console.log('Miami, Florida'.slice(0, 5));
+// //end parameter can also be specified
+// //end value will NOT be included in the substring
+
+// console.log('/// Dynamically extract part of string ///');
+// const intro = `Hi, my name is Willie`;
+// console.log(intro.indexOf('Willie'));
+// console.log(intro.slice(15)); //Willie;
+
+// console.log('/// Begin extracting from end of string');
+// console.log(intro.slice(-9)); //is Willie
+// console.log(intro.indexOf('name')); //7
+// console.log(intro.slice(7, -10)); //name
+
+//Challege
+const guestSeat = prompt(`Please enter your assinged seat`);
+
+if (
+  guestSeat.slice(-1).toLowerCase() === 'a' ||
+  guestSeat.slice(-1).toLowerCase() === 'f'
+) {
+  console.log('You have a window seat');
+} else if (
+  guestSeat.slice(-1).toLowerCase() === 'b' ||
+  guestSeat.slice(-1).toLowerCase() === 'e'
+) {
+  console.log('You have a middle seat');
+} else if (
+  guestSeat.slice(-1).toLowerCase() === 'c' ||
+  guestSeat.slice(-1).toLowerCase() === 'd'
+) {
+  console.log('You have a aisle seat');
+} else {
+  console.log(`Please enter valid seat number`);
+}
