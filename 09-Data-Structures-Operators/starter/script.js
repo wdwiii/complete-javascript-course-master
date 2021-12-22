@@ -1169,8 +1169,8 @@ gameEvents.delete(64);
 // 121. Working with Strings - Part 1
 //========================================
 
-const airline = 'Spirit Airlines';
-const plane = 'SA5678';
+// const airline = 'Spirit Airlines';
+// const plane = 'SA5678';
 
 // console.log(`/// Get character at certain index ///`);
 // console.log(airline[8]); //i
@@ -1213,23 +1213,103 @@ const plane = 'SA5678';
 // console.log(intro.slice(7, -10)); //name
 
 //Challege
-const guestSeat = prompt(`Please enter your assinged seat`);
+// const guestSeat = prompt(`Please enter your assinged seat`);
 
-if (
-  guestSeat.slice(-1).toLowerCase() === 'a' ||
-  guestSeat.slice(-1).toLowerCase() === 'f'
-) {
-  console.log('You have a window seat');
-} else if (
-  guestSeat.slice(-1).toLowerCase() === 'b' ||
-  guestSeat.slice(-1).toLowerCase() === 'e'
-) {
-  console.log('You have a middle seat');
-} else if (
-  guestSeat.slice(-1).toLowerCase() === 'c' ||
-  guestSeat.slice(-1).toLowerCase() === 'd'
-) {
-  console.log('You have a aisle seat');
-} else {
-  console.log(`Please enter valid seat number`);
-}
+// if (
+//   guestSeat.slice(-1).toLowerCase() === 'a' ||
+//   guestSeat.slice(-1).toLowerCase() === 'f'
+// ) {
+//   console.log('You have a window seat');
+// } else if (
+//   guestSeat.slice(-1).toLowerCase() === 'b' ||
+//   guestSeat.slice(-1).toLowerCase() === 'e'
+// ) {
+//   console.log('You have a middle seat');
+// } else if (
+//   guestSeat.slice(-1).toLowerCase() === 'c' ||
+//   guestSeat.slice(-1).toLowerCase() === 'd'
+// ) {
+//   console.log('You have a aisle seat');
+// } else {
+//   console.log(`Please enter valid seat number`);
+// }
+
+/////////////////////////////////////////
+//========================================
+// 122. Working with Strings - Part 2
+//========================================
+const airline = 'Spirit Airlines';
+const plane = 'SA5678';
+
+//String Methods
+//console.log(`/// Changing case of a string ///`);
+//console.log(airline.toLowerCase()); //spirit airlines
+//console.log(airline.toUpperCase()); //SPIRIT AIRLINES
+
+//Fix capitalization in passenger name
+const correctName = name => {
+  const passengerLC = name.toLowerCase();
+  const passengerCorrect = passengerLC[0].toUpperCase() + passengerLC.slice(1);
+  console.log(passengerCorrect);
+};
+//correctName(`tAMesHa`);
+
+/* Real world challenges */
+//Comparing email
+const emailOG = `dlebrun1@mdcps.net`;
+const loginEmail = `  DLeBruN1@MDCPS.nEt   \n`;
+
+const compareEmail = email => {
+  const lowerEmail = loginEmail.toLowerCase();
+  const trimmedEmail = lowerEmail.trim();
+  console.log(trimmedEmail);
+};
+//String methods can be chained together resulting in cleaner code
+const normalizeEmail = email => {
+  const normalized = loginEmail.toLowerCase().trim();
+  if (normalized === emailOG) console.log(`The email ${normalized} is valid`);
+};
+//normalizeEmail(loginEmail);
+
+//Replacing part of a string
+const priceUS = `$367.51`;
+const convertPrice = price => {
+  const priceGB = priceUS.replace('.', ',').replace('$', '£');
+  console.log(priceGB);
+};
+convertPrice(priceUS);
+
+const announcement = `All passengers report to door 23. Now boarding door 23.`;
+
+console.log(announcement.replaceAll('door', 'gate'));
+//OR announcement.replace(/door/g, 'gate'));
+
+//Booleans
+const newPlane = 'AA456neo';
+console.log('/// Check if character(s) is included in string ///');
+console.log(newPlane.includes('AA456'));
+console.log(newPlane.includes('stream'));
+
+console.log('/// Check if string starts with a specific character(s) ///');
+console.log(newPlane.startsWith('AA'));
+console.log(newPlane.startsWith('Airbus'));
+
+console.log('/// Check if string ends with a specific character(s) ///');
+console.log(newPlane.startsWith('Airbus') && newPlane.endsWith('neo'));
+console.log(newPlane.startsWith('AA') && newPlane.endsWith('neo'));
+
+//Practice Exercises
+
+const checkBaggage = items => {
+  const baggage = items.toLowerCase();
+
+  if (baggage.includes('screwdriver') || baggage.includes('fireworks')) {
+    console.log('This bag cannot be checked');
+  } else {
+    console.log('This bag is cleared for checking');
+  }
+};
+
+checkBaggage(`I Have Some Lotion, A Bag Of Apples, And A Screwdriver`);
+checkBaggage(`I have a magazine and a camera`);
+checkBaggage(`I have fireworks and toilet paper`);
