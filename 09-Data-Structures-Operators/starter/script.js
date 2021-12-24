@@ -1378,13 +1378,13 @@ const maskCCNumber = number => {
   console.log(concealed);
 };
 
-maskCCNumber(3334555555556675);
-maskCCNumber(333455);
-maskCCNumber('46578693');
+// maskCCNumber(3334555555556675);
+// maskCCNumber(333455);
+// maskCCNumber('46578693');
 
 //Repeat
 const message2 = 'Bad weather, all departures delayed... ';
-console.log(message2.repeat(10));
+//console.log(message2.repeat(10));
 
 const planesInLine = numPlanes => {
   const beVerb = numPlanes === 1 ? 'is' : 'are';
@@ -1396,6 +1396,97 @@ const planesInLine = numPlanes => {
   );
 };
 
-planesInLine(5);
-planesInLine(10);
-planesInLine(1);
+// planesInLine(5);
+// planesInLine(10);
+// planesInLine(1);
+
+/////////////////////////////////////////
+//========================================
+// 124. Coding Challenge #4
+//========================================
+/*
+Write a program that receives a list of variable names written in underscore_case and convert them to camelCase.
+The input will come from a textarea inserted into the DOM (see code below to insert the elements), and conversion will happen when the button is pressed.
+
+Test data (pasted to textarea, including spaces):
+underscore_case
+first_name
+Some_Variable
+calculate_AGE
+delayed_departure
+
+Should produce this output (5 separate console.log outputs):
+underscoreCase ✅
+firstName ✅✅
+someVariable ✅✅✅
+calculateAge ✅✅✅✅
+delayedDeparture ✅✅✅✅✅
+
+Hints:
+• Remember which character defines a new line in the textarea 😉
+• The solution only needs to work for a variable made out of 2 words, like a_b
+• Start without worrying about the ✅. Tackle that only after you have the variable name conversion working 😉
+• This challenge is difficult on purpose, so start watching the solution in case you're stuck. Then pause and continue!
+Afterwards, test with your own test data!
+
+GOOD LUCK 😀
+*/
+
+document.body.append(document.createElement('textarea'));
+document.body.append(document.createElement('button'));
+const textArea = document.querySelector('textarea');
+const button = document.querySelector('button');
+
+//Attempt 1
+
+// const convertStr = (...words) => {
+//   const newWordsArray = [];
+//   for (const str of words) {
+//     const stringSplit = str.toLowerCase().split('_');
+//     const word2Upper = stringSplit[1].replace(
+//       stringSplit[1][0],
+//       stringSplit[1][0].toUpperCase()
+//     );
+//     const join = stringSplit[0] + word2Upper;
+//     console.log(join);
+//   }
+// };
+
+// //convertStr('first_name', 'Some_Variable', 'a_b', 'calculate_AGE');
+
+// let textAreastr = textArea.value;
+
+// const changeHandler = e => {
+//   textAreastr = e.target.value;
+//   console.log(textAreastr);
+// };
+
+// textArea.addEventListener('keydown', changeHandler);
+
+// //button.addEventListener('click', convertStr());
+
+//Attempt 2
+
+//1. Attatch click handler to button
+//2. Store the entry in the text area as a string
+//3. Split the string using the new line character as a divider
+//4. Loop through entries of the split array
+//5. Trim white space and convert the single entrues to lower case then split using the underscore character as a divider
+
+button.addEventListener('click', function () {
+  const text = textArea.value;
+  const textArray = text.split('\n');
+  const newArr = [];
+  for (const entry of textArray) {
+    const [firstW, lastW] = entry.trim().toLowerCase().split('_');
+    const capLast = lastW.replace(lastW[0], lastW[0].toUpperCase());
+    const camelCase = firstW + capLast;
+    newArr.push(camelCase);
+    console.log(
+      `${camelCase.padEnd(20, ' ')}${'✅'.repeat(
+        newArr.indexOf(camelCase) + 1
+      )}`
+    );
+  }
+  //console.log(textArray);
+});
