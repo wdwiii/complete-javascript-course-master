@@ -1277,26 +1277,26 @@ const convertPrice = price => {
   const priceGB = priceUS.replace('.', ',').replace('$', '£');
   console.log(priceGB);
 };
-convertPrice(priceUS);
+//convertPrice(priceUS);
 
 const announcement = `All passengers report to door 23. Now boarding door 23.`;
 
-console.log(announcement.replaceAll('door', 'gate'));
+//console.log(announcement.replaceAll('door', 'gate'));
 //OR announcement.replace(/door/g, 'gate'));
 
 //Booleans
-const newPlane = 'AA456neo';
-console.log('/// Check if character(s) is included in string ///');
-console.log(newPlane.includes('AA456'));
-console.log(newPlane.includes('stream'));
+// const newPlane = 'AA456neo';
+// console.log('/// Check if character(s) is included in string ///');
+// console.log(newPlane.includes('AA456'));
+// console.log(newPlane.includes('stream'));
 
-console.log('/// Check if string starts with a specific character(s) ///');
-console.log(newPlane.startsWith('AA'));
-console.log(newPlane.startsWith('Airbus'));
+// console.log('/// Check if string starts with a specific character(s) ///');
+// console.log(newPlane.startsWith('AA'));
+// console.log(newPlane.startsWith('Airbus'));
 
-console.log('/// Check if string ends with a specific character(s) ///');
-console.log(newPlane.startsWith('Airbus') && newPlane.endsWith('neo'));
-console.log(newPlane.startsWith('AA') && newPlane.endsWith('neo'));
+// console.log('/// Check if string ends with a specific character(s) ///');
+// console.log(newPlane.startsWith('Airbus') && newPlane.endsWith('neo'));
+// console.log(newPlane.startsWith('AA') && newPlane.endsWith('neo'));
 
 //Practice Exercises
 
@@ -1310,6 +1310,92 @@ const checkBaggage = items => {
   }
 };
 
-checkBaggage(`I Have Some Lotion, A Bag Of Apples, And A Screwdriver`);
-checkBaggage(`I have a magazine and a camera`);
-checkBaggage(`I have fireworks and toilet paper`);
+// checkBaggage(`I Have Some Lotion, A Bag Of Apples, And A Screwdriver`);
+// checkBaggage(`I have a magazine and a camera`);
+// checkBaggage(`I have fireworks and toilet paper`);
+
+/////////////////////////////////////////
+//========================================
+// 123. Working with Strings - Part 3
+//========================================
+
+//Split and Join
+
+//Split Method divides a String into an ordered list of substrings, puts these substrings into an array, and returns the array.
+//String that is passed into the split() method will be used as a divider string.
+
+//console.log(`a+very+nice+day`.split('+'));
+// ['a', 'very', 'nice', 'day']
+//console.log(`Willie Whitfield`.split(' '));
+// ['Willie, 'Whitfield']
+
+const [firstName, lastName] = 'Buck Jones'.split(' ');
+// console.log(`First Name: ${firstName}`);
+// console.log(`Last Name: ${lastName}`);
+
+const updatedName = `Mr. ${firstName} ${lastName.toUpperCase()}`;
+//console.log(updatedName);
+
+//The join() method creates and returns a new string by concatenating all of the elements in an array (or an array-like object), separated by commas or a specified separator string.
+const joinEx = ['Mr.', firstName, lastName.toUpperCase()];
+//console.log(joinEx.join(' '));
+
+const passenger = 'jessica ann smith davis';
+
+const capitalizeName = nameStr => {
+  const names = nameStr.split(' ');
+  const newNamesArray = [];
+
+  for (const n of names) {
+    //newNamesArray.push(n[0].toUpperCase() + n.slice(1));
+    newNamesArray.push(n.replace(n[0], n[0].toUpperCase()));
+  }
+  console.log(newNamesArray.join(' '));
+};
+
+//capitalizeName(passenger);
+//capitalizeName('victoria lamina green meyers');
+
+//===============
+//Padding a string
+//Padding means to add a number of characters to the string, until the string has a certain desired length.
+
+// const message = `Go to gate 25`;
+// console.log(message.padStart(25, `+`));
+// console.log('message'.padStart(25, `+`));
+// console.log(message.padEnd(25, `+`));
+// console.log(`message`.padEnd(25, `+`));
+
+const maskCCNumber = number => {
+  //Original solution
+  // const numStr = number.toString().slice(-4).padStart(16, '*');
+  // console.log(numStr);
+
+  //Jonas Solution
+  const str = number + ''; //adding a number type to a string automatically converts it to a string
+  const last = str.slice(-4);
+  const concealed = last.padStart(str.length, '*');
+  console.log(concealed);
+};
+
+maskCCNumber(3334555555556675);
+maskCCNumber(333455);
+maskCCNumber('46578693');
+
+//Repeat
+const message2 = 'Bad weather, all departures delayed... ';
+console.log(message2.repeat(10));
+
+const planesInLine = numPlanes => {
+  const beVerb = numPlanes === 1 ? 'is' : 'are';
+  const planePlural = numPlanes === 1 ? 'plane' : 'planes';
+  console.log(
+    `There ${beVerb} ${numPlanes} ${planePlural} in line ${'🛩'.repeat(
+      numPlanes
+    )}`
+  );
+};
+
+planesInLine(5);
+planesInLine(10);
+planesInLine(1);
