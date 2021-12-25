@@ -4,11 +4,6 @@
 //========================================
 //103. Destructuring Arrays
 //========================================
-
-// Data needed for a later exercise
-const flights =
-  '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
-
 // Data needed for first part of the section
 // const restaurant = {
 //   name: 'Classico Italiano',
@@ -1488,5 +1483,58 @@ button.addEventListener('click', function () {
       )}`
     );
   }
-  //console.log(textArray);
 });
+
+/////////////////////////////////////////
+//========================================
+// 125. String Methids Practice
+//========================================
+/*
+🔴 Delayed Departure from FAO to TXL (11h25) 
+Arrival from BRU to FAQ (11h45)
+🔴 Delayed Arrival from HEL to FAO (12h05) 
+Departure from FAO to LIS (12h30)
+*/
+
+//Original Solution
+
+const flights =
+  '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
+
+const flightsArr = flights.split('+');
+
+for (const flight of flightsArr) {
+  const [flightStatus, flightFrom, flightTo, flightDuration] =
+    flight.split(';');
+
+  const flightStatusStr = flightStatus.split('_').slice(1).join(' ');
+  const flightFromStr = flightFrom.slice(0, 3).toUpperCase();
+  const flightToStr = flightTo.slice(0, 3).toUpperCase();
+  const [flightHr, flightMin] = flightDuration.split(':');
+  const flightDurationStr = `${flightHr}h${flightMin}`;
+
+  const flightString = `${
+    flightStatusStr.includes('Delayed')
+      ? '🔴 ' + [flightStatusStr]
+      : flightStatusStr
+  } from ${flightFromStr} to ${flightToStr} (${flightDurationStr})`;
+
+  // console.log('<===== FLIGHT =====>');
+  // console.log(flightStatusStr);
+  // console.log(flightFromStr);
+  // console.log(flightToStr);
+  // console.log(flightDurationStr);
+  console.log(flightString.padStart(50), ' ');
+}
+
+// Jonas Solution
+
+// const getCode = str => str.slice(0, 3).toUpperCase();
+
+// for (const flight of flights.split('+')) {
+//   const [type, from, to, time] = flight.split(';');
+//   const output = `${type.startsWith('_Delayed') ? '🔴' : ''}${type.replaceAll(
+//     '_',
+//     ' '
+//   )} ${getCode(from)} ${getCode(to)} (${time.replace(':', 'h')})`.padStart(36);
+//   console.log(output);
