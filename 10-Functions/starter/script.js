@@ -57,14 +57,67 @@ const checkIn = (flightNum, passenger) => {
   }
 };
 
-checkIn(flight, bobby);
-console.log(flight); //A2245
+//checkIn(flight, bobby);
+//console.log(flight); //A2245
 //The value of the flight variable is a primitive data type (string)
 //When flight is passsed into the function to the first parameter, creates a copy of the original value
 //(same as writing const flightNum = flight)
 
-console.log(bobby); //{name: 'Mr. Bobby Tarantino', passport: 1029384756}
+//console.log(bobby); //{name: 'Mr. Bobby Tarantino', passport: 1029384756}
 //When a reference type (object or array) is passed to a function, what is copied is really just a reference to the object in the memory heap.
 //(same as writing const passenger = bobby)
 
 //Whatever is changed in the copy is also changed in the original
+
+//=============================================
+// 131. Functions Accepting Callback Functions
+//=============================================
+//Will be used as callback function
+///A callback function is a function that is passed as an argument to another function, to be “called back” at a later time
+const oneWord = str => {
+  return str.replaceAll(' ', '').toLowerCase();
+};
+oneWord(`My name is Willie and I like to code`);
+
+const upperFirstWord = str => {
+  const [firstWord, ...strArr] = str.split(' ');
+  // console.log([firstWord.toUpperCase(), ...strArr].join(' '));
+  return [firstWord.toUpperCase(), ...strArr].join(' ');
+};
+
+//Example of Higher Order Function
+//Higher Order Function accepts a function as a parameter
+const transformer = (str, fn) => {
+  console.log(`Original string: ${str}`);
+  console.log(`Transformed string: ${fn(str)}`);
+  console.log(`String transformed by the ${fn.name} function`);
+  console.log(``);
+};
+
+transformer('This is an example of a higher order function', oneWord);
+
+transformer(
+  'This is another example of a higher order function',
+  upperFirstWord
+);
+
+//Example of callback function, using an event handler
+const highFive = e => {
+  if (e.target.innerText.includes('Closer')) {
+    console.log(`✋🏾 High five!`);
+  }
+};
+
+document.addEventListener('click', highFive);
+//In the example above, when an element is clicked, the highFive function will be called
+
+//Example of callback function in forEach method
+const dogLove = dogName => {
+  console.log(`We love ${dogName}`);
+};
+
+const dogNames = ['Pluto', 'Debbie', 'Triton', 'Kujo', 'Berry', "S'more"];
+dogNames.forEach(dogLove);
+
+//Callback allows us to achieve 'abstraction' in our code
+//Abstraction is used to hide background details or any unnecessary implementation about the data so that users only see the required information
