@@ -94,12 +94,9 @@ const transformer = (str, fn) => {
   console.log(``);
 };
 
-transformer('This is an example of a higher order function', oneWord);
+//transformer('This is an example of a higher order function', oneWord);
 
-transformer(
-  'This is another example of a higher order function',
-  upperFirstWord
-);
+//transformer('This is another example of a higher order function',upperFirstWord);
 
 //Example of callback function, using an event handler
 const highFive = e => {
@@ -117,7 +114,36 @@ const dogLove = dogName => {
 };
 
 const dogNames = ['Pluto', 'Debbie', 'Triton', 'Kujo', 'Berry', "S'more"];
-dogNames.forEach(dogLove);
+//dogNames.forEach(dogLove);
 
 //Callback allows us to achieve 'abstraction' in our code
 //Abstraction is used to hide background details or any unnecessary implementation about the data so that users only see the required information
+
+//=============================================
+// 132. Functions Returning Functions
+//=============================================
+///When the greet function is called, the result of that function will be another function.
+const greet = greeting => {
+  return function (name) {
+    console.log(`${greeting}, ${name}`);
+  };
+};
+
+//The result can be stored in a variable
+const greeterGoodEvening = greet(`Good evening`);
+const greeterGoodMorning = greet(`Good morning`);
+//The value of the variables is the function that is returned from the greet() function
+
+//This allows us to call greeterGoodEvening or greeterGoodMorning like any other function.
+greeterGoodEvening(`Willie`);
+greeterGoodMorning(`Tommy`);
+
+//A functiom that returns another function can also be called in one line. The input from the second can be placed in parenthesis after the input from the higher level function
+greet('Howdy')('Miss Jemma');
+
+//CHALLENGE: Rewrite greet function using arrow functions
+
+const greet2 = greeting => name => console.log(`${greeting}, ${name}`);
+
+greet2('Wassup')('Ebony');
+greet2('Aloha')('Segal');
