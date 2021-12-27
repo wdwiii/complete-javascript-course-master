@@ -135,15 +135,80 @@ const greeterGoodMorning = greet(`Good morning`);
 //The value of the variables is the function that is returned from the greet() function
 
 //This allows us to call greeterGoodEvening or greeterGoodMorning like any other function.
-greeterGoodEvening(`Willie`);
-greeterGoodMorning(`Tommy`);
+//greeterGoodEvening(`Willie`);
+//greeterGoodMorning(`Tommy`);
 
 //A functiom that returns another function can also be called in one line. The input from the second can be placed in parenthesis after the input from the higher level function
-greet('Howdy')('Miss Jemma');
+//greet('Howdy')('Miss Jemma');
 
 //CHALLENGE: Rewrite greet function using arrow functions
 
 const greet2 = greeting => name => console.log(`${greeting}, ${name}`);
 
-greet2('Wassup')('Ebony');
-greet2('Aloha')('Segal');
+//greet2('Wassup')('Ebony');
+//greet2('Aloha')('Segal');
+
+//=============================================
+// 133. The Call and Apply Methods
+//=============================================
+
+const delta = {
+  airline: 'Delta Airlines',
+  airlineCode: 'DL',
+  bookings: [],
+  book(flightNumber, passengerName) {
+    console.log(
+      `${passengerName} booked a flight on ${this.airline} ${this.airlineCode}${flightNumber}`
+    );
+    this.bookings.push({
+      passengerName: passengerName,
+      flight: `${this.airlineCode}${flightNumber}`,
+    });
+    console.log(this);
+    console.log(this.bookings);
+  },
+};
+
+delta.book(345, 'James Young');
+delta.book(2247, 'Michelle Peters');
+
+const book = delta.book;
+
+const eurowings = {
+  airline: 'Eurowings',
+  airlineCode: 'EW',
+  bookings: [],
+};
+
+//Will not work because the this function contains the this keywprd from the method it was copied from.
+//As a function (instead of a method), the this keyword refers to the window and will return undefined
+
+//book(854, 'Adam Gregory');
+book.call(eurowings, 854, 'Adam Gregory');
+//The first argument is what the this keyword will point to
+//console.log(eurowings);
+
+//The book function was not directly called.
+//It was the call method that called the book function with the this keyword pointing to eurowing
+
+book.call(delta, 789, 'Brianna Welden');
+
+const spirit = {
+  airline: 'Spirit Airlines',
+  airlineCode: 'SA',
+  bookings: [],
+};
+
+book.call(spirit, 451, 'Paris Dowden');
+
+//The apply() method
+//Works similarly to the call() method
+//Does NOT take a list of arguments, but an arry of arguments
+const flightData = [451, 'Michael Flenn'];
+
+//book.apply(spirit, flightData);
+//First argument is the pointer to the object that th this keyword will reference
+
+//The apply method is not used anymore in modern JavaScript
+//Better to use the call method and use the spread operator to pass contents of array
+book.call(spirit, ...flightData);
