@@ -182,8 +182,8 @@ const eurowings = {
 
 //Will not work because the this function contains the this keywprd from the method it was copied from.
 //As a function (instead of a method), the this keyword refers to the window and will return undefined
-
 //book(854, 'Adam Gregory');
+
 book.call(eurowings, 854, 'Adam Gregory');
 //The first argument is what the this keyword will point to
 //console.log(eurowings);
@@ -211,4 +211,54 @@ const flightData = [451, 'Michael Flenn'];
 
 //The apply method is not used anymore in modern JavaScript
 //Better to use the call method and use the spread operator to pass contents of array
-book.call(spirit, ...flightData);
+//book.call(spirit, ...flightData);
+
+//=============================================
+// 134. The Bind Method
+//=============================================
+//book.call(eurowings, 854, 'Adam Gregory');
+const bookEW = book.bind(eurowings);
+const bookDL = book.bind(delta);
+const bookSA = book.bind(spirit);
+
+bookEW(657, 'Carl Jeune');
+bookDL(222, 'Bethany Adam');
+
+//TThe bind() method creates a new function that, when called, has its this keyword set to the provided value
+
+//Argument 1 is what the this keyword will point to
+//Any arguments made after will define the arguments of the original method
+
+const bookDL789 = book.bind(delta, 789);
+//book(flightNumber, passengerName)
+bookDL789('Melissa Thompson');
+
+//With Event Listeners
+spirit.planes = 300;
+spirit.buyPlane = function () {
+  console.log(this);
+  this.planes++;
+  console.log(this.planes);
+};
+
+document
+  .querySelector('.buy')
+  .addEventListener('click', spirit.buyPlane.bind(spirit));
+
+//Partial Application
+const addTax = (rate, value) => value + rate * value;
+console.log(addTax(0.7, 45));
+
+//If using the bind method on a function that does not use the this keyword, the first argument can be set to null
+const addTax15 = addTax.bind(null, 0.15);
+//const addTax15 = value => value + (0.15 * value);
+console.log(addTax15(100));
+
+//Section Challenge
+//Write the addTax function in one line
+const addTaxOneLine = rate => value => console.log(value + value * rate);
+
+const addVatRate = addTaxOneLine(0.1);
+
+addTaxOneLine(0.15)(200);
+addVatRate(100);
