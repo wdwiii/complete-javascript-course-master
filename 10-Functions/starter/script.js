@@ -157,15 +157,15 @@ const delta = {
   airlineCode: 'DL',
   bookings: [],
   book(flightNumber, passengerName) {
-    console.log(
-      `${passengerName} booked a flight on ${this.airline} ${this.airlineCode}${flightNumber}`
-    );
+    // console.log(
+    //   `${passengerName} booked a flight on ${this.airline} ${this.airlineCode}${flightNumber}`
+    // );
     this.bookings.push({
       passengerName: passengerName,
       flight: `${this.airlineCode}${flightNumber}`,
     });
-    console.log(this);
-    console.log(this.bookings);
+    //console.log(this);
+    //console.log(this.bookings);
   },
 };
 
@@ -247,12 +247,12 @@ document
 
 //Partial Application
 const addTax = (rate, value) => value + rate * value;
-console.log(addTax(0.7, 45));
+//console.log(addTax(0.7, 45));
 
 //If using the bind method on a function that does not use the this keyword, the first argument can be set to null
 const addTax15 = addTax.bind(null, 0.15);
 //const addTax15 = value => value + (0.15 * value);
-console.log(addTax15(100));
+//console.log(addTax15(100));
 
 //Section Challenge
 //Write the addTax function in one line
@@ -260,5 +260,129 @@ const addTaxOneLine = rate => value => console.log(value + value * rate);
 
 const addVatRate = addTaxOneLine(0.1);
 
-addTaxOneLine(0.15)(200);
-addVatRate(100);
+//addTaxOneLine(0.15)(200);
+//addVatRate(100);
+
+//=============================================
+// 135. Coding Challenge #1
+//=============================================
+
+/*
+Coding Challenge #1
+Let's build a simple poll app!
+A poll has a question, an array of options from which people can choose, and an
+array with the number of replies for each option. This data is stored in the starter
+'poll' object below.
+
+
+*/
+
+const poll = {
+  question: 'What is your favourite programming language?',
+  options: ['0: JavaScript', '1: Python', '2: Rust', '3: C++'],
+  // This generates [0, 0, 0, 0]. More in the next section!
+  answers: new Array(4).fill(0),
+};
+
+/*
+1. Create a method called 'registerNewAnswer' on the 'poll' object. The method does 2 things:
+    1.1. Display a prompt window for the user to input the number of the selected option. The prompt should look like this:
+    What is your favourite programming language?
+        0: JavaScript
+        1: Python
+        2: Rust
+        3: C++
+        (Write option number)
+
+    1.2. Based on the input number, update the 'answers' array property. For example, if the option is 3, increase the value at position 3 of the array by:
+        1. Make sure to check if the input is a number and if the number makes sense (e.g. answer 52 wouldn't make sense, right?)
+*/
+poll.registerNewAnswer = function () {
+  // const numberSelected = Number(
+  //   prompt(`What is your favorite programming language?
+  //   0: JavaScript
+  //   1: Python
+  //   2: Rust
+  //   3: C++
+  //   (Write option number)`)
+  // );
+  //Solution should not be hard coded
+
+  //Attempt 2
+  const numberSelected = Number(
+    prompt(
+      `${this.question}\n${this.options.join('\n')}\n(Write option number)`
+    )
+  );
+
+  const optionsLastIndex = this.options.length - 1;
+
+  if (
+    typeof numberSelected === 'number' &&
+    numberSelected >= 0 &&
+    numberSelected <= optionsLastIndex
+  ) {
+    this.answers[numberSelected]++;
+    //console.log(this.answers);
+    //this.displayResults(numberSelected.toString());
+    this.displayResults();
+    this.displayResults('string');
+  } else {
+    //alert(`Please enter a number 0 - 3`);
+    console.log(`Please enter a number 0 - ${optionsLastIndex}`);
+  }
+
+  //Jonas' Solution
+  //typeOf numberSelected === 'number' && numberSelected < this.answers.length && this.answers[numberSelected]++
+};
+
+/* 
+2. Call this method whenever the user clicks the "Answer poll" button.
+*/
+const registerNewAnswer = poll.registerNewAnswer;
+
+document
+  .querySelector('.poll')
+  .addEventListener('click', registerNewAnswer.bind(poll));
+
+/* 
+3. Create a method 'displayResults' which displays the poll results. The method takes a string as an input (called 'type'), which can be either 'string' or 'array'. If type is 'array', simply display the results array as it is, using console.log(). This should be the default option. If type is 'string', display a string like "Poll results are 13, 2, 4, 1".
+*/
+poll.displayResults = function (type = 'array') {
+  if (type === 'array') {
+    console.log(this.answers);
+  } else if (type === 'string') {
+    console.log(`Poll results are ${this.answers.join(', ')}`);
+  }
+};
+
+/*
+4. Run the 'displayResults' method at the end of each
+'registerNewAnswer' method call.
+*/
+// if (
+//   typeof numberSelected === 'number' &&
+//   numberSelected >= 0 &&
+//   numberSelected <= 3
+// ) {
+//   this.answers[numberSelected]++;
+//   console.log(this.answers);
+//   this.displayResults(numberSelected.toString()); <-- solution
+// }
+
+/*
+5. Bonus: Use the 'displayResults' method to display the 2 arrays in the test data. Use both the 'array' and the 'string' option. Do not put the arrays in the poll object! So what should the this keyword look like in this situation? 
+*/
+
+const testData1 = {
+  answers: [5, 2, 3],
+};
+const testData2 = {
+  answers: [1, 5, 3, 9, 6, 1],
+};
+
+poll.displayResults.call(testData1);
+poll.displayResults.call(testData1, 'string');
+
+poll.displayResults.call(testData2);
+poll.displayResults.call(testData2, 'string');
