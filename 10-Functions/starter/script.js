@@ -381,8 +381,38 @@ const testData2 = {
   answers: [1, 5, 3, 9, 6, 1],
 };
 
-poll.displayResults.call(testData1);
-poll.displayResults.call(testData1, 'string');
+//poll.displayResults.call(testData1);
+//poll.displayResults.call(testData1, 'string');
 
-poll.displayResults.call(testData2);
-poll.displayResults.call(testData2, 'string');
+//poll.displayResults.call(testData2);
+//poll.displayResults.call(testData2, 'string');
+
+//======================================================
+// 136. Immediately Invoked Function Expressions (IIFE)
+//======================================================
+//In JavaScript we may need a function to execute only once
+const runOnce = () => console.log('Ran once and ONLY once!');
+runOnce();
+//A function could be called once in the code, but has the capability to be called again
+//runOnce();
+
+//Having the function statement by itself will result in an error message because it expects a function name
+// By wrapping the function statement in parenthesis the error is resolved
+//Including a pair of parentesis after the inital statement, it immediately calls or invokes the function statement
+
+//Immediately Invoked Function Expression
+(function () {
+  console.log('This will never run again');
+})();
+
+//Also works for arrow functions
+(() => {
+  console.log(
+    `Immediately Invoked Function Expression also works for arrow => functions`
+  );
+})();
+
+//IIFEs aren't necessary to create a new scope for data privicy
+//Variables declared using const inside of a new block will restict it's usage inside the scope of that block
+
+//IIFE patterns can be a great tool if a function need to be executed only once
