@@ -392,7 +392,7 @@ const testData2 = {
 //======================================================
 //In JavaScript we may need a function to execute only once
 const runOnce = () => console.log('Ran once and ONLY once!');
-runOnce();
+//runOnce();
 //A function could be called once in the code, but has the capability to be called again
 //runOnce();
 
@@ -401,18 +401,40 @@ runOnce();
 //Including a pair of parentesis after the inital statement, it immediately calls or invokes the function statement
 
 //Immediately Invoked Function Expression
-(function () {
-  console.log('This will never run again');
-})();
+// (function () {
+//   console.log('This will never run again');
+// })();
 
 //Also works for arrow functions
-(() => {
-  console.log(
-    `Immediately Invoked Function Expression also works for arrow => functions`
-  );
-})();
+// (() => {
+//   console.log(
+//     `Immediately Invoked Function Expression also works for arrow => functions`
+//   );
+// })();
 
 //IIFEs aren't necessary to create a new scope for data privicy
 //Variables declared using const inside of a new block will restict it's usage inside the scope of that block
 
 //IIFE patterns can be a great tool if a function need to be executed only once
+
+//========================
+// 138. Closures
+//========================
+//Closures are not created manually. They happen automatically.
+//Clousres allow a function to have access to all variables that was present at the creation of the function
+const secureBooking = () => {
+  let passengerCount = 0;
+  return () => {
+    passengerCount++;
+    console.log(`${passengerCount} passengers`);
+  };
+};
+
+const booker = secureBooking();
+
+booker();
+booker();
+booker();
+
+//How Clousures Work
+//Functions always have access to the variable environment of the execution context in which the function was created.
