@@ -432,9 +432,52 @@ const secureBooking = () => {
 
 const booker = secureBooking();
 
-booker();
-booker();
-booker();
+//booker();
+//booker();
+//booker();
 
 //How Clousures Work
 //Functions always have access to the variable environment of the execution context in which the function was created.
+
+//=============================
+// 139. More Closure Examples
+//=============================
+//Example 1
+let f;
+const g = () => {
+  const a = 23;
+  f = () => console.log(a * 2);
+};
+
+//g();
+//f();
+//console.dir(f);
+
+//Although the f variable was declared in the global scope, after function g() is called the f variable is assinged the value of a function
+
+const h = () => {
+  const b = 777;
+  f = () => console.log(b / 7);
+};
+
+//f(); //without the h() function being called, the value is still set to the function defined in the g() function.
+
+//h();
+//f(); //after the h() funtion is called, the value of f() is redefined to a new function
+
+//console.dir(f);
+
+//Example 2
+const boardPassengers = (numPassengers, waitTime) => {
+  const perGroup = numPassengers / 3; //Created immediately
+  setTimeout(function () {
+    console.log(`We are now boarding all ${numPassengers} passengers`);
+    console.log(`There will be 3 groups with ${perGroup} passengers per group`);
+  }, waitTime * 1000); //Will run after specified time
+  console.log(`Will start boarding in ${waitTime} seconds.`); //Run immmediately
+};
+
+boardPassengers(111, 3);
+
+//The callback function was executed independently of the boardPassengers function.
+//But the callback function has access to all the variables that were in the variable environment in which it was created.
