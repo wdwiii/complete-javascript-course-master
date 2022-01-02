@@ -78,7 +78,7 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 //=============================
 // 142. Simple Array Methods
 //=============================
-let arr = ['a', 'b', 'c', 'd', 'e'];
+//let arr = ['a', 'b', 'c', 'd', 'e'];
 
 //SLICE
 //~~~~~~~//
@@ -125,19 +125,37 @@ let arr = ['a', 'b', 'c', 'd', 'e'];
 // console.log(arr); //mutated array with elements in index position 1, 2 & 3 removed
 
 //REVERSE
-arr = ['a', 'b', 'c', 'd', 'e'];
-let arr2 = ['j', 'i', 'h', 'g', 'f'];
+//arr = ['a', 'b', 'c', 'd', 'e'];
+//let arr2 = ['j', 'i', 'h', 'g', 'f'];
 
 //console.log(arr2.reverse());
 //console.log(arr2); //The reverse method actually mutates original array
 
 //CONTAT
 //The concat method joins two arrays w/o mutating
-let letters = arr.concat(arr2, ['k', 'l']); //Array(s) that is passed in will be added to end in the order they were passed
+//let letters = arr.concat(arr2, ['k', 'l']); //Array(s) that is passed in will be added to end in the order they were passed
 //console.log(letters);
 //console.log([...arr, ...arr2, ...['k', 'l']]);
 
 //JOIN
 //Joins contents of array into a single string.
-let joinedLetters = letters.join(' + '); //What is passed in will be uses a seperator
+//let joinedLetters = letters.join(' + '); //What is passed in will be uses a seperator
 //console.log(joinedLetters);
+
+//=============================
+// 143. The new at() Method
+//=============================
+const arr = [23, 45, 3, 94, 2];
+console.log(arr);
+console.log(arr[0]);
+console.log(arr.at(0));
+
+//.at() Method vs Bracket Notation
+//Getting last element from array
+console.log(arr[arr.length - 1]);
+console.log(arr.slice(-1)[0]);
+console.log(arr.at(-1));
+
+//At Method also works on strings
+console.log(`A1 B4 C7 D1`.at(0));
+console.log(`A1 B4 C7 D1`.at(4));
