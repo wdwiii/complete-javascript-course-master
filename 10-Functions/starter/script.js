@@ -418,7 +418,7 @@ const runOnce = () => console.log('Ran once and ONLY once!');
 //IIFE patterns can be a great tool if a function need to be executed only once
 
 //========================
-// 138. Closures
+// 137. Closures
 //========================
 //Closures are not created manually. They happen automatically.
 //Clousres allow a function to have access to all variables that was present at the creation of the function
@@ -440,7 +440,7 @@ const booker = secureBooking();
 //Functions always have access to the variable environment of the execution context in which the function was created.
 
 //=============================
-// 139. More Closure Examples
+// 138. More Closure Examples
 //=============================
 //Example 1
 let f;
