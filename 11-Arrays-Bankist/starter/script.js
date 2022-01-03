@@ -91,7 +91,7 @@ const arr = [23, 45, 3, 94, 2];
 // 144. Looping Arrays: forEach
 //=============================
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 //Using for of Loop
 //--------------------
@@ -277,16 +277,43 @@ const numbers = [1, 2, 3, 4, 5];
 const numbersDoubled = numbers.map(function (number) {
   return number * 2;
 });
-console.log(`Values doubled: `, numbersDoubled);
+//console.log(`Values doubled: `, numbersDoubled);
 
 //Filter creates a new array only returning elements that meet a specified condition
 const evenNumbers = numbers.filter(function (number) {
   return number % 2 === 0;
 });
-console.log(`Even numbers: `, evenNumbers);
+//console.log(`Even numbers: `, evenNumbers);
 
 //Reduce condenses all values in an array to a single value
 const sum = numbers.reduce(function (total, current) {
   return total + current;
 });
-console.log(`Sum: `, sum);
+//console.log(`Sum: `, sum);
+
+//===============================================
+// 150. The Map Method
+//===============================================
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+const usdToEur = 0.88;
+
+const movementsEur = movements.map(movement => movement * usdToEur);
+
+//console.log(movementsEur);
+
+//Creating the array manually using a for of loop
+const movementsEur2 = [];
+for (let mov of movements) {
+  mov *= usdToEur;
+  movementsEur2.push(mov);
+}
+//console.log(movementsEur2);
+
+//Acceps a callback function that wil
+const conversionStr = movements.map((movement, i) => {
+  movement = Math.abs(movement);
+  return `${i + 1}: $${movement} USD convert to ${movement * usdToEur}€ Euros`;
+});
+
+console.log(conversionStr);
