@@ -62,18 +62,6 @@ const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
 /////////////////////////////////////////////////
-/////////////////////////////////////////////////
-// LECTURES
-
-const currencies = new Map([
-  ['USD', 'United States dollar'],
-  ['EUR', 'Euro'],
-  ['GBP', 'Pound sterling'],
-]);
-
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-
-/////////////////////////////////////////////////
 
 //=============================
 // 142. Simple Array Methods
@@ -146,16 +134,54 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // 143. The new at() Method
 //=============================
 const arr = [23, 45, 3, 94, 2];
-console.log(arr);
-console.log(arr[0]);
-console.log(arr.at(0));
+//console.log(arr);
+//console.log(arr[0]);
+//console.log(arr.at(0));
 
 //.at() Method vs Bracket Notation
 //Getting last element from array
-console.log(arr[arr.length - 1]);
-console.log(arr.slice(-1)[0]);
-console.log(arr.at(-1));
+//console.log(arr[arr.length - 1]);
+//console.log(arr.slice(-1)[0]);//Slice will return an array with one element. Bracket notation pull the value from the array
+//console.log(arr.at(-1));
 
 //At Method also works on strings
-console.log(`A1 B4 C7 D1`.at(0));
-console.log(`A1 B4 C7 D1`.at(4));
+//console.log(`A1 B4 C7 D1`.at(0));
+//console.log(`A1 B4 C7 D1`.at(4));
+
+const currencies = new Map([
+  ['USD', 'United States dollar'],
+  ['EUR', 'Euro'],
+  ['GBP', 'Pound sterling'],
+]);
+//=============================
+// 144. Looping Arrays: forEach
+//=============================
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+//Using for of Loop
+//--------------------
+// for (let movement of movements) {
+//   const transactionType = movement < 0 ? `withdrew` : `deposited`;
+//   const amount = Math.abs(movement);
+//   console.log(`You ${transactionType} $${amount} dollars`);
+// }
+
+//to get index of each item in the movements array, loop over movements.entries
+
+// for (const [i, movement] of movements.entries())
+//   console.log(`${i}: ${movement}`);
+
+//Using forEach method
+//--------------------
+//The forEach method loops over the array and executes a callback function for each iteration in the array.
+
+movements.forEach(function (movement, index, array) {
+  const transactionType = movement < 0 ? `withdrew` : `deposited`;
+  const amount = Math.abs(movement);
+  console.log(`You ${transactionType} $${amount} dollars`);
+  console.log(index);
+});
+
+//One fundamental difference between the two is that you cannot break out of a forEach loop. forEach will ALWAYS loop over the entire array
+//If you need to use continue and break statements you must use a for of loop
