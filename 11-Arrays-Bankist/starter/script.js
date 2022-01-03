@@ -316,4 +316,24 @@ const conversionStr = movements.map((movement, i) => {
   return `${i + 1}: $${movement} USD convert to ${movement * usdToEur}€ Euros`;
 });
 
-console.log(conversionStr);
+//console.log(conversionStr);
+
+//===============================================
+// 152. The Filter Method
+//===============================================
+//In the filter method, we want to return a boolen value.
+//Only the elements that meet the condition will be returned in the new array
+const deposits = movements.filter(movement => movement > 0);
+const withdrawals = movements.filter(movement => movement < 0);
+
+console.log(movements);
+console.log(deposits);
+console.log(withdrawals);
+
+//Filtering using a for of loop
+const withdrawalsFor = [];
+for (let mov of movements) {
+  if (mov < 0) withdrawalsFor.push(mov);
+}
+
+//console.log(withdrawalsFor);
