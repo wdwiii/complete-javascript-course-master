@@ -148,11 +148,6 @@ const arr = [23, 45, 3, 94, 2];
 //console.log(`A1 B4 C7 D1`.at(0));
 //console.log(`A1 B4 C7 D1`.at(4));
 
-const currencies = new Map([
-  ['USD', 'United States dollar'],
-  ['EUR', 'Euro'],
-  ['GBP', 'Pound sterling'],
-]);
 //=============================
 // 144. Looping Arrays: forEach
 //=============================
@@ -176,12 +171,36 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 //--------------------
 //The forEach method loops over the array and executes a callback function for each iteration in the array.
 
-movements.forEach(function (movement, index, array) {
-  const transactionType = movement < 0 ? `withdrew` : `deposited`;
-  const amount = Math.abs(movement);
-  console.log(`You ${transactionType} $${amount} dollars`);
-  console.log(index);
-});
+// movements.forEach(function (movement, index, array) {
+//   const transactionType = movement < 0 ? `withdrew` : `deposited`;
+//   const amount = Math.abs(movement);
+//   console.log(`You ${transactionType} $${amount} dollars`);
+//   console.log(index);
+// });
 
 //One fundamental difference between the two is that you cannot break out of a forEach loop. forEach will ALWAYS loop over the entire array
 //If you need to use continue and break statements you must use a for of loop
+
+//==================================
+// 144. forEach with Maps and Sets
+//==================================
+const currencies = new Map([
+  ['USD', 'United States dollar'],
+  ['EUR', 'Euro'],
+  ['GBP', 'Pound sterling'],
+]);
+
+currencies.forEach(function (value, key, map) {
+  console.log(`The abbreviation for the ${value} is ${key}`);
+});
+
+const currenciesUnique = new Set(['USD', 'USD', 'GBP', 'EUR', 'GBP']);
+console.log(currenciesUnique);
+currenciesUnique.forEach(function (value, key) {
+  console.log(`${key}: ${value}`);
+});
+
+//Notes about sets
+//• Sets do not have a key
+//• The forEach accepts a second parameter (equiv to index or key) to keep the method consistent with maps and arrays
+//•The second param pased will set it's value to that of the firse
