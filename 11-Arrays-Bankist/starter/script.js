@@ -294,7 +294,7 @@ const sum = numbers.reduce(function (total, current) {
 //===============================================
 // 150. The Map Method
 //===============================================
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+let movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 const usdToEur = 0.88;
 
@@ -326,9 +326,9 @@ const conversionStr = movements.map((movement, i) => {
 const deposits = movements.filter(movement => movement > 0);
 const withdrawals = movements.filter(movement => movement < 0);
 
-console.log(movements);
-console.log(deposits);
-console.log(withdrawals);
+//console.log(movements);
+//console.log(deposits);
+//console.log(withdrawals);
 
 //Filtering using a for of loop
 const withdrawalsFor = [];
@@ -337,3 +337,57 @@ for (let mov of movements) {
 }
 
 //console.log(withdrawalsFor);
+
+//===============================================
+// 153. The Reduce Method
+//===============================================
+//The .reduce() method condenses all values in an array into a single value
+
+movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+//The accumulator is like a snowball that keep updating the value that we want to return ex. sum of array elements
+//.reduce((accumulator, element, index, array) => accumulator + element)
+const balance = movements.reduce((balance, movement) => balance + movement, 0);
+//The second parameter passed in the reduce method is the initial value of the acumulator in the first loop iteration
+
+//The reduce method loops over the array and calls the callback function with each iteration
+//console.log(balance);
+
+//Reducing with a for of loop
+let balance2 = 0;
+for (let mov of movements) {
+  balance2 += mov;
+}
+//console.log(balance2);
+
+//Benefit of using array methods over for loops is that you can omit the external variable. Array methods will return the value right away
+
+//The reduce method can beused to pull any single value from a set of data.
+
+console.log(movements);
+//Max Value
+const calcMaxValue = movements => {
+  const maxValue = movements.reduce(
+    (max, curr) => (curr > max ? curr : max),
+    movements[0]
+  );
+  console.log('Max value: ' + maxValue);
+};
+
+// if (curr > max)
+//   return curr
+// else
+//   return max
+
+calcMaxValue(movements);
+
+//Min Value
+const calcMinValue = movements => {
+  const minValue = movements.reduce(
+    (min, curr) => (curr > min ? min : curr),
+    movements[0]
+  );
+  console.log('Min value: ' + minValue);
+};
+
+calcMinValue(movements);
