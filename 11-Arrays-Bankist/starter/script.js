@@ -432,8 +432,8 @@ const calcAverageHumanAge = dogAges => {
   return averageAge;
 };
 
-console.log(calcAverageHumanAge(dogAgesT1));
-console.log(calcAverageHumanAge(dogAgesT2));
+//console.log(calcAverageHumanAge(dogAgesT1));
+//console.log(calcAverageHumanAge(dogAgesT2));
 
 /* 4. Run the function for both test datasets
 Test data:
@@ -452,3 +452,24 @@ const calcAvg2 = array =>
 console.log(calcAvg1([5, 4, 3, 2, 1]));
 console.log(calcAvg2([5, 4, 3, 2, 1]));
 */
+
+//===============================================
+// 155. The Magic of Chaining Methods
+//===============================================
+//Array methods can be chained together to make the code more concise
+
+movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+// Writing the different array methods on different lines increases the readability
+const eurConvertDepositsTotal = movements
+  .filter(mov => mov > 0)
+  .map(mov => mov * 0.88)
+  .reduce((tot, mov) => tot + mov, 0);
+
+console.log(eurConvertDepositsTotal);
+
+//Debugging chained array methods can be difficult.
+//To see the result of a specific operation in the pipleine, we can check out the current array in the next array method is chained on.
+
+//Most methods accept three parameters (element, index, array)
+//Reduce takes four (accumlator, element, index, array)
