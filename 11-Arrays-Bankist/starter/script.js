@@ -466,10 +466,32 @@ const eurConvertDepositsTotal = movements
   .map(mov => mov * 0.88)
   .reduce((tot, mov) => tot + mov, 0);
 
-console.log(eurConvertDepositsTotal);
+//console.log(eurConvertDepositsTotal);
 
 //Debugging chained array methods can be difficult.
 //To see the result of a specific operation in the pipleine, we can check out the current array in the next array method is chained on.
 
 //Most methods accept three parameters (element, index, array)
 //Reduce takes four (accumlator, element, index, array)
+
+/*
+//===============================================
+// 156. Coding Challenge #3
+//===============================================
+
+Rewrite the 'calcAverageHumanAge' function from Challenge #2, but this time
+as an arrow function, and using chaining!
+Test data:
+§ Data 1: [5, 2, 4, 1, 15, 8, 3]
+§ Data 2: [16, 6, 10, 5, 6, 1, 4]
+GOOD LUCK 😀
+*/
+
+const calcAverageHumanAge2 = dogAges =>
+  dogAges
+    .map(dogAge => (dogAge <= 2 ? 2 * dogAge : 16 + dogAge * 4))
+    .filter(dogAge => dogAge >= 18)
+    .reduce((acc, dogAge, i, arr) => acc + dogAge / arr.length, 0);
+
+console.log(calcAverageHumanAge2(dogAgesT1));
+console.log(calcAverageHumanAge2(dogAgesT2));
