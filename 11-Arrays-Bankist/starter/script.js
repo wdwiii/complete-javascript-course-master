@@ -493,5 +493,19 @@ const calcAverageHumanAge2 = dogAges =>
     .filter(dogAge => dogAge >= 18)
     .reduce((acc, dogAge, i, arr) => acc + dogAge / arr.length, 0);
 
-console.log(calcAverageHumanAge2(dogAgesT1));
-console.log(calcAverageHumanAge2(dogAgesT2));
+//console.log(calcAverageHumanAge2(dogAgesT1));
+//console.log(calcAverageHumanAge2(dogAgesT2));
+
+//===============================================
+// 157. The Find Method
+//===============================================
+//The Find is used to retrieve one element of an array based on a specified condition.
+
+movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+const firstWithdrawal = movements.find(mov => mov < 0);
+console.log(firstWithdrawal);
+
+//The find method and filter method are similar but there are two fundamental differences:
+//1. The Filter method returns all the elements that match the condition as an array
+//2. The Find method only returns the value of the first element in the array that meets the condition
