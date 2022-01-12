@@ -504,8 +504,21 @@ const calcAverageHumanAge2 = dogAges =>
 movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 const firstWithdrawal = movements.find(mov => mov < 0);
-console.log(firstWithdrawal);
+//console.log(firstWithdrawal);
 
 //The find method and filter method are similar but there are two fundamental differences:
 //1. The Filter method returns all the elements that match the condition as an array
 //2. The Find method only returns the value of the first element in the array that meets the condition
+
+//===============================================
+// 160. The findIndex Method
+//===============================================
+//The findIndex method works similar to the find method. findIndex expects a callback function that returns a boolean.
+//The first element of the array that meets the condition will be returned
+
+const newTest = [2, 3, 55, 6, 76, 4, 3];
+const findNum = newTest.find(num => num > 10);
+console.log(findNum);
+const findIndexOf = newTest.findIndex(num => num > 10);
+newTest.splice(findIndexOf, 1);
+console.log(newTest);
