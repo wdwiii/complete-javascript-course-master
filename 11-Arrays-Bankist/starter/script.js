@@ -532,35 +532,90 @@ let evens = [2, 4, 6, 8, 10];
 
 //The includes method tests if an array includes a certain value
 //includes() tests for equality (exact match)
-console.log('Movements includes the V 20: ', movements.includes(20)); //false
-console.log('Movements includes the V 200', movements.includes(200)); //true
+//console.log('Movements includes the V 20: ', movements.includes(20)); //false
+//console.log('Movements includes the V 200', movements.includes(200)); //true
 
 //The some and every methods test for conditions
 //some - at least 1 value meets condition
-console.log(
-  'Movements some V greater than 0: ',
-  movements.some(mov => mov > 0)
-); //true
-console.log(
-  'Evens every V equal to 0: ',
-  evens.some(ev => ev === 0)
-); //false
+// console.log(
+//   'Movements some V greater than 0: ',
+//   movements.some(mov => mov > 0)
+// ); //true
+// console.log(
+//   'Evens every V equal to 0: ',
+//   evens.some(ev => ev === 0)
+// ); //false
 
 //every - ALL values meet the condition
-console.log(
-  'Movements every V greater than 0: ',
-  movements.every(mov => mov > 0)
-); //false
-console.log(
-  'Evens every V is even: ',
-  evens.every(ev => ev % 2 === 0)
-); //true
+// console.log(
+//   'Movements every V greater than 0: ',
+//   movements.every(mov => mov > 0)); //false
+//console.log('Evens every V is even: ', evens.every(ev => ev % 2 === 0)); //true
 
 //For every event listener so far, a function has been directly passed as a callback
 //External functions can also be passed in as a callback
 const greaterThanFive = num => num > 4;
-console.log(evens.some(greaterThanFive));
-console.log(evens.every(greaterThanFive));
-console.log(evens.filter(greaterThanFive));
+//console.log(evens.some(greaterThanFive));
+//console.log(evens.every(greaterThanFive));
+//console.log(evens.filter(greaterThanFive));
 
 //The external function can be used for an that required a condition
+
+//===============================================
+// 162. flat and flatMap
+//===============================================
+//flat() creates a new array with all sub-array elements concatenated into it
+const arrTest3 = [1, 2, 3, [4, 5, 6], [7, 8, 9]];
+console.log(arrTest3.flat());
+
+//By default the flat method only goes one level deep.
+//The depth of flattening can be passed in as a parameter
+const arrTest4 = [1, [[2, 3]], [4, 5, 6], [[7, 8, 9]]];
+console.log(arrTest4.flat()); //[1, [2, 3], 4, 5, 6, [7, 8, 9]]
+console.log(arrTest4.flat(2)); //[1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+//Flatmap
+
+const account1 = {
+  owner: 'Willie Whitfield',
+  movements: [200, 450, -400, 3000, -650, -130, 70, 1300, -345, -20, 1768],
+  interestRate: 1.2,
+  pin: 1111,
+};
+
+const account2 = {
+  owner: 'Luna Wibsey',
+  movements: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
+  interestRate: 1.5,
+  pin: 2222,
+};
+
+const account3 = {
+  owner: 'Michael Bakari Jordan',
+  movements: [200, -200, 340, -300, -20, 50, 400, -460],
+  interestRate: 0.7,
+  pin: 3333,
+};
+
+const account4 = {
+  owner: 'Tal Prephd',
+  movements: [430, 1000, 700, 50, 90],
+  interestRate: 1,
+  pin: 4444,
+};
+
+const accounts = [account1, account2, account3, account4];
+
+//Pulling movements from each of the accounts andd placing into a single array
+const movementsArray = accounts.map(account => account.movements);
+console.log(movementsArray);
+//The flat method will remove a layer of nesting inside the array
+
+const allMovements = movementsArray.flat();
+const overallBalance = allMovements.reduce((tot, mov) => tot + mov);
+console.log(overallBalance);
+
+//the flatmap method
+//flatMap() only flattens one level, so if you need to go deeper than one level of nesting then the .flat() method is still required
+const movementsArray2 = accounts.flatMap(account => account.movements);
+console.log(movementsArray2);
