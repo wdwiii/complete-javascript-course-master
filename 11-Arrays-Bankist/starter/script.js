@@ -518,7 +518,49 @@ const firstWithdrawal = movements.find(mov => mov < 0);
 
 const newTest = [2, 3, 55, 6, 76, 4, 3];
 const findNum = newTest.find(num => num > 10);
-console.log(findNum);
+//console.log(findNum);
 const findIndexOf = newTest.findIndex(num => num > 10);
 newTest.splice(findIndexOf, 1);
-console.log(newTest);
+//console.log(newTest);
+
+//===============================================
+// 161. Some and Every
+//===============================================
+
+movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+let evens = [2, 4, 6, 8, 10];
+
+//The includes method tests if an array includes a certain value
+//includes() tests for equality (exact match)
+console.log('Movements includes the V 20: ', movements.includes(20)); //false
+console.log('Movements includes the V 200', movements.includes(200)); //true
+
+//The some and every methods test for conditions
+//some - at least 1 value meets condition
+console.log(
+  'Movements some V greater than 0: ',
+  movements.some(mov => mov > 0)
+); //true
+console.log(
+  'Evens every V equal to 0: ',
+  evens.some(ev => ev === 0)
+); //false
+
+//every - ALL values meet the condition
+console.log(
+  'Movements every V greater than 0: ',
+  movements.every(mov => mov > 0)
+); //false
+console.log(
+  'Evens every V is even: ',
+  evens.every(ev => ev % 2 === 0)
+); //true
+
+//For every event listener so far, a function has been directly passed as a callback
+//External functions can also be passed in as a callback
+const greaterThanFive = num => num > 4;
+console.log(evens.some(greaterThanFive));
+console.log(evens.every(greaterThanFive));
+console.log(evens.filter(greaterThanFive));
+
+//The external function can be used for an that required a condition
