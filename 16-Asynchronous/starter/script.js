@@ -127,9 +127,9 @@ getCountryandNeighbor('nepal');
 // request.addEventListener('load', function () {});
 
 //FetchAPI
-const request = fetch('https://restcountries.com/v3.1/name/senegal');
+// const request = fetch('https://restcountries.com/v3.1/name/senegal');
 
-console.log(request); //Promise{<pending>}
+// console.log(request); //Promise{<pending>}
 
 //A promise is a placeholder for a single value that will be produced some time in the future (asynchronus operation)
 
@@ -138,3 +138,28 @@ console.log(request); //Promise{<pending>}
 //2. Promises can be chained for a sequence of asynchronous operations instead of nesting callbacks (callback hell)
 
 //Promises have two states settled(when the promise has successfully retrieved the data) and rejected(error in the asynchronus operation)
+
+///////////////////////////////////////
+//251. Consuming Promises
+//////////////////////////////////////
+//Function Notes
+//1. call fetchAPI and pass in the api address as a string, will return a promise.
+//2. call .then() method on the returned promise.
+//3. in the callback function calls the .json() method the param that was passed in. Will return a second promise.
+//3. apply a second .then() method to the promise that was passed in. Will return an array with the requested data
+
+// const getCountryData = country => {
+//   fetch(`https://restcountries.com/v3.1/name/${country}`)
+//     .then(response => response.json())
+//     .then(data => {
+//       console.log(...data);
+//       createCard(...data);
+//     });
+// };
+
+const getCountryData = country => {
+  fetch(`https://restcountries.com/v3.1/name/${country}`)
+    .then(response => response.json())
+    .then(data => createCard(data.at(0)));
+};
+getCountryData('russia');
