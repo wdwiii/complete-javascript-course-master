@@ -101,15 +101,40 @@ const getCountryandNeighbor = country => {
 getCountryandNeighbor('nepal');
 
 //Example 2 of Callback Hell
-setTimeout(() => {
-  console.log(`1 Second has passed`);
-  setTimeout(() => {
-    console.log(`2 Seconds has passed`);
-    setTimeout(() => {
-      console.log(`3 Seconds has passed`);
-      setTimeout(() => {
-        console.log(`4 Seconds has passed`);
-      }, 1000);
-    }, 1000);
-  }, 1000);
-}, 1000);
+// setTimeout(() => {
+//   console.log(`1 Second has passed`);
+//   setTimeout(() => {
+//     console.log(`2 Seconds has passed`);
+//     setTimeout(() => {
+//       console.log(`3 Seconds has passed`);
+//       setTimeout(() => {
+//         console.log(`4 Seconds has passed`);
+//       }, 1000);
+//     }, 1000);
+//   }, 1000);
+// }, 1000);
+
+///////////////////////////////////////
+//251. Promises and the Fetch API
+//////////////////////////////////////
+//Fetch API is the modern way of making AJAX calls
+
+//XML
+// const request = new XMLHttpRequest();
+// request.open('GET', `https://restcountries.com/v3.1/name/senegal`);
+// request.send();
+
+// request.addEventListener('load', function () {});
+
+//FetchAPI
+const request = fetch('https://restcountries.com/v3.1/name/senegal');
+
+console.log(request); //Promise{<pending>}
+
+//A promise is a placeholder for a single value that will be produced some time in the future (asynchronus operation)
+
+//Advantages of promises
+//1. No longer have to rely on callbacks to handle asynchronus results, which reduces the amount of unpredictible results
+//2. Promises can be chained for a sequence of asynchronous operations instead of nesting callbacks (callback hell)
+
+//Promises have two states settled(when the promise has successfully retrieved the data) and rejected(error in the asynchronus operation)
