@@ -98,7 +98,7 @@ const getCountryandNeighbor = country => {
   });
 };
 
-getCountryandNeighbor('nepal');
+//getCountryandNeighbor('nepal');
 
 //Example 2 of Callback Hell
 // setTimeout(() => {
@@ -157,9 +157,39 @@ getCountryandNeighbor('nepal');
 //     });
 // };
 
+// const getCountryData = country => {
+//   fetch(`https://restcountries.com/v3.1/name/${country}`)
+//     .then(response => response.json())
+//     .then(data => createCard(data.at(0)));
+// };
+// getCountryData('russia');
+
+///////////////////////////////////////
+//253. Chaining Promises
+//////////////////////////////////////
+
 const getCountryData = country => {
+  //Initial country
   fetch(`https://restcountries.com/v3.1/name/${country}`)
     .then(response => response.json())
-    .then(data => createCard(data.at(0)));
+    .then(data => {
+      createCard(data.at(0));
+      const neighbour = data[0].borders[0];
+      if (!neighbour) return;
+      //Neighbouring country
+      return fetch(`https://restcountries.com/v3.1/alpha/${neighbour}`);
+    })
+    .then(response => response.json())
+    .then(data => createCard(data[0], 'neighbour'));
 };
+
 getCountryData('russia');
+//1. After the initial fetch, a promise is returned, this allows us to use the then method.
+//2. The next step is to attatch the .json() method to the response value
+//3a. The .then() method is applied again to call the create card w/ the retreived data passed in
+//3b. add condition: if the initial country does NOT have a neighbor, return immediately
+//3c. return a new fetch (directing to api address of the neighboring country)
+//4a. Since a fetch was returned, the value of that return will be a promise. The then method can be applied again.
+//4b. Repeat steps 2 and 3a for
+
+//To have a flat chain of promises, you must return a promise and attach the .then method to the outside of the callback
