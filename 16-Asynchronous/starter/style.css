@@ -127,3 +127,10 @@ body {
   border: 3rem solid white;
   box-shadow: 0 2rem 5rem 1rem rgba(0, 0, 0, 0.1);
 }
+
+.error {
+  color: red;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+}
