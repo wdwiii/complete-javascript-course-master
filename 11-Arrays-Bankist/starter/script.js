@@ -566,13 +566,13 @@ const greaterThanFive = num => num > 4;
 //===============================================
 //flat() creates a new array with all sub-array elements concatenated into it
 const arrTest3 = [1, 2, 3, [4, 5, 6], [7, 8, 9]];
-console.log(arrTest3.flat());
+//console.log(arrTest3.flat());
 
 //By default the flat method only goes one level deep.
 //The depth of flattening can be passed in as a parameter
 const arrTest4 = [1, [[2, 3]], [4, 5, 6], [[7, 8, 9]]];
-console.log(arrTest4.flat()); //[1, [2, 3], 4, 5, 6, [7, 8, 9]]
-console.log(arrTest4.flat(2)); //[1, 2, 3, 4, 5, 6, 7, 8, 9]
+//console.log(arrTest4.flat()); //[1, [2, 3], 4, 5, 6, [7, 8, 9]]
+//console.log(arrTest4.flat(2)); //[1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 //Flatmap
 
@@ -608,14 +608,44 @@ const accounts = [account1, account2, account3, account4];
 
 //Pulling movements from each of the accounts andd placing into a single array
 const movementsArray = accounts.map(account => account.movements);
-console.log(movementsArray);
+//console.log(movementsArray);
 //The flat method will remove a layer of nesting inside the array
 
 const allMovements = movementsArray.flat();
 const overallBalance = allMovements.reduce((tot, mov) => tot + mov);
-console.log(overallBalance);
+//console.log(overallBalance);
 
 //the flatmap method
 //flatMap() only flattens one level, so if you need to go deeper than one level of nesting then the .flat() method is still required
 const movementsArray2 = accounts.flatMap(account => account.movements);
-console.log(movementsArray2);
+//console.log(movementsArray2);
+
+//===============================================
+// 163. Sorting Arrays
+//===============================================
+const friends = ['Bobby', 'Yesenia', 'Georgia', 'Kaitlyn', 'Gerald'];
+
+movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+//By default, sort arrages in alphabetical order
+//The sort method mutates the original array
+//console.log(friends.sort());
+//console.log(friends);
+
+//The sort method sorts based on strings.
+//Each number is converted to a string then sorted by the first character
+//console.log(movements);
+//console.log(movements.sort());
+//This can be fixed by passing a comparison callback function into the sort method
+
+//Function Notes
+//If returned val < 0, the A, B (keeps order)
+//If returned val > 0, the B, A (switches order)
+// movements.sort((a, b) => {
+//   if (a > b) return 1;
+//   if (a < b) return -1;
+// });
+
+console.log(movements);
+movements.sort((a, b) => a - b);
+console.log(movements);
