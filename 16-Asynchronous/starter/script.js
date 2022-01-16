@@ -276,9 +276,125 @@ const getCountryData = country => {
 btn.addEventListener('click', e => {
   e.preventDefault();
   getCountryData('usa');
-  getCountryData('australia');
+  //getCountryData('australia');
 });
 
 //Returns: GET https://restcountries.com/v3.1/name/fvdnvdnjnv 404 (Not Found)
 
 //Even though there was an issue with the request, the fetch function still fulfilled and did not reject
+
+//=====================================
+//255. Coding Challenge #1
+//=====================================
+
+/* 
+In this challenge you will build a function 'whereAmI' which renders a country
+only based on GPS coordinates. For that, you will use a second API to geocode
+coordinates. So in this challenge, you’ll use an API on your own for the first time 😁
+Your tasks:
+*/
+
+//PART 1
+// 1. Create a function 'whereAmI' which takes as inputs a latitude value ('lat') and a longitude value ('lng') (these are GPS coordinates, examples are in test data below).
+
+// const whereAmI = (lat, lng) => {};
+
+//2. Do “reverse geocoding” of the provided coordinates. Reverse geocoding means to convert coordinates to a meaningful location, like a city and country name. Use this API to do reverse geocoding: https://geocode.xyz/api. The AJAX call will be done to a URL with this format: https://geocode.xyz/52.508,13.381?geoit=json. Use the fetch API and promises to get the data. Do not use the 'getJSON' function we created, that is cheating 😉
+
+/*
+const whereAmI = (lat, lng) => {
+  //fetch(`https://geocode.xyz/${lat},${lng}?geoit=xml`)
+  fetch(`https://geocode.xyz/51.50354,-0.12768?geoit=xml`)
+    .then(response => response.json())
+    .then(data => {});
+};
+*/
+
+// 3. Once you have the data, take a look at it in the console to see all the attributes that you received about the provided location. Then, using this data, log a message like this to the console: “You are in Berlin, Germany”
+// const whereAmI = () => {
+//   //fetch(`https://geocode.xyz/${lat},${lng}?geoit=xml`)
+//   fetch(`https://geocode.xyz/41.3189957000,2.0746469000?json=1`)
+//     .then(response => {
+//       console.log(response);
+//       return response.json();
+//     })
+//     .then(data => {
+//       console.log(data);
+//       console.log(`You are in ${data.city}, ${data.country}`);
+//     });
+// };
+
+// whereAmI();
+
+//4. Chain a .catch method to the end of the promise chain and log errors to the console
+// const whereAmI = () => {
+//   //fetch(`https://geocode.xyz/${lat},${lng}?geoit=xml`)
+//   fetch(`https://geocode.xyz/41.3189957000,2.0746469000?json=1`)
+//     .then(response => {
+//       console.log(response);
+//       return response.json();
+//     })
+//     .then(data => {
+//       console.log(data);
+//       console.log(`You are in ${data.city}, ${data.country}`);
+//     })
+//     .chain(error => console.error(error));
+// };
+
+// whereAmI();
+
+//5. This API allows you to make only 3 requests per second. If you reload fast, you will get this error with code 403. This is an error with the request. Remember, fetch() does not reject the promise in this case. So create an error to reject the promise yourself, with a meaningful error message
+// const whereAmI = () => {
+//   //fetch(`https://geocode.xyz/${lat},${lng}?geoit=xml`)
+//   fetch(`https://geocode.xyz/41.3189957000,2.0746469000?json=1`)
+//     .then(response => {
+//       console.log(response);
+//       return response.json();
+//     })
+//     .then(data => {
+//       console.log(data);
+//       console.log(`You are in ${data.city}, ${data.country}`);
+//     })
+//     .chain(error => console.error(error));
+// };
+
+// whereAmI();
+
+//PART 2
+//6. Now it's time to use the received data to render a country. So take the relevant attribute from the geocoding API result, and plug it into the countries API that we have been using.
+const whereAmI = (lat = '41.3189957000', lng = '2.0746469000') => {
+  fetch(`https://geocode.xyz/${lat},${lng}?json=1`)
+    .then(response => {
+      console.log(response);
+      if (!response.ok)
+        throw new Error(
+          `This API allows you to make only 3 requests per second. Please allow a few moments before refresing (${response.status})`
+        );
+      return response.json();
+    })
+    .then(data => {
+      console.log(data);
+      console.log(`You are in ${data.city}, ${data.country}`);
+      //getCountryData(data.country);
+      return fetch(`https://restcountries.com/v3.1/name/${data.country}`);
+    })
+    .then(response => {
+      if (!response.ok)
+        throw new Error(`Country cannont be found (${response.status})`);
+      return response.json();
+    })
+    .then(data => createCard(data[0]))
+    .catch(err => console.error(`${err.message}`));
+};
+
+//whereAmI();
+
+//7. Render the country and catch any errors, just like we have done in the last lecture (you can even copy this code, no need to type the same code)
+const coordinates1 = [52.508, 13.381];
+const coordinates2 = [19.037, 72.873];
+const coordinates3 = [-33.933, 18.474];
+
+//whereAmI();
+whereAmI(coordinates1[0], coordinates1[1]);
+//whereAmI(coordinates2[0], coordinates2[1]);
+//whereAmI(coordinates3[0], coordinates3[1]);
