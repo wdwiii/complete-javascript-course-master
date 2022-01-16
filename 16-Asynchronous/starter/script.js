@@ -202,31 +202,83 @@ const getCountryandNeighbor = country => {
 //Pass a second callback function into the .then() method, the second callback is the error itself
 //EXAMPLE
 //fetch(`https://restcountries.com/v3.1/name/${country}`).then(response => response.json(), err => alert(err))
+// const renderError = error => {
+//   const html = `<p class="error">Something went wrong: ${error.message}. <br> Try again.</p>`;
+//   const container = document.querySelector('.container');
+//   console.error(error);
+//   container.insertAdjacentHTML('afterbegin', html);
+// };
+
+// const getCountryData = country => {
+//   //Initial country
+//   fetch(`https://restcountries.com/v3.1/name/${country}`)
+//     .then(response => response.json())
+//     .then(data => {
+//       createCard(data.at(0));
+//       const neighbour = data[0].borders[0];
+//       if (!neighbour) return;
+//       //Neighbouring country
+//       return fetch(`https://restcountries.com/v3.1/alpha/${neighbour}`);
+//     })
+//     .then(response => response.json())
+//     .then(data => createCard(data[0], 'neighbour'))
+//     .catch(renderError);
+// };
+//Instead of adding a second callback to each then method, apply the catch() method
+//The catch() method will catch any errors no matter where they appear in the promise chain
+
+// btn.addEventListener('click', e => {
+//   getCountryData('russia');
+// });
+
+//=====================================
+//255. Throwing errors manually
+//=====================================
 const renderError = error => {
-  const html = `<p class="error">Something went wrong: ${error.message}. <br> Try again.</p>`;
+  const html = `<p class="error">Something went wrong: ${error.message} <br> Try again.</p>`;
   const container = document.querySelector('.container');
-  console.error(error);
+  console.error(error.message);
   container.insertAdjacentHTML('afterbegin', html);
+};
+
+//When we want to manually create an error, use 'throw new Error()' it and be caught by the the .catch() handler.
+//Throwing an error inside of this callback function of this then(), the method will immediately reject this promise.
+
+//Convert fetch response to JSON
+const getJSON = (url, errorMessage = `Country not found`) => {
+  return fetch(url).then(response => {
+    //console.log(response);
+    if (response.ok === false)
+      throw new Error(`${errorMessage}: (${response.status})`);
+    return response.json();
+  });
 };
 
 const getCountryData = country => {
   //Initial country
-  fetch(`https://restcountries.com/v3.1/name/${country}`)
-    .then(response => response.json())
+  getJSON(`https://restcountries.com/v3.1/name/${country}`, `Country not found`)
     .then(data => {
-      createCard(data.at(0));
-      const neighbour = data[0].borders[0];
-      if (!neighbour) return;
+      console.log(data[0]);
+      createCard(data[0]);
+      const neighbour = data[0].borders;
+      console.log(neighbour);
+      if (!neighbour) throw new Error(`This country has no neighbours`);
       //Neighbouring country
-      return fetch(`https://restcountries.com/v3.1/alpha/${neighbour}`);
+      return getJSON(
+        `https://restcountries.com/v3.1/alpha/${neighbour[0]}`,
+        `This country has no neighbours`
+      );
     })
-    .then(response => response.json())
     .then(data => createCard(data[0], 'neighbour'))
     .catch(renderError);
 };
-//Instead of adding a second callback to each then method, apply the catch() method
-//The catch() method will catch any errors no matter where they appear in the promise chain
-
+//Links that don’t lead anywhere are known as 'dead links' or 'broken links'. The HTTP status code 404 is often referred to as 'error 404', 'HTTP 404', or '404 code'.
 btn.addEventListener('click', e => {
-  getCountryData('russia');
+  e.preventDefault();
+  getCountryData('usa');
+  getCountryData('australia');
 });
+
+//Returns: GET https://restcountries.com/v3.1/name/fvdnvdnjnv 404 (Not Found)
+
+//Even though there was an issue with the request, the fetch function still fulfilled and did not reject
