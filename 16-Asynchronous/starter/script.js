@@ -395,6 +395,40 @@ const coordinates2 = [19.037, 72.873];
 const coordinates3 = [-33.933, 18.474];
 
 //whereAmI();
-whereAmI(coordinates1[0], coordinates1[1]);
+//whereAmI(coordinates1[0], coordinates1[1]);
 //whereAmI(coordinates2[0], coordinates2[1]);
 //whereAmI(coordinates3[0], coordinates3[1]);
+
+//=====================================
+//258. The Event Loop in Practice
+//=====================================
+//Which order will the following print to the console?
+// console.log(`Test Start`);
+// setTimeout(() => console.log(`Timer ends in 0 seconds`), 0);
+// Promise.resolve('Resolved promise 1').then(res => console.log(res));
+// console.log(`Test End`);
+
+//Test Start
+//Test End
+//Resolved Promise 1
+//Timer Ends
+
+///Test Start & Test End are in the global execution context so they print first
+
+//Promise  get next highest priority so the Promise microtask that is immediately resolved will execute second
+
+//The callback queue will only execute if there is nothing to be executed in promise microtasks queue, so setTimout is executed last (even thought it executes after 0 seconds)
+
+//***********
+//The implication of the fact that micro-tasks have priority over regular callbacks, is that if one of the micro-tasks takes a long time to run, then the timer will actually be delayed and not run after the specified time.
+
+console.log(`Test Start`);
+setTimeout(() => console.log(`Timer ends in 0 seconds`), 0);
+Promise.resolve('Resolved promise 1').then(res => {
+  //simulates a task that takes a long time to complete
+  for (let i = 0; i < 1099999999; i++) {}
+  console.log(res);
+});
+console.log(`Test End`);
+
+Promise.resolve('Promise number 2').then(res => console.log(res));
