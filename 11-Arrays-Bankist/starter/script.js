@@ -646,6 +646,81 @@ movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 //   if (a < b) return -1;
 // });
 
-console.log(movements);
+//console.log(movements);
 movements.sort((a, b) => a - b);
-console.log(movements);
+//console.log(movements);
+
+//===============================================
+// 164. More Ways of Creating and Filling Arrays
+//===============================================
+//Various ways of creating arrays
+const test164 = [1, 2, 3, 4, 5, 6, 7]; //Literally
+//console.log(new Array(1, 2, 3, 4, 5, 6, 7)); //Constructor
+
+//******** Empty Array + fill method ********//
+//Arrays can be created without inputting all of the values manually
+const x = new Array(7);
+//console.log(x); // [empty × 7]
+//An array constructor with one argument will create an array with (number passed in) of empty elements
+//The are actually contains nothing.
+//The x array cannot be used for anything. For example the map.method cannont be used to fill it up
+
+//The only method that can be used on an empty constructor array is .fill()
+//The .fill() method will take a parameter and fill the entire array with the value that was passed in
+
+//******** fill method parameters ********//
+//x.fill(1); //Mutates the original array
+//console.log(x);//[1, 1, 1, 1, 1, 1, 1, 1]
+
+//.fill(value, start, end)
+x.fill(2, 2, 4); //does not include the end value;
+//console.log(x); //[empty × 2, 2, 2, empty × 3]
+
+//.fill() works on all arrays
+test164.fill('new', 2, 5);
+//console.log(test164);
+
+//******** Recreate array programmatically ********//
+//The from method is called on the Array object contructor
+const y = Array.from({ length: 7 }, () => 1);
+console.log(y);
+//fron takes 2 parameters:
+//1. an object with the length property
+//2. mapping function (callback like what we would use in the map method)
+
+const z = Array.from(
+  { length: 7 },
+  (currentElement, currentIndex) => currentIndex + 1
+);
+console.log(z);
+
+//Practice Exercise
+//Generate an array w/ 100 random dice rolls
+const randomDiceRolls = Array.from({ length: 100 }, () =>
+  Math.trunc(Math.random() * 6 + 1)
+);
+
+console.log(randomDiceRolls);
+
+//******** Create actual array from array-like structure ********//
+//Non-iterables like a NodeList (generated from .querySelectorAll) dont have access to array methods like .map(), or .reduce()
+
+const balanceLabel = document.querySelector('.balance__value');
+
+balanceLabel.addEventListener('click', () => {
+  const movementsNodeList = Array.from(
+    document.querySelectorAll('.movements__value'),
+    listItem => Number(listItem.textContent.replace('€', ''))
+  );
+
+  console.log(movementsNodeList);
+});
+
+//An array can be created with  querySelectorAll by using the spread operater.
+//But the mapping would have to be done separately
+const movementsNodeList2 = [...document.querySelectorAll('.movements__value')];
+console.log(movementsNodeList2);
+
+console.log(
+  movementsNodeList2.map(el => Number(el.textContent.replace('€', '')))
+);
