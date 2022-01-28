@@ -576,48 +576,48 @@ const arrTest4 = [1, [[2, 3]], [4, 5, 6], [[7, 8, 9]]];
 
 //Flatmap
 
-const account1 = {
-  owner: 'Willie Whitfield',
-  movements: [200, 450, -400, 3000, -650, -130, 70, 1300, -345, -20, 1768],
-  interestRate: 1.2,
-  pin: 1111,
-};
+// const account1 = {
+//   owner: 'Willie Whitfield',
+//   movements: [200, 450, -400, 3000, -650, -130, 70, 1300, -345, -20, 1768],
+//   interestRate: 1.2,
+//   pin: 1111,
+// };
 
-const account2 = {
-  owner: 'Luna Wibsey',
-  movements: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
-  interestRate: 1.5,
-  pin: 2222,
-};
+// const account2 = {
+//   owner: 'Luna Wibsey',
+//   movements: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
+//   interestRate: 1.5,
+//   pin: 2222,
+// };
 
-const account3 = {
-  owner: 'Michael Bakari Jordan',
-  movements: [200, -200, 340, -300, -20, 50, 400, -460],
-  interestRate: 0.7,
-  pin: 3333,
-};
+// const account3 = {
+//   owner: 'Michael Bakari Jordan',
+//   movements: [200, -200, 340, -300, -20, 50, 400, -460],
+//   interestRate: 0.7,
+//   pin: 3333,
+// };
 
-const account4 = {
-  owner: 'Tal Prephd',
-  movements: [430, 1000, 700, 50, 90],
-  interestRate: 1,
-  pin: 4444,
-};
+// const account4 = {
+//   owner: 'Tal Prephd',
+//   movements: [430, 1000, 700, 50, 90],
+//   interestRate: 1,
+//   pin: 4444,
+// };
 
-const accounts = [account1, account2, account3, account4];
+// const accounts = [account1, account2, account3, account4];
 
 //Pulling movements from each of the accounts andd placing into a single array
-const movementsArray = accounts.map(account => account.movements);
+// const movementsArray = accounts.map(account => account.movements);
 //console.log(movementsArray);
 //The flat method will remove a layer of nesting inside the array
 
-const allMovements = movementsArray.flat();
-const overallBalance = allMovements.reduce((tot, mov) => tot + mov);
+// const allMovements = movementsArray.flat();
+// const overallBalance = allMovements.reduce((tot, mov) => tot + mov);
 //console.log(overallBalance);
 
 //the flatmap method
 //flatMap() only flattens one level, so if you need to go deeper than one level of nesting then the .flat() method is still required
-const movementsArray2 = accounts.flatMap(account => account.movements);
+// const movementsArray2 = accounts.flatMap(account => account.movements);
 //console.log(movementsArray2);
 
 //===============================================
@@ -683,7 +683,7 @@ test164.fill('new', 2, 5);
 //******** Recreate array programmatically ********//
 //The from method is called on the Array object contructor
 const y = Array.from({ length: 7 }, () => 1);
-console.log(y);
+//console.log(y);
 //fron takes 2 parameters:
 //1. an object with the length property
 //2. mapping function (callback like what we would use in the map method)
@@ -692,7 +692,7 @@ const z = Array.from(
   { length: 7 },
   (currentElement, currentIndex) => currentIndex + 1
 );
-console.log(z);
+//console.log(z);
 
 //Practice Exercise
 //Generate an array w/ 100 random dice rolls
@@ -700,7 +700,7 @@ const randomDiceRolls = Array.from({ length: 100 }, () =>
   Math.trunc(Math.random() * 6 + 1)
 );
 
-console.log(randomDiceRolls);
+//console.log(randomDiceRolls);
 
 //******** Create actual array from array-like structure ********//
 //Non-iterables like a NodeList (generated from .querySelectorAll) dont have access to array methods like .map(), or .reduce()
@@ -719,8 +719,109 @@ balanceLabel.addEventListener('click', () => {
 //An array can be created with  querySelectorAll by using the spread operater.
 //But the mapping would have to be done separately
 const movementsNodeList2 = [...document.querySelectorAll('.movements__value')];
-console.log(movementsNodeList2);
+//console.log(movementsNodeList2);
 
-console.log(
-  movementsNodeList2.map(el => Number(el.textContent.replace('€', '')))
-);
+//console.log(
+//   movementsNodeList2.map(el => Number(el.textContent.replace('€', '')))
+// );
+
+//===============================================
+// 166. Array Methods Practice
+//===============================================
+const account1 = {
+  owner: 'Jonas Schmedtmann',
+  movements: [200, 450, -400, 3000, -650, -130, 70, 1300],
+  interestRate: 1.2, // %
+  pin: 1111,
+};
+
+const account2 = {
+  owner: 'Jessica Davis',
+  movements: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
+  interestRate: 1.5,
+  pin: 2222,
+};
+
+const account3 = {
+  owner: 'Steven Thomas Williams',
+  movements: [200, -200, 340, -300, -20, 50, 400, -460],
+  interestRate: 0.7,
+  pin: 3333,
+};
+
+const account4 = {
+  owner: 'Sarah Smith',
+  movements: [430, 1000, 700, 50, 90],
+  interestRate: 1,
+  pin: 4444,
+};
+
+const accounts = [account1, account2, account3, account4];
+
+console.log(accounts);
+
+//How much has been deposited in total accross the bank?
+
+// const totalDeposits = accounts
+//   .flatMap(account => account.movements)
+//   .filter(movement => movement > 0)
+//   .reduce((tot, cur) => tot + cur);
+
+const totalDeposits = accounts
+  .flatMap(acc => acc.movements)
+  .reduce((acc, cur) => (cur > 0 ? acc + cur : acc), 0);
+
+console.log(totalDeposits);
+
+//Count the deposits with deposits over 100
+const numberOfDepositsOver1000 = accounts
+  .flatMap(account => account.movements)
+  .filter(movement => movement > 1000).length;
+
+console.log(numberOfDepositsOver1000);
+//Count the deposits with deposits over 100
+//Using reduce method
+
+const numberOfDepositsOver1000Reduce = accounts
+  .flatMap(acc => acc.movements)
+  .reduce((count, cur) => (cur > 1000 ? ++count : count), 0);
+
+console.log(numberOfDepositsOver1000Reduce);
+
+//Using reduce method to return object containing sum of object and sum of withdrawals
+const { deposits2, withdrawals2 } = accounts
+  .flatMap(account => account.movements)
+  .reduce(
+    (sums, cur) => {
+      // cur > 0 ? (sums.deposits2 += cur) : (sums.withdrawals2 += cur);
+      sums[cur < 0 ? 'withdrawals2' : 'deposits2'] += cur;
+      return sums;
+    },
+    { deposits2: 0, withdrawals2: 0 }
+  );
+
+console.log(deposits2, withdrawals2);
+
+//NOTE: When destructuring an object, the variable names must match the key names inside of the object
+
+//Converting all letters in a string to title case
+function capTitleCase(title) {
+  const capitalize = str => {
+    console.log(str.replace(str[0], str[0].toUpperCase()));
+  };
+
+  const exceptions = ['a', 'in', 'the', 'on', 'with', 'an', 'but', 'or'];
+  const titleCase = title
+    .toLowerCase()
+    .split(' ')
+    .map(word =>
+      exceptions.includes(word)
+        ? word
+        : word.replace(word[0], word[0].toUpperCase())
+    )
+    .join(' ');
+  capitalize(titleCase);
+}
+
+capTitleCase(`Hey how are you doing today?`);
+capTitleCase(`BUT do yoU ride In tHe Night OR but Naw?`);
