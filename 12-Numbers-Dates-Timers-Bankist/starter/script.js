@@ -251,3 +251,46 @@ btnSort.addEventListener('click', function (e) {
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
+
+//===============================================
+// 170. Converting and Checking Numbers
+//===============================================
+//In JavaScript all numbers are represented internally as floating point numbers (decimal values)
+//console.log(23 === 23.0);
+//Numbers are also represented in a 64 base 2 format. Some fractions are difficult to represent in base 2 format
+
+//Base 10 = numbers from 0-9
+//1/10 = 0.1 | 3/10 = 0.3333333 | 0.1 + 0.2 = 0.3
+
+//Binary (base 2) = 0 or 1 | 0.1 + 0.2 = 0.30000000000000004
+//0.1 + 0.2 === 0.3 || False
+
+//Coverting to type number
+console.log(Number('23'));
+console.log(+'23');
+//When JavaScript sees the plus operator, it will do type coercion and automatically convert all the operands to numbers.
+
+//Parsing Integers
+//.parseInt will automatically try to figure out the number that is in the passed string.
+//The string has to start with a string
+console.log(Number.parseInt('49lbs', 10));
+
+//The second argument is the base of the numeral system we are using. In most cases it will be base 10 (digits 0-9)
+
+//Parsing Floating Points (decimals)
+console.log(Number.parseInt('2.4lbs'));
+console.log(Number.parseFloat('2.4lbs'));
+//parseFloat will capture any digits after the decimal
+
+//isNaN - used to check if value is NaN
+console.log(Number.isNaN(20)); //false
+console.log(Number.isNaN('20')); //false
+console.log(Number.isNaN(+'20x')); //true
+//The last example returns true because '20x' is NaN
+console.log(Number.isNaN(32 / 0)); //false
+//Infinity will return false, because it is still a number type
+
+//It is better to check if a value is a real number by using the isFinite method
+console.log(Number.isNaN(20)); //true
+console.log(Number.isNaN('20')); //false
+console.log(Number.isFinite(32 / 0)); //False
