@@ -422,13 +422,82 @@ const coordinates3 = [-33.933, 18.474];
 //***********
 //The implication of the fact that micro-tasks have priority over regular callbacks, is that if one of the micro-tasks takes a long time to run, then the timer will actually be delayed and not run after the specified time.
 
-console.log(`Test Start`);
-setTimeout(() => console.log(`Timer ends in 0 seconds`), 0);
-Promise.resolve('Resolved promise 1').then(res => {
-  //simulates a task that takes a long time to complete
-  for (let i = 0; i < 1099999999; i++) {}
-  console.log(res);
-});
-console.log(`Test End`);
+//console.log(`Test Start`);
+// setTimeout(() => console.log(`Timer ends in 0 seconds`), 0);
+// Promise.resolve('Resolved promise 1').then(res => {
+//   //simulates a task that takes a long time to complete
+//   for (let i = 0; i < 1099999999; i++) {}
+//   console.log(res);
+// });
+// console.log(`Test End`);
 
-Promise.resolve('Promise number 2').then(res => console.log(res));
+// Promise.resolve('Promise number 2').then(res => console.log(res));
+
+//=====================================
+//259. Building Our Own Promises
+//=====================================
+//To build a promise, you will use the new Promise() constructor.
+//The function will take two parameters, resolve and reject.
+//Resolve will run if the promise succeeds and reject if it fails.
+
+// const lotteryPromise = new Promise(function (resolve, reject) {
+//   console.log(`We are about to start the lottery`);
+//   setTimeout(function () {
+//     if (Math.random() >= 0.35 && Math.random() <= 0.66) resolve('You WON!!!!');
+//     else reject(new Error('You lost, play again'));
+//   }, 3000);
+// });
+
+//After the creation of the promise we can use the .then() method to use the resolve value
+
+//lotteryPromise.then(res => console.log(res)).catch(err => console.error(err));
+
+//“Promisification” is a long word for a simple transformation. It’s the conversion of a function that accepts a callback into a function that returns a promise.
+
+//Promisify the setTimeout function
+//When creating a new promise it accepcts a resolution function and a rejection function
+//It is impossible for the setTimeout function to fail, so a rejection function does not need to be passed into the promise constructor
+const wait = numOfSecs => {
+  return new Promise(resolve => setTimeout(resolve, numOfSecs * 1000));
+};
+//setTimeout doesn't re
+
+// wait(2)
+//   .then(() => {
+//     console.log(`I waited for 2 seconds`);
+//     return wait(1);
+//   })
+//   .then(() => console.log(`I waited for 1 more second`));
+
+//Promisifying nested callbacks practice
+// setTimeout(() => {
+//   console.log(`1 Second has passed`);
+//   setTimeout(() => {
+//     console.log(`2 Seconds has passed`);
+//     setTimeout(() => {
+//       console.log(`3 Seconds has passed`);
+//       setTimeout(() => {
+//         console.log(`4 Seconds has passed`);
+//       }, 1000);
+//     }, 1000);
+//   }, 1000);
+// }, 1000);
+
+wait(1)
+  .then(() => {
+    console.log(`1 second has passed`);
+    return wait(1);
+  })
+  .then(() => {
+    console.log(`2 seconds has passed`);
+    return wait(1);
+  })
+  .then(() => {
+    console.log(`3 seconds has passed`);
+    return wait(1);
+  })
+  .then(() => console.log(`4 seconds has passed`));
+
+//Promises can be resolved or rejected immediatley
+Promise.resolve('I am resolved').then(res => console.log(res));
+Promise.reject(new Error('I am rejected')).catch(err => console.error(err));
