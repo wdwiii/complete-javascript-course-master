@@ -266,31 +266,83 @@ btnSort.addEventListener('click', function (e) {
 //0.1 + 0.2 === 0.3 || False
 
 //Coverting to type number
-console.log(Number('23'));
-console.log(+'23');
+// console.log(Number('23'));
+// console.log(+'23');
 //When JavaScript sees the plus operator, it will do type coercion and automatically convert all the operands to numbers.
 
 //Parsing Integers
 //.parseInt will automatically try to figure out the number that is in the passed string.
 //The string has to start with a string
-console.log(Number.parseInt('49lbs', 10));
+//console.log(Number.parseInt('49lbs', 10));
 
 //The second argument is the base of the numeral system we are using. In most cases it will be base 10 (digits 0-9)
 
 //Parsing Floating Points (decimals)
-console.log(Number.parseInt('2.4lbs'));
-console.log(Number.parseFloat('2.4lbs'));
+// console.log(Number.parseInt('2.4lbs'));
+// console.log(Number.parseFloat('2.4lbs'));
 //parseFloat will capture any digits after the decimal
 
 //isNaN - used to check if value is NaN
-console.log(Number.isNaN(20)); //false
-console.log(Number.isNaN('20')); //false
-console.log(Number.isNaN(+'20x')); //true
+// console.log(Number.isNaN(20)); //false
+// console.log(Number.isNaN('20')); //false
+// console.log(Number.isNaN(+'20x')); //true
 //The last example returns true because '20x' is NaN
-console.log(Number.isNaN(32 / 0)); //false
+//console.log(Number.isNaN(32 / 0)); //false
 //Infinity will return false, because it is still a number type
 
-//It is better to check if a value is a real number by using the isFinite method
-console.log(Number.isNaN(20)); //true
-console.log(Number.isNaN('20')); //false
-console.log(Number.isFinite(32 / 0)); //False
+// //It is better to check if a value is a real number by using the isFinite method
+// console.log(Number.isNaN(20)); //true
+// console.log(Number.isNaN('20')); //false
+// console.log(Number.isFinite(32 / 0)); //False
+
+//===============================================
+// 171. Math and Rounding
+//===============================================
+//Math Methods
+console.log(`===== Math Methods =====`);
+console.log(`Math.sqrt(81): `, Math.sqrt(81)); //Square Root
+console.log(
+  `Math.max(2, 5, 4, 2, 77, 86, 9): `,
+  Math.max(2, 5, 4, 2, 77, 86, 9)
+); // Maximum Value
+console.log(
+  `Math.min(2, 5, 4, 2, 77, 86, 9): `,
+  Math.min(2, 5, 4, 2, 77, 86, 9)
+); // Maximum Value
+
+//Math Constants
+console.log(`===== Math COnstants =====`);
+console.log(`Math.PI: `, Math.PI);
+console.log(`Math.random(): `, Math.random()); //Returns a floating point number between 0 and 1
+
+//Generating random number between two values
+console.log(`===== Random between two values =====`);
+console.log(
+  `Math.trunc(Math.random() * 10) + 1: `,
+  Math.trunc(Math.random() * 10) + 1
+); //1 and 10
+
+const randomInt = (min, max) =>
+  Math.floor(Math.random() * (max - min + 1)) + min;
+console.log(`Random number: `, randomInt(5, 10));
+
+//Rounding Integers
+console.log(`===== Rounding Integers =====`);
+console.log(`Math.trunc(24.66) : `, Math.trunc(24.66)); //Removes decimal
+
+console.log(`Math.round(24.66) : `, Math.round(24.66)); //Rounds to nearest integer
+console.log(`Math.round(24.46) : `, Math.round(24.46)); //Rounds to nearest integer
+
+console.log(`Math.ceil(24.66) : `, Math.ceil(24.66)); //Rounds up to nearest integer
+console.log(`Math.ceil(24.46) : `, Math.ceil(24.46)); //Rounds up to nearest integer
+
+console.log(`Math.floor(24.66) : `, Math.floor(24.66)); //Rounds down to nearest integer
+console.log(`Math.floor(24.46) : `, Math.floor(24.46)); //Rounds down to nearest integer
+
+//Rounding Decimals
+console.log(`===== Rounding Decimals =====`);
+console.log((7.3586).toFixed()); //Default to 0
+console.log((7.3586).toFixed(1));
+console.log((7.3586).toFixed(2));
+//toFixed will convert a string. to convert back to number, use the unary plus operator
+console.log(+(7.3586).toFixed(2));
