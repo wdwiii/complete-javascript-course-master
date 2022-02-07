@@ -387,3 +387,38 @@ console.log(price);
 
 const transferFee1 = 15_00;
 const transferFee2 = 1_500;
+
+//===============================================
+// 174. Working with BigInt
+//===============================================
+//The largest number that JasvaScript can safely represent is
+console.log(2 ** 53 - 1);
+console.log(Number.MAX_SAFE_INTEGER);
+
+//To represent numbers larger than 9007199254740991, then BigInt will be used
+console.log(42635776957897653186878890678426);
+//To convert a number to a BigInt a n-suffix can be used
+console.log(42635776957897653186878890678426n);
+//The BigInt constructor still has to calculate the number before converting to BigInt. So it is recommended to only use with smaller numbers to ensure accuracy
+console.log(BigInt(42635776957897653186878890678426));
+console.log(BigInt(1223334444));
+
+//Operations with BigInt
+console.log(10000n + 5000n);
+console.log(
+  4728579428576189756918754343276596549847398743857n *
+    34563676245563837736557758536567687377635853568873n
+);
+
+//Exceptions
+console.log(20n > 10); //Comparison works with BigInt
+console.log(20n == 20);
+console.log(20n == '20');
+console.log(20n === 20); //Will return false because they are different types
+console.log(typeof 20n);
+
+//Division
+//console.log(20n / 2); //Error: Cannot mix BigInt and other types
+console.log(20n / 2n);
+console.log(20 / 3); //6.666666666666667
+console.log(20n / 3n); //6n BigInt only returns integers, no decimal values
