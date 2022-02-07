@@ -298,51 +298,77 @@ btnSort.addEventListener('click', function (e) {
 //===============================================
 // 171. Math and Rounding
 //===============================================
-//Math Methods
-console.log(`===== Math Methods =====`);
-console.log(`Math.sqrt(81): `, Math.sqrt(81)); //Square Root
-console.log(
-  `Math.max(2, 5, 4, 2, 77, 86, 9): `,
-  Math.max(2, 5, 4, 2, 77, 86, 9)
-); // Maximum Value
-console.log(
-  `Math.min(2, 5, 4, 2, 77, 86, 9): `,
-  Math.min(2, 5, 4, 2, 77, 86, 9)
-); // Maximum Value
+// //Math Methods
+// console.log(`===== Math Methods =====`);
+// console.log(`Math.sqrt(81): `, Math.sqrt(81)); //Square Root
+// console.log(
+//   `Math.max(2, 5, 4, 2, 77, 86, 9): `,
+//   Math.max(2, 5, 4, 2, 77, 86, 9)
+// ); // Maximum Value
+// console.log(
+//   `Math.min(2, 5, 4, 2, 77, 86, 9): `,
+//   Math.min(2, 5, 4, 2, 77, 86, 9)
+// ); // Maximum Value
 
-//Math Constants
-console.log(`===== Math COnstants =====`);
-console.log(`Math.PI: `, Math.PI);
-console.log(`Math.random(): `, Math.random()); //Returns a floating point number between 0 and 1
+// //Math Constants
+// console.log(`===== Math COnstants =====`);
+// console.log(`Math.PI: `, Math.PI);
+// console.log(`Math.random(): `, Math.random()); //Returns a floating point number between 0 and 1
 
-//Generating random number between two values
-console.log(`===== Random between two values =====`);
-console.log(
-  `Math.trunc(Math.random() * 10) + 1: `,
-  Math.trunc(Math.random() * 10) + 1
-); //1 and 10
+// //Generating random number between two values
+// console.log(`===== Random between two values =====`);
+// console.log(
+//   `Math.trunc(Math.random() * 10) + 1: `,
+//   Math.trunc(Math.random() * 10) + 1
+// ); //1 and 10
 
-const randomInt = (min, max) =>
-  Math.floor(Math.random() * (max - min + 1)) + min;
-console.log(`Random number: `, randomInt(5, 10));
+// const randomInt = (min, max) =>
+//   Math.floor(Math.random() * (max - min + 1)) + min;
+// console.log(`Random number: `, randomInt(5, 10));
 
-//Rounding Integers
-console.log(`===== Rounding Integers =====`);
-console.log(`Math.trunc(24.66) : `, Math.trunc(24.66)); //Removes decimal
+// //Rounding Integers
+// console.log(`===== Rounding Integers =====`);
+// console.log(`Math.trunc(24.66) : `, Math.trunc(24.66)); //Removes decimal
 
-console.log(`Math.round(24.66) : `, Math.round(24.66)); //Rounds to nearest integer
-console.log(`Math.round(24.46) : `, Math.round(24.46)); //Rounds to nearest integer
+// console.log(`Math.round(24.66) : `, Math.round(24.66)); //Rounds to nearest integer
+// console.log(`Math.round(24.46) : `, Math.round(24.46)); //Rounds to nearest integer
 
-console.log(`Math.ceil(24.66) : `, Math.ceil(24.66)); //Rounds up to nearest integer
-console.log(`Math.ceil(24.46) : `, Math.ceil(24.46)); //Rounds up to nearest integer
+// console.log(`Math.ceil(24.66) : `, Math.ceil(24.66)); //Rounds up to nearest integer
+// console.log(`Math.ceil(24.46) : `, Math.ceil(24.46)); //Rounds up to nearest integer
 
-console.log(`Math.floor(24.66) : `, Math.floor(24.66)); //Rounds down to nearest integer
-console.log(`Math.floor(24.46) : `, Math.floor(24.46)); //Rounds down to nearest integer
+// console.log(`Math.floor(24.66) : `, Math.floor(24.66)); //Rounds down to nearest integer
+// console.log(`Math.floor(24.46) : `, Math.floor(24.46)); //Rounds down to nearest integer
 
-//Rounding Decimals
-console.log(`===== Rounding Decimals =====`);
-console.log((7.3586).toFixed()); //Default to 0
-console.log((7.3586).toFixed(1));
-console.log((7.3586).toFixed(2));
-//toFixed will convert a string. to convert back to number, use the unary plus operator
-console.log(+(7.3586).toFixed(2));
+// //Rounding Decimals
+// console.log(`===== Rounding Decimals =====`);
+// console.log((7.3586).toFixed()); //Default to 0
+// console.log((7.3586).toFixed(1));
+// console.log((7.3586).toFixed(2));
+// //toFixed will convert a string. to convert back to number, use the unary plus operator
+// console.log(+(7.3586).toFixed(2));
+
+//===============================================
+// 172. The Remainder Operator
+//===============================================
+//The remainder operater returnder the remainder of a division problem
+console.log(5 / 2); //5 = 2 + 2 + 1
+console.log(5 % 2); //1
+
+console.log(8 / 3); //8 = 3 + 3 + 2
+console.log(8 % 3); //2
+
+//Checking if a number is even or odd
+const checkEvenNumber = num => {
+  console.log(`The number ${num} is ${num % 2 === 0 ? 'even' : 'odd'}`);
+};
+
+checkEvenNumber(45);
+checkEvenNumber(100);
+
+labelBalance.addEventListener('click', function () {
+  //Using the remainder operator to select odd rows
+  [...document.querySelectorAll('.movements__row')].forEach((row, i) => {
+    if (i % 2 !== 0) row.style.backgroundColor = '#c3dcff';
+    if (i % 3 === 0) row.style.backgroundColor = 'yellow';
+  });
+});
