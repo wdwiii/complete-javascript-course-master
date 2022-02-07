@@ -351,19 +351,19 @@ btnSort.addEventListener('click', function (e) {
 // 172. The Remainder Operator
 //===============================================
 //The remainder operater returnder the remainder of a division problem
-console.log(5 / 2); //5 = 2 + 2 + 1
-console.log(5 % 2); //1
+// console.log(5 / 2); //5 = 2 + 2 + 1
+// console.log(5 % 2); //1
 
-console.log(8 / 3); //8 = 3 + 3 + 2
-console.log(8 % 3); //2
+// console.log(8 / 3); //8 = 3 + 3 + 2
+// console.log(8 % 3); //2
 
 //Checking if a number is even or odd
 const checkEvenNumber = num => {
   console.log(`The number ${num} is ${num % 2 === 0 ? 'even' : 'odd'}`);
 };
 
-checkEvenNumber(45);
-checkEvenNumber(100);
+// checkEvenNumber(45);
+// checkEvenNumber(100);
 
 labelBalance.addEventListener('click', function () {
   //Using the remainder operator to select odd rows
@@ -372,3 +372,18 @@ labelBalance.addEventListener('click', function () {
     if (i % 3 === 0) row.style.backgroundColor = 'yellow';
   });
 });
+
+//===============================================
+// 173. Numeric Separators
+//===============================================
+//If we want to represent a really large number with visual separators, we use underscore
+const diameter = 287_600_000_000;
+//JavaScript will ignore the underscore when read
+console.log(diameter);
+
+//Underscore can be used to give meaning to numerical values
+const price = 89_99;
+console.log(price);
+
+const transferFee1 = 15_00;
+const transferFee2 = 1_500;
