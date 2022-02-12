@@ -9,7 +9,7 @@
 
 // DIFFERENT DATA! Contains movement dates, currency and locale
 
-const account1 = {
+let account1 = {
   owner: 'Jonas Schmedtmann',
   movements: [200, 455.23, -306.5, 25000, -642.21, -133.9, 79.97, 1300],
   interestRate: 1.2, // %
@@ -29,7 +29,7 @@ const account1 = {
   locale: 'pt-PT', // de-DE
 };
 
-const account2 = {
+let account2 = {
   owner: 'Jessica Davis',
   movements: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
   interestRate: 1.5,
@@ -49,7 +49,7 @@ const account2 = {
   locale: 'en-US',
 };
 
-const accounts = [account1, account2];
+let accounts = [account1, account2];
 
 /////////////////////////////////////////////////
 // Elements
@@ -379,11 +379,11 @@ labelBalance.addEventListener('click', function () {
 //If we want to represent a really large number with visual separators, we use underscore
 const diameter = 287_600_000_000;
 //JavaScript will ignore the underscore when read
-console.log(diameter);
+//console.log(diameter);
 
 //Underscore can be used to give meaning to numerical values
 const price = 89_99;
-console.log(price);
+//console.log(price);
 
 const transferFee1 = 15_00;
 const transferFee2 = 1_500;
@@ -391,34 +391,124 @@ const transferFee2 = 1_500;
 //===============================================
 // 174. Working with BigInt
 //===============================================
-//The largest number that JasvaScript can safely represent is
-console.log(2 ** 53 - 1);
-console.log(Number.MAX_SAFE_INTEGER);
+// //The largest number that JasvaScript can safely represent is
+// console.log(2 ** 53 - 1);
+// console.log(Number.MAX_SAFE_INTEGER);
 
-//To represent numbers larger than 9007199254740991, then BigInt will be used
-console.log(42635776957897653186878890678426);
-//To convert a number to a BigInt a n-suffix can be used
-console.log(42635776957897653186878890678426n);
-//The BigInt constructor still has to calculate the number before converting to BigInt. So it is recommended to only use with smaller numbers to ensure accuracy
-console.log(BigInt(42635776957897653186878890678426));
-console.log(BigInt(1223334444));
+// //To represent numbers larger than 9007199254740991, then BigInt will be used
+// console.log(42635776957897653186878890678426);
+// //To convert a number to a BigInt a n-suffix can be used
+// console.log(42635776957897653186878890678426n);
+// //The BigInt constructor still has to calculate the number before converting to BigInt. So it is recommended to only use with smaller numbers to ensure accuracy
+// console.log(BigInt(42635776957897653186878890678426));
+// console.log(BigInt(1223334444));
 
-//Operations with BigInt
-console.log(10000n + 5000n);
-console.log(
-  4728579428576189756918754343276596549847398743857n *
-    34563676245563837736557758536567687377635853568873n
-);
+// //Operations with BigInt
+// console.log(10000n + 5000n);
+// console.log(
+//   4728579428576189756918754343276596549847398743857n *
+//     34563676245563837736557758536567687377635853568873n
+// );
 
-//Exceptions
-console.log(20n > 10); //Comparison works with BigInt
-console.log(20n == 20);
-console.log(20n == '20');
-console.log(20n === 20); //Will return false because they are different types
-console.log(typeof 20n);
+// //Exceptions
+// console.log(20n > 10); //Comparison works with BigInt
+// console.log(20n == 20);
+// console.log(20n == '20');
+// console.log(20n === 20); //Will return false because they are different types
+// console.log(typeof 20n);
 
-//Division
-//console.log(20n / 2); //Error: Cannot mix BigInt and other types
-console.log(20n / 2n);
-console.log(20 / 3); //6.666666666666667
-console.log(20n / 3n); //6n BigInt only returns integers, no decimal values
+// //Division
+// //console.log(20n / 2); //Error: Cannot mix BigInt and other types
+// console.log(20n / 2n);
+// console.log(20 / 3); //6.666666666666667
+// console.log(20n / 3n); //6n BigInt only returns integers, no decimal values
+
+//===============================================
+// 175. Creating Dates
+//===============================================
+
+account1 = {
+  owner: 'Jonas Schmedtmann',
+  movements: [200, 455.23, -306.5, 25000, -642.21, -133.9, 79.97, 1300],
+  interestRate: 1.2, // %
+  pin: 1111,
+
+  movementsDates: [
+    '2019-11-18T21:31:17.178Z',
+    '2019-12-23T07:42:02.383Z',
+    '2020-01-28T09:15:04.904Z',
+    '2020-04-01T10:17:24.185Z',
+    '2020-05-08T14:11:59.604Z',
+    '2020-05-27T17:01:17.194Z',
+    '2020-07-11T23:36:17.929Z',
+    '2020-07-12T10:51:36.790Z',
+  ],
+  currency: 'EUR',
+  locale: 'pt-PT', // de-DE
+};
+
+account2 = {
+  owner: 'Jessica Davis',
+  movements: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
+  interestRate: 1.5,
+  pin: 2222,
+
+  movementsDates: [
+    '2019-11-01T13:15:33.035Z',
+    '2019-11-30T09:48:16.867Z',
+    '2019-12-25T06:04:23.907Z',
+    '2020-01-25T14:18:46.235Z',
+    '2020-02-05T16:33:06.386Z',
+    '2020-04-10T14:43:26.374Z',
+    '2020-06-25T18:49:59.371Z',
+    '2020-07-26T12:01:20.894Z',
+  ],
+  currency: 'USD',
+  locale: 'en-US',
+};
+
+accounts = [account1, account2];
+
+// Ways of creating dates - All use the new Date constructor function, but take in different parameters
+
+//No Parameters - Returns current date and time
+const now = new Date(); //Returns a date object
+const nowStr = Date();
+// console.log(now);
+// console.log(nowStr);
+
+//Parse from a string
+// console.log(new Date(`Feb 14 2022`));
+// console.log(new Date(`09/03/68`));
+// console.log(new Date(account2.movementsDates[1]));
+
+//Passing in number values
+// console.log(new Date(2013, 11, 31)); // Year/Month/Day
+// console.log(new Date(2013, 11, 31, 3, 45, 56)); // " "/Hour/Min/Sec
+// console.log(new Date(2013, 11, 32, 3, 45, 56));
+
+//Number of milliseconds passed since beginning of Unix time
+// console.log(new Date(0));
+// console.log(new Date(3 * 24 * 60 * 60 * 1000));
+
+const future = new Date(2029, 11, 31, 3, 45, 56);
+console.log(future);
+
+//Date Methods
+console.log(future.getFullYear());
+console.log(future.getMonth());
+console.log(future.getDay());
+console.log(future.getHours());
+console.log(future.getMinutes());
+console.log(future.getSeconds());
+
+console.log(future.toISOString());
+console.log(future.getTime()); //Milliseconds since Jan 1, 1970
+console.log(new Date(1893401156000)); //Passing the value of future.getTime()
+
+console.log(Date.now()); //Grab current timestamp in milliseconds since...
+
+//Set methods
+future.setFullYear(3440);
+future.setMonth(6);
+console.log(future);
