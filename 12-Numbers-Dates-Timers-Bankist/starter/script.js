@@ -424,7 +424,7 @@ const transferFee2 = 1_500;
 // console.log(20n / 3n); //6n BigInt only returns integers, no decimal values
 
 //===============================================
-// 175. Creating Dates
+// 176. Creating Dates
 //===============================================
 
 account1 = {
@@ -491,24 +491,34 @@ const nowStr = Date();
 // console.log(new Date(0));
 // console.log(new Date(3 * 24 * 60 * 60 * 1000));
 
-const future = new Date(2029, 11, 31, 3, 45, 56);
-console.log(future);
+// const future = new Date(2029, 11, 31, 3, 45, 56);
+// console.log(future);
 
-//Date Methods
-console.log(future.getFullYear());
-console.log(future.getMonth());
-console.log(future.getDay());
-console.log(future.getHours());
-console.log(future.getMinutes());
-console.log(future.getSeconds());
+// //Date Methods
+// console.log(future.getFullYear());
+// console.log(future.getMonth());
+// console.log(future.getDay());
+// console.log(future.getHours());
+// console.log(future.getMinutes());
+// console.log(future.getSeconds());
 
-console.log(future.toISOString());
-console.log(future.getTime()); //Milliseconds since Jan 1, 1970
-console.log(new Date(1893401156000)); //Passing the value of future.getTime()
+// console.log(future.toISOString());
+// console.log(future.getTime()); //Milliseconds since Jan 1, 1970
+// console.log(new Date(1893401156000)); //Passing the value of future.getTime()
 
-console.log(Date.now()); //Grab current timestamp in milliseconds since...
+// console.log(Date.now()); //Grab current timestamp in milliseconds since...
 
-//Set methods
-future.setFullYear(3440);
-future.setMonth(6);
-console.log(future);
+// //Set methods
+// future.setFullYear(3440);
+// future.setMonth(6);
+// console.log(future);
+
+//===============================================
+// 177. Operations with Dates
+//===============================================
+//Calculations with dates
+//When converting a date to a number, the result is the timestamp in milliseconds. Calculations can then be performed
+const today = new Date();
+const future = new Date(2022, 1, 28);
+
+-console.log(checkDaysPassed(today, future));
