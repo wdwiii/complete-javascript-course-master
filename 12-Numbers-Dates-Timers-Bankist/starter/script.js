@@ -472,8 +472,8 @@ accounts = [account1, account2];
 // Ways of creating dates - All use the new Date constructor function, but take in different parameters
 
 //No Parameters - Returns current date and time
-const now = new Date(); //Returns a date object
-const nowStr = Date();
+//const now = new Date(); //Returns a date object
+//const nowStr = Date();
 // console.log(now);
 // console.log(nowStr);
 
@@ -518,7 +518,46 @@ const nowStr = Date();
 //===============================================
 //Calculations with dates
 //When converting a date to a number, the result is the timestamp in milliseconds. Calculations can then be performed
-const today = new Date();
-const future = new Date(2022, 1, 28);
+//const today = new Date();
+//const future = new Date(2022, 1, 28);
 
--console.log(checkDaysPassed(today, future));
+//Function notes
+//1. Function takes two date parmmeters
+//2. Date objesct will be converted to a  number
+//3. Subtract the start from the end
+//4. Reduce the difference from number of milliseconds to number of days
+// const checkDaysPassed = (date1, date2) => {
+//   const timeDifference = +date1 - +date2;
+//   return Math.abs(timeDifference) / 1000 / 60 / 60 / 24;
+// };
+
+// console.log(checkDaysPassed(today, future));
+
+//===============================================
+// 178. Internationalizing Dates (Intl)
+//===============================================
+const today = new Date();
+const day = `${today.getDate()}`.padStart(2, 0);
+const month = `${today.getMonth() + 1}`.padStart(2, 0);
+const year = today.getFullYear();
+//console.log(`${month}/${day}/${year}`);
+console.log(today);
+
+//This is the most straightforward way at formatting time
+const todayFormatted = new Intl.DateTimeFormat('en-US').format(today);
+console.log(todayFormatted);
+
+//The date and time formats can be customized using the options argument:
+const todayV2 = new Date();
+const options = {
+  minute: 'numeric',
+  hour: 'numeric',
+  day: '2-digit',
+  month: '2-digit',
+  year: 'numeric',
+  weekday: 'long',
+};
+
+//Specify default date formatting for language (locale)
+//const locale = navigator.language;
+console.log(new Intl.DateTimeFormat('default', options).format(todayV2));
