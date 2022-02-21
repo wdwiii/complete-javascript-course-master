@@ -541,11 +541,11 @@ const day = `${today.getDate()}`.padStart(2, 0);
 const month = `${today.getMonth() + 1}`.padStart(2, 0);
 const year = today.getFullYear();
 //console.log(`${month}/${day}/${year}`);
-console.log(today);
+//console.log(today);
 
 //This is the most straightforward way at formatting time
 const todayFormatted = new Intl.DateTimeFormat('en-US').format(today);
-console.log(todayFormatted);
+//console.log(todayFormatted);
 
 //The date and time formats can be customized using the options argument:
 const todayV2 = new Date();
@@ -560,4 +560,25 @@ const options = {
 
 //Specify default date formatting for language (locale)
 const locale = navigator.language;
-console.log(new Intl.DateTimeFormat(locale, options).format(todayV2));
+//console.log(new Intl.DateTimeFormat(locale, options).format(todayV2));
+
+//===============================================
+// 179. Internationalizing Numbers (Intl)
+//===============================================
+
+//The Intl.NumberFormat() constructor creates Intl.NumberFormat objects that enable language-sensitive number formatting.
+
+const num = 476754576.45;
+
+// If the style is 'unit', a unit property must be provided. Optionally, unitDisplay controls the unit formatting.
+const optionsNum = {
+  style: 'unit',
+  unit: 'mile-per-hour',
+};
+
+// new Intl.NumberFormat()
+// new Intl.NumberFormat(locales)
+// new Intl.NumberFormat(locales, options)
+console.log(new Intl.NumberFormat('en-US', optionsNum).format(num));
+console.log(new Intl.NumberFormat('de-DE', optionsNum).format(num));
+console.log(new Intl.NumberFormat('zh-HK', optionsNum).format(num));
