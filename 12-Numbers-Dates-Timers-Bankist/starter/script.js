@@ -559,5 +559,5 @@ const options = {
 };
 
 //Specify default date formatting for language (locale)
-//const locale = navigator.language;
-console.log(new Intl.DateTimeFormat('default', options).format(todayV2));
+const locale = navigator.language;
+console.log(new Intl.DateTimeFormat(locale, options).format(todayV2));
