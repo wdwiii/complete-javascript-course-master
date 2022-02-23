@@ -578,7 +578,49 @@ const optionsNum = {
 
 // new Intl.NumberFormat()
 // new Intl.NumberFormat(locales)
-// new Intl.NumberFormat(locales, options)
-console.log(new Intl.NumberFormat('en-US', optionsNum).format(num));
-console.log(new Intl.NumberFormat('de-DE', optionsNum).format(num));
-console.log(new Intl.NumberFormat('zh-HK', optionsNum).format(num));
+// // new Intl.NumberFormat(locales, options)
+// console.log(new Intl.NumberFormat('en-US', optionsNum).format(num));
+// console.log(new Intl.NumberFormat('de-DE', optionsNum).format(num));
+// console.log(new Intl.NumberFormat('zh-HK', optionsNum).format(num));
+
+//===============================================
+// 180. Timers: setTimout and setInterval
+//===============================================
+//Two types of timers:
+//setTimeout will run once
+//setInterval will run until timer is intructed to stop
+
+//setTimout receives a callback function as the first argument
+//the second argument is the time (milliseconds) before the callback is executed
+//setTimeout(() => console.log('setTimeout() will be executed first'), 3000);
+
+//setTimeout will call for the function to be executed at a later time but it does not halt the call stack -> This is an example of asynchronus javascript
+//console.log('but this will be printed first');
+
+//setTimeout has a mechinism to solve arguments not being able to be passed directly into the callback function by registering any argument after the time-before-execution as parameter for the callback
+
+// setTimeout(
+//   (name, favSport) =>
+//     console.log(
+//       `Hi my name is ${name} and I like to play ${favSport.toLowerCase()}.`
+//     ),
+//   1000,
+//   'Willie',
+//   'Basketball'
+// );
+
+//setTimeout can be stopped by using clearTimeout
+//clearTimeout takes in the name of the targeted timer as an argument
+//const willie = ['Willie', 'basketball', 'apples']; //will not execute
+//const willie = ['Willie', 'football', 'apples']; //will work as expected
+
+//setInterval to build a clock functi
+const timer = setInterval(function () {
+  const now = new Date();
+  const options = {
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
+  };
+  //console.log(Intl.DateTimeFormat('en-US', options).format(now));
+}, 1000);
