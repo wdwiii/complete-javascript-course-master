@@ -362,30 +362,30 @@ const whereAmI = (lat, lng) => {
 
 //PART 2
 //6. Now it's time to use the received data to render a country. So take the relevant attribute from the geocoding API result, and plug it into the countries API that we have been using.
-const whereAmI = (lat = '41.3189957000', lng = '2.0746469000') => {
-  fetch(`https://geocode.xyz/${lat},${lng}?json=1`)
-    .then(response => {
-      console.log(response);
-      if (!response.ok)
-        throw new Error(
-          `This API allows you to make only 3 requests per second. Please allow a few moments before refresing (${response.status})`
-        );
-      return response.json();
-    })
-    .then(data => {
-      console.log(data);
-      console.log(`You are in ${data.city}, ${data.country}`);
-      //getCountryData(data.country);
-      return fetch(`https://restcountries.com/v3.1/name/${data.country}`);
-    })
-    .then(response => {
-      if (!response.ok)
-        throw new Error(`Country cannont be found (${response.status})`);
-      return response.json();
-    })
-    .then(data => createCard(data[0]))
-    .catch(err => console.error(`${err.message}`));
-};
+// const whereAmI = (lat = '41.3189957000', lng = '2.0746469000') => {
+//   fetch(`https://geocode.xyz/${lat},${lng}?json=1`)
+//     .then(response => {
+//       console.log(response);
+//       if (!response.ok)
+//         throw new Error(
+//           `This API allows you to make only 3 requests per second. Please allow a few moments before refresing (${response.status})`
+//         );
+//       return response.json();
+//     })
+//     .then(data => {
+//       console.log(data);
+//       console.log(`You are in ${data.city}, ${data.country}`);
+//       //getCountryData(data.country);
+//       return fetch(`https://restcountries.com/v3.1/name/${data.country}`);
+//     })
+//     .then(response => {
+//       if (!response.ok)
+//         throw new Error(`Country cannont be found (${response.status})`);
+//       return response.json();
+//     })
+//     .then(data => createCard(data[0]))
+//     .catch(err => console.error(`${err.message}`));
+// };
 
 //whereAmI();
 
@@ -483,21 +483,56 @@ const wait = numOfSecs => {
 //   }, 1000);
 // }, 1000);
 
-wait(1)
-  .then(() => {
-    console.log(`1 second has passed`);
-    return wait(1);
-  })
-  .then(() => {
-    console.log(`2 seconds has passed`);
-    return wait(1);
-  })
-  .then(() => {
-    console.log(`3 seconds has passed`);
-    return wait(1);
-  })
-  .then(() => console.log(`4 seconds has passed`));
+// wait(1)
+//   .then(() => {
+//     console.log(`1 second has passed`);
+//     return wait(1);
+//   })
+//   .then(() => {
+//     console.log(`2 seconds has passed`);
+//     return wait(1);
+//   })
+//   .then(() => {
+//     console.log(`3 seconds has passed`);
+//     return wait(1);
+//   })
+//   .then(() => console.log(`4 seconds has passed`));
 
-//Promises can be resolved or rejected immediatley
-Promise.resolve('I am resolved').then(res => console.log(res));
-Promise.reject(new Error('I am rejected')).catch(err => console.error(err));
+// //Promises can be resolved or rejected immediatley
+// Promise.resolve('I am resolved').then(res => console.log(res));
+// Promise.reject(new Error('I am rejected')).catch(err => console.error(err));
+
+//==========================================
+//262. Consuming Promises with Async/Await
+//==========================================
+//Function for geolocation
+const getPosition = function () {
+  return new Promise((resolve, reject) =>
+    navigator.geolocation.getCurrentPosition((resolve, reject))
+  );
+};
+
+//Using the await keyword does NOT block the call stack because the whereAmI function is running asynchronusly
+const whereAmI = async function (country) {
+  // //Geolocation
+  // const pos = await getPosition();
+  // const { latitude: lat, longitude: lng } = pos.coords;
+
+  // //Reverse geocoding
+  // const resGeo = await fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+  // const dataGeo = await geo.json();
+
+  //Country Data
+  const res = await fetch(`https://restcountries.com/v3.1/name/${country}`);
+  const data = await res.json();
+  console.log(data);
+  createCard(data[0]);
+};
+
+// const whereAmI = async function (country) {
+//   fetch(`https://restcountries.com/v3.1/name/${country}`).then(res =>
+//   console.log(res))
+// };
+
+whereAmI('jamaica');
+console.log('FIRST');
